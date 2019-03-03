@@ -277,6 +277,135 @@
             
               
                 
+                <a class="post-title-link" href="/2019/03/03/关于在linux环境下搭建博客这件事/" itemprop="url">
+                  关于在linux环境下搭建博客这件事
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2019-03-03T14:44:50+08:00" content="2019-03-03">
+              2019-03-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>去年六月高考结束后，我曾天真地以为自己终于可以勤劳地更新自己荒废一年半的博客了，然而由于各种各样的理由（好吧，就是因为我懒），写完一篇html的文章后，我再次荒废了半年。如今当我终于想起自己还有一个在角落里吃灰的博客时，它罢工了，而我至今不晓得它到底犯了什么毛病。不过呢，最终在我诚心诚意的不懈努力下（其实并不），它莫名其妙地好了。
+首先让我来展示一下我遇到的这个错误：
+</code></pre><figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ERROR </span>Local hexo not found in ~/MyHexoBlog</span><br><span class="line"><span class="keyword">ERROR </span>Try running: 'npm install hexo --save'</span><br></pre></td></tr></table></figure>
+<pre><code>当然，因为我原先是在Cloud9上写的博客，所以并不是in ~/MyHexoBlog，不过没什么区别。
+遇到自己无法解决的问题，第一步当然是百度找解决方法。然而网上的方法全试过一遍后，Cloud9的bash完全瘫痪，而此时我已经受够了Cloud9，并且决心将文件转移到本地——我的Ubuntu系统上，此过程相当于重新搭建一个博客，不过也省了很多步骤。
+使用hexo搭建blog并且托管到github上总共分三个步骤：
+1.安装nodejs和npm
+2.搭建本地的hexo
+3.安装并配置git
+</code></pre><p>####安装nodejs和npm<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get <span class="keyword">install</span> nodejs</span><br><span class="line">sudo apt <span class="keyword">install</span> npm</span><br></pre></td></tr></table></figure></p>
+<pre><code>linux上安装这些似乎都需要加上sudo，sudo可以使一般用户获得部分root权限，而用户只需要输入自己的密码。
+输入这两个命令后，nodejs和npm就安装完成了。如果你并不能确定自己是否已经安装成功，那么你可以通过以下&apos;node -v&apos;和&apos;npm -v&apos;这两句命令行检验一下。这两句命令是用来查看nodejs和npm的版本的，如果出现了
+</code></pre><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kermit@kermit-VGN-CS33H-B:~/MyHexoBlog$ npm -v</span><br><span class="line"><span class="number">3.5</span>.<span class="number">2</span></span><br><span class="line">kermit@kermit-VGN-CS33H-B:~/MyHexoBlog$ <span class="keyword">node</span> <span class="title">-v</span></span><br><span class="line">v8.<span class="number">10.0</span></span><br></pre></td></tr></table></figure>
+<p>这样的结果，说明你已经安装成功了。</p>
+<p>####搭建本地的hexo<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="selector-tag">i</span> -g hexo-cli</span><br></pre></td></tr></table></figure></p>
+<pre><code>这一步似乎只有这一条全局安装的命令。由于我是转移自己的博客文件，所以我直接将自己的文件覆盖上去。
+</code></pre><p>####安装并配置git<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install git</span><br></pre></td></tr></table></figure></p>
+<pre><code>这一条是用来安装git的，这不必多说。
+接下来就是配置git了，在此之前你必须确保自己有一个github账号，并且新建一个仓库（Repositories），仓库名为注册名.github.io。以上步骤结束后，你就可以执行
+</code></pre><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git<span class="built_in"> config </span>--global user.name <span class="string">"你的github用户名"</span></span><br><span class="line">git<span class="built_in"> config </span>--global user.email <span class="string">"你注册github时使用的邮箱"</span></span><br></pre></td></tr></table></figure>
+<pre><code>然后需要修改你博客文件中的配置文件_config.yml，找到Deployment一栏，将其修改为:
+</code></pre><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># Deployment</span></span><br><span class="line"><span class="meta">## Docs: https:<span class="comment">//hexo.io/docs/deployment.html</span></span></span><br><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repository:</span> https:<span class="comment">//github.com/你的用户名/你的用户名.github.io</span></span><br><span class="line"><span class="symbol">  brach:</span> master</span><br></pre></td></tr></table></figure>
+<pre><code>其实到这一步就可以结束了。但浏览网上的教程都有配置SSH这一步，SSH是一种远程连接工具，在这里的作用是让你免密连接github。
+要配置SSH，第一步当然得先安装SSH。
+</code></pre><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> openssh-<span class="keyword">server</span></span><br></pre></td></tr></table></figure>
+<pre><code>安装完成之后就可以直接生成你的SSH密钥。
+</code></pre><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -<span class="built_in">t</span> rsa -C <span class="string">"你注册github时使用的邮箱"</span></span><br></pre></td></tr></table></figure>
+<pre><code>生成密钥后，你需要将公钥添加到你的github账户中。当然在此之前，你可以通过&apos;ssh -T git@github.com&apos;这条命令检验密钥是否成功生成。
+首先通过&apos;cat ~/.ssh/id_rsa.pub&apos;命令得到你的公钥。然后在你github个人账户的settings中，选择&apos;SSH and GPG keys&apos;这一项，点击&apos;New SSH key&apos;,自拟题目，并将公钥粘贴到下栏。
+
+到此为止，博客搭建完成，你只要进入你的blog文件夹，然后用hexo指令尽情书写你的博客即可。
+
+本应如此，然而也许是因为我直接将文件覆盖上去，最初的那个错误依旧挡住了我的道路。于是我再一次将网上的方法试一遍。
+网上大多数方法就是输入系统给你的建议&apos;npm install hexo --save&apos;,然而对我这种情况并没有改善。
+另一种方法是删除node_modules文件夹，然后使用&apos;npm install&apos;指令。这一次，方法奏效了。
+可喜可贺，可喜可贺。
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/06/23/kxj-s-first-website-改/" itemprop="url">
                   kxj's first website改
                 </a>
@@ -1339,133 +1468,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/17/SWERC 2013 A Mixing Colours/" itemprop="url">
-                  SWERC 2013 A Mixing Colours
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-17T07:42:42+08:00" content="2016-11-17">
-              2016-11-17
-            </time>
-          </span>
-
-          
-            <span class="post-category">
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/动态规划/" itemprop="url" rel="index">
-                    <span itemprop="name">动态规划</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/动态规划/概率/" itemprop="url" rel="index">
-                    <span itemprop="name">概率</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-           
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/17/SWERC 2013 A Mixing Colours/">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1509,7 +1511,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1526,7 +1528,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
