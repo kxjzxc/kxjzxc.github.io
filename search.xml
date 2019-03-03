@@ -23,6 +23,16 @@
 <p>本应如此，然而也许是因为我直接将文件覆盖上去，最初的那个错误依旧挡住了我的道路。于是我再一次将网上的方法试一遍。<br>网上大多数方法就是输入系统给你的建议’npm install hexo –save’,然而对我这种情况并没有改善。<br>另一种方法是删除node_modules文件夹，然后使用’npm install’指令。这一次，方法奏效了。<br>可喜可贺，可喜可贺。</p>
 ]]></content>
       
+        <categories>
+            
+            <category> Hexo </category>
+            
+            <category> Git </category>
+            
+            <category> Linux </category>
+            
+        </categories>
+        
         
         <tags>
             
