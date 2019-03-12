@@ -4,6 +4,36 @@
   
     
     <entry>
+      <title><![CDATA[关于Linux不正常关机、软件包系统和输入法的错误]]></title>
+      <url>http://kxjzxc.github.io/2019/03/11/%E5%85%B3%E4%BA%8ELinux%E4%B8%8D%E6%AD%A3%E5%B8%B8%E5%85%B3%E6%9C%BA%E3%80%81%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%B3%BB%E7%BB%9F%E5%92%8C%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E9%94%99%E8%AF%AF/</url>
+      <content type="html"><![CDATA[<h4 id="不正常关机"><a href="#不正常关机" class="headerlink" title="不正常关机"></a>不正常关机</h4><p>不知道今晚系统抽了什么风，直接黑屏然后出现一堆神秘代码，导致我怀着恐慌的心情强制关机。当我再次开机的时候就不再是正常开机的画面了，由于当时没有截图，只能凭借记忆与网上其他人遇到的问题写下来。若下次遇到（希望没有下次）再截图。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/dev/sdb8 contains a file<span class="built_in"> system </span>with errors,check forced.</span><br><span class="line">/dev/sdb8:Inodes that were part of a corrupted orphan linked list found.</span><br><span class="line">/dev/sdb8:UNEXPECTED INCONSISTENCY;<span class="builtin-name">RUN</span> fsck MANUALLY.(i.e.,without -a <span class="keyword">or</span> -p options)</span><br><span class="line">fsck exited with status code 4</span><br></pre></td></tr></table></figure></p>
+<p>其实还有一些，只不过我忘记了。</p>
+<p>不过看网上的说法，是因为电脑不正常关机后再次开机必然会出现的画面。<br>网上的解决方法自然很多，但并非个个有效。试了许多方法后，只有这个指令有效<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fsck -y <span class="regexp">/dev/</span>sdb8</span><br></pre></td></tr></table></figure></p>
+<p><code>dev</code>后面应当是显示数据损坏的磁盘。出现一大堆字符后，<code>control-D</code>重启即可。</p>
+<h4 id="软件包系统错误"><a href="#软件包系统错误" class="headerlink" title="软件包系统错误"></a>软件包系统错误</h4><p>其实这个问题并无伤大雅，但会出现一个红色的圆圈，里面一条白色的杠，鼠标放在上面会显示：“发生了一个错误，请通过……”等字眼（忘记截图了）。这东西放在桌面上也挺糟心的，所以还是上网查了解决方法。<br>网上的解决方法是输入<code>sudo apt-get install -f</code>,然而当我输入yes的时候出现了一堆错误，无效。</p>
+<p>后来当我打开“软件和更新”这个应用后，它显示了那个错误<strong>软件包系统已损坏</strong>，网上一搜，找到了解决方法。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> clean</span><br><span class="line">sudo apt-<span class="builtin-name">get</span> install -f</span><br></pre></td></tr></table></figure></p>
+<p>估计原因和那个博主一样，是更新系统时没下完就关机了。</p>
+<h4 id="输入法错误"><a href="#输入法错误" class="headerlink" title="输入法错误"></a>输入法错误</h4><p>这个错误是最让我糟心的，不仅是因为它严重影响到了我对电脑的使用以及日常计划，更在于这个问题我难以查询，因为我自己都表达不清。我找了好长时间的解决方法，甚至一度以为是上面那个问题惹得祸。所幸，最终让我幸运的找到了解决方法，当然，也知道了表述问题的方法。</p>
+<p>问题：系统自带输入法（ibus）只能回车输入第一个预选词，不能通过数字选择备选汉字。<br>解决方法：删除 ~/.cache/ibus/libpinyin 然后重启电脑。</p>
+<p>PS：说实话ibus输入法真心不好用，要不是因为搜狗配liunx感觉挺奇怪的，我早就换了。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Linux </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[【读书】《牛皮糖》——繁华时代的虚度者]]></title>
       <url>http://kxjzxc.github.io/2019/03/07/%E3%80%90%E8%AF%BB%E4%B9%A6%E3%80%91%E7%89%9B%E7%9A%AE%E7%B3%96%E2%80%94%E2%80%94%E7%B9%81%E5%8D%8E%E6%97%B6%E4%BB%A3%E7%9A%84%E8%99%9A%E5%BA%A6%E8%80%85/</url>
       <content type="html"><![CDATA[<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=27980321&auto=1&height=66"></iframe>
