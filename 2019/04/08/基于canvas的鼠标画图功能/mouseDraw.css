@@ -1,0 +1,16 @@
+/*允许中文字符*/
+@charset "utf-8";
+body{
+ background: #CCC;
+ text-align: center;
+}
+#button{
+ margin: 50px auto;
+ width: 200px;
+}
+#can{
+ background: white;
+ margin-top: -50px;
+ display: inline-block;
+}
+
