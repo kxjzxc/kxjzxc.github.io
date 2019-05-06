@@ -4,6 +4,162 @@
   
     
     <entry>
+      <title><![CDATA[关于播放音乐的二三事]]></title>
+      <url>http://kxjzxc.github.io/2019/05/05/%E5%85%B3%E4%BA%8E%E6%92%AD%E6%94%BE%E9%9F%B3%E4%B9%90%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>这篇文章我主要是想写写我在听音乐过程中所遇到的一些问题。感觉写成好几篇文章太过于麻烦，所以我索性全写到一篇文章中，以后若是遇到自然也会在此文章中更新。<br>以下是本文的内容所涵盖的几点：</p>
+<ul>
+<li>Linux里firefox无法播放音乐</li>
+<li>网易云音乐付费音乐免费下载</li>
+<li>Hexo博客添加音乐</li>
+</ul>
+<hr>
+<h4 id="ubuntu里firefox无法播放音乐"><a href="#ubuntu里firefox无法播放音乐" class="headerlink" title="ubuntu里firefox无法播放音乐"></a>ubuntu里firefox无法播放音乐</h4><p>我在ubuntu环境下时一般使用RhythmBox播放本地音乐，而且也很少在此环境下看视频，所以我很少用浏览器播放音频和视频。但是有时候是必须用到浏览器播放，就像是下文所讲的下载付费音乐。然而当我第一次在ubuntu的firefox上打开网易云音乐网页版播放音乐时却发现无法播放。网上一查，大抵上是解码器不支持的缘故。幸运的是这个问题也好解决，安装个解码器即可。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install ubuntu-restricted-extras</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h4 id="网易云音乐付费音乐免费下载"><a href="#网易云音乐付费音乐免费下载" class="headerlink" title="网易云音乐付费音乐免费下载"></a>网易云音乐付费音乐免费下载</h4><p>这个方法只对可以在网页端听的音乐有用。</p>
+<ol>
+<li>进入歌曲页面，按下F2查看元素。<br><img src="Download1.png" alt></li>
+<li>点击<code>网络</code>(network)，并且选择<code>媒体</code>(media)，然后按ctrl+R重新载入。<br><img src="Download2.png" alt></li>
+<li>在ubuntu中，选择大小最大的那一项，即上述图片中的第二项。右键，点击<code>新建标签页打开</code>，然后切换到新生成的页面中。<br><img src="Download3.png" alt><br>在windows中，需要先播放音乐，然后再选择大小最大的那一项，双击并切换得到新生成的页面中（也可能是浏览器的原因，我两个系统的浏览器不同）。</li>
+<li>右键中间的进度条，点击<code>另存音频为</code>，即可保存歌曲。windows</li>
+</ol>
+<hr>
+<h4 id="Hexo博客中添加音乐"><a href="#Hexo博客中添加音乐" class="headerlink" title="Hexo博客中添加音乐"></a>Hexo博客中添加音乐</h4><h5 id="使用音乐平台提供的外链"><a href="#使用音乐平台提供的外链" class="headerlink" title="使用音乐平台提供的外链"></a>使用音乐平台提供的外链</h5><p>以网易云音乐为例：</p>
+<ol>
+<li>进入所需歌曲的页面，点击<code>生成外链播放器</code>。<br><img src="Blog1.png" alt></li>
+<li>一般添加的是iframe标签，调节完尺寸和播放模式后，复制最低端的HTML代码，添加到自己的博客文章中。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">frameborder</span>=<span class="string">"no"</span> <span class="attr">border</span>=<span class="string">"0"</span> <span class="attr">marginwidth</span>=<span class="string">"0"</span> <span class="attr">marginheight</span>=<span class="string">"0"</span> <span class="attr">width</span>=<span class="string">330</span> <span class="attr">height</span>=<span class="string">86</span> <span class="attr">src</span>=<span class="string">"//music.163.com/outchain/player?type=2&amp;id=19892244&amp;auto=0&amp;height=66"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>效果如下：</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=19892244&auto=0&height=66"></iframe>
+
+<h5 id="使用aplayer播放"><a href="#使用aplayer播放" class="headerlink" title="使用aplayer播放"></a>使用aplayer播放</h5><p>上述引用音乐平台外链的方法可以说是非常的方便了，只要获取代码添加一下即可。<br>然而对于一些老爵士、老摇滚和其他有版权保护的音乐是没办法添加外链的。<br><img src="Blog2.png" alt><br>网上虽然有如何获取这些歌曲外链的方法，但是我试过两次后，发现只能出现播放器，却无法播放。所以为了一劳永逸，我选择使用aplayer。<br>aplayer是一款音乐播放插件，即html5的嵌入式播放器，只要有歌曲的id即可。</p>
+<ol>
+<li><p>安装aplayer插件</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> <span class="comment">--save hexo-tag-aplayer</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用MetingJS</p>
+<blockquote>
+<p>MetingJS 是基于Meting API 的 APlayer 衍生播放器，引入 MetingJS 后，播放器将支持对于 QQ音乐、网易云音乐、虾米、酷狗、百度等平台的音乐播放。</p>
+</blockquote>
+</li>
+</ol>
+<p>上述是从别人博客里引用的关于MetingJS的介绍以及功能。<br>使用MetingJS需要在根目录下的<code>_config.yml</code>文件中添加以下语句：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">aplayer:</span></span><br><span class="line"><span class="attr">  meting:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<ol start="3">
+<li>添加代码<br>准备工作完成了，接下来你只需要在你想加音乐的博客文章中添加以下代码即可：<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% meting <span class="string">"3880720"</span> <span class="string">"netease"</span> <span class="string">"song"</span> <span class="string">"theme:#555"</span> <span class="string">"mutex:true"</span> <span class="string">"listmaxheight:340px"</span> <span class="string">"preload:auto"</span> %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>效果如下：<br>
+    <div id="aplayer-mKdRIvZS" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="3880720" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"></div><br>其中3880720是歌曲的id，可以在该歌曲页面的网址中找到。</p>
+<p>这份代码中的各个参数配置如下：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th style="text-align:center">默认值</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td style="text-align:center">必须值</td>
+<td style="text-align:left">歌曲/专辑/歌单对应的id</td>
+</tr>
+<tr>
+<td>server</td>
+<td style="text-align:center">必须值</td>
+<td style="text-align:left">音乐平台：netease(网易云音乐)、tecent(qq音乐)、xiami(虾米音乐)、kugou(酷狗音乐)、baidu(百度音乐)</td>
+</tr>
+<tr>
+<td>type</td>
+<td style="text-align:center">必须值</td>
+<td style="text-align:left">请求类型：song(单曲)、album(专辑)、playlist(歌单)、search(搜索)、artist(歌手)</td>
+</tr>
+<tr>
+<td>theme</td>
+<td style="text-align:center">#ad7a86</td>
+<td style="text-align:left">播放器风格色彩设置</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td style="text-align:center">false</td>
+<td style="text-align:left">开启固定模式</td>
+</tr>
+<tr>
+<td>mini</td>
+<td style="text-align:center">false</td>
+<td style="text-align:left">开启迷你模式</td>
+</tr>
+<tr>
+<td>loop</td>
+<td style="text-align:center">all</td>
+<td style="text-align:left">列表循环模式：all, one,none</td>
+</tr>
+<tr>
+<td>order</td>
+<td style="text-align:center">list</td>
+<td style="text-align:left">列表播放模式： list(顺序播放), random(随机播放)</td>
+</tr>
+<tr>
+<td>volume</td>
+<td style="text-align:center">0.7</td>
+<td style="text-align:left">播放器音量</td>
+</tr>
+<tr>
+<td>lrctype</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left">歌词格式类型</td>
+</tr>
+<tr>
+<td>listfolded</td>
+<td style="text-align:center">false</td>
+<td style="text-align:left">指定音乐播放列表是否折叠</td>
+</tr>
+<tr>
+<td>storagename</td>
+<td style="text-align:center">metingjs</td>
+<td style="text-align:left">LocalStorage 中存储播放器设定的键名</td>
+</tr>
+<tr>
+<td>autoplay</td>
+<td style="text-align:center">true</td>
+<td style="text-align:left">自动播放，移动端浏览器暂时不支持此功能</td>
+</tr>
+<tr>
+<td>mutex</td>
+<td style="text-align:center">true</td>
+<td style="text-align:left">该选项开启时，如果同页面有其他 aplayer 播放，该播放器会暂停</td>
+</tr>
+<tr>
+<td>listmaxheight</td>
+<td style="text-align:center">340px</td>
+<td style="text-align:left">播放列表的最大长度</td>
+</tr>
+<tr>
+<td>preload</td>
+<td style="text-align:center">auto</td>
+<td style="text-align:left">音乐文件预载入模式，可选项： none, metadata, auto</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      
+        <categories>
+            
+            <category> 教程 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Blog </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[【读书】爵士乐时代的故事]]></title>
       <url>http://kxjzxc.github.io/2019/05/02/%E3%80%90%E8%AF%BB%E4%B9%A6%E3%80%91%E7%88%B5%E5%A3%AB%E4%B9%90%E6%97%B6%E4%BB%A3%E7%9A%84%E6%95%85%E4%BA%8B/</url>
       <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>《爵士乐时代的故事》我从图书馆结果来历经两个月方才读完。主要还是平常看书的时间太少，在加上一开始心太野，想给每一篇短篇小说都分析一遍。后来终于发现自己并没有那么多的精力，所以最终只是写了两篇小说的分析。</p>
@@ -315,7 +471,7 @@
       
         <categories>
             
-            <category> Linux </category>
+            <category> 教程 </category>
             
         </categories>
         
@@ -332,7 +488,7 @@
       <title><![CDATA[【读书】《牛皮糖》——繁华时代的虚度者]]></title>
       <url>http://kxjzxc.github.io/2019/03/07/%E3%80%90%E8%AF%BB%E4%B9%A6%E3%80%91%E7%89%9B%E7%9A%AE%E7%B3%96%E2%80%94%E2%80%94%E7%B9%81%E5%8D%8E%E6%97%B6%E4%BB%A3%E7%9A%84%E8%99%9A%E5%BA%A6%E8%80%85/</url>
       <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-    <div id="aplayer-OUpiOhRe" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="27980321" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"></div>
+    <div id="aplayer-BPNUfGrR" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="27980321" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"></div>
 <h4 id="我的分析"><a href="#我的分析" class="headerlink" title="我的分析"></a>我的分析</h4><blockquote>
 <p>吉姆·鲍威尔就是一块牛皮糖。</p>
 </blockquote>
@@ -421,16 +577,16 @@
       
         <categories>
             
-            <category> Blog </category>
+            <category> 教程 </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Blog </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
