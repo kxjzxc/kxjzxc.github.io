@@ -49,7 +49,7 @@
 </li>
 </ol>
 <p>效果如下：<br>
-    <div id="aplayer-mKdRIvZS" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="3880720" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"></div><br>其中3880720是歌曲的id，可以在该歌曲页面的网址中找到。</p>
+    <div id="aplayer-pFMmJoYt" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="3880720" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"></div><br>其中3880720是歌曲的id，可以在该歌曲页面的网址中找到。</p>
 <p>这份代码中的各个参数配置如下：</p>
 <table>
 <thead>
@@ -488,7 +488,7 @@
       <title><![CDATA[【读书】《牛皮糖》——繁华时代的虚度者]]></title>
       <url>http://kxjzxc.github.io/2019/03/07/%E3%80%90%E8%AF%BB%E4%B9%A6%E3%80%91%E7%89%9B%E7%9A%AE%E7%B3%96%E2%80%94%E2%80%94%E7%B9%81%E5%8D%8E%E6%97%B6%E4%BB%A3%E7%9A%84%E8%99%9A%E5%BA%A6%E8%80%85/</url>
       <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-    <div id="aplayer-BPNUfGrR" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="27980321" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"></div>
+    <div id="aplayer-sVTbMAAo" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="27980321" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"></div>
 <h4 id="我的分析"><a href="#我的分析" class="headerlink" title="我的分析"></a>我的分析</h4><blockquote>
 <p>吉姆·鲍威尔就是一块牛皮糖。</p>
 </blockquote>
@@ -584,9 +584,9 @@
         
         <tags>
             
-            <tag> Blog </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Blog </tag>
             
         </tags>
         
