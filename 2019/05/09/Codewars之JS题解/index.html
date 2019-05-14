@@ -102,7 +102,7 @@
 <meta property="og:url" content="http://kxjzxc.github.io/2019/05/09/Codewars之JS题解/index.html">
 <meta property="og:site_name" content="kxj&#39;s Eden">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-09T14:05:26.728Z">
+<meta property="og:updated_time" content="2019-05-14T08:58:17.560Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codewars之JS题解">
 
@@ -412,12 +412,24 @@
                 
               
 
-              <time title="创建时间：2019-05-09 22:01:24 / 修改时间：22:05:26" itemprop="dateCreated datePublished" datetime="2019-05-09T22:01:24+08:00">2019-05-09</time>
+              <time title="创建时间：2019-05-09 22:01:24" itemprop="dateCreated datePublished" datetime="2019-05-09T22:01:24+08:00">2019-05-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-14 16:58:17" itemprop="dateModified" datetime="2019-05-14T16:58:17+08:00">2019-05-14</time>
               
             
           </span>
@@ -484,7 +496,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">643</span>
+                <span title="本文字数">1.6k</span>
               
 
               
@@ -521,12 +533,24 @@
 
       
         <p>这一篇文章主要是写一些我在Codewars上写到的js题目。</p>
+<hr>
+<p>2019.5.9</p>
 <h4 id="Disemvowel-Trolls"><a href="#Disemvowel-Trolls" class="headerlink" title="Disemvowel Trolls"></a>Disemvowel Trolls</h4><h5 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h5><p>将一行字符串中的元音字符删去，并返回修改后的字符串。</p>
 <h5 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h5><p>直接使用字符串自带的函数<code>replace</code>。<br><code>str.replace(x,y)</code>表示将与正则表达式x匹配的子串替换成y字符串<br>我们所需要的正则表达式为<code>/[aeiou]/gi</code><br>/g表示执行全局匹配<br>/i表示对大小写不敏感<br>因为是删去，所以我们把匹配到的子串替换成空字符，即’’</p>
 <h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">disemvowel</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str.replace(<span class="regexp">/[aeiou]/gi</span>, <span class="string">''</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="List-Filtering"><a href="#List-Filtering" class="headerlink" title="List Filtering"></a>List Filtering</h4><h5 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h5><p>给定一个只含有数字类型和字符串类型元素的数组对象，过滤其中的字符串，并输出。</p>
 <h5 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h5><p>数组对象有一个函数是<code>filter()</code>,功能为创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的元素。<br>那么接下来就是判断一个元素是否为数字类型。通过<code>typeof</code>我们可以得到一个元素的数据类型，如果等于’number’那么就是数字类型。</p>
 <h5 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> e == <span class="string">"number"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter_list</span>(<span class="params">l</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Return a new array with the strings filtered out</span></span><br><span class="line">  <span class="keyword">return</span> l.filter(check);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>2019.5.12</p>
+<h4 id="Number-of-People-in-the-Bus"><a href="#Number-of-People-in-the-Bus" class="headerlink" title="Number of People in the Bus"></a>Number of People in the Bus</h4><h5 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h5><p>给定一个数组，表示n个车站。数组中的每个元素包含两个整型，分别表示每一个车站的上车人数和下车人数。求到最后一站时车上还剩下的人数。</p>
+<h5 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h5><p>代码很好写，但是js代码要用js特色的代码。<br>数组中自带的reduce函数，功能为从左到右将元素通过括号里的函数累加。<br><code>(a,b)=&gt;(a+b)</code>是函数的另一种表现形式，等价于<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> number = <span class="function"><span class="keyword">function</span>(<span class="params">busStops</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// Good Luck!</span></span><br><span class="line">  <span class="keyword">return</span> busStops.reduce(<span class="function">(<span class="params">ans,[add,dec]</span>)=&gt;</span>ans+add-dec,<span class="number">0</span>);<span class="comment">//0表示初始值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>2019.5.14</p>
+<h4 id="Your-order-please"><a href="#Your-order-please" class="headerlink" title="Your order, please"></a>Your order, please</h4><h5 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h5><p>给定一个字符串，字符串中的每一个单词都包含着一个单独的数字，位置不定。<br>数字的范围为1-9，请按照数字从小到大对单词进行排序。<br>输出排序后的字符串。</p>
+<h5 id="题解-3"><a href="#题解-3" class="headerlink" title="题解"></a>题解</h5><p>这题应该是我第一次用JS语言的风格单独写出来的题。之前的题目虽然也是自己解决的，但代码写出来就跟用C\C++写出来的一样。<br>以下为使用函数的解析：<br><code>str.split(separtor,limit)</code>:将字符串转换成数组。separtor是指定分割成元素的字符或正则表达式。<br><code>array.sort(function)</code>:对数组中的元素进行排序，默认排序顺序是按照字母升序。function是用来指定排序顺序的函数。<br><code>str.match(regexp)</code>:在字符串中检索一个或者多个与括号内正则表达式匹配的值。<br><code>array.join(separator)</code>:将数组中的所有元素转换成一个字符串，separator为元素之间的分隔符，此处用空格。</p>
+<h5 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">order</span>(<span class="params">words</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> words.split(<span class="string">" "</span>).sort(<span class="function">(<span class="params">word1,word2</span>)=&gt;</span>word1.match(<span class="regexp">/[1-9]/</span>)&gt;word2.match(<span class="regexp">/[1-9]/</span>)).join(<span class="string">" "</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -861,7 +885,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Disemvowel-Trolls"><span class="nav-number">1.</span> <span class="nav-text">Disemvowel Trolls</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解"><span class="nav-number">1.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码"><span class="nav-number">1.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List-Filtering"><span class="nav-number">2.</span> <span class="nav-text">List Filtering</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-1"><span class="nav-number">2.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-1"><span class="nav-number">2.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Disemvowel-Trolls"><span class="nav-number">1.</span> <span class="nav-text">Disemvowel Trolls</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解"><span class="nav-number">1.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码"><span class="nav-number">1.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List-Filtering"><span class="nav-number">2.</span> <span class="nav-text">List Filtering</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-1"><span class="nav-number">2.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-1"><span class="nav-number">2.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Number-of-People-in-the-Bus"><span class="nav-number">3.</span> <span class="nav-text">Number of People in the Bus</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-2"><span class="nav-number">3.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-2"><span class="nav-number">3.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Your-order-please"><span class="nav-number">4.</span> <span class="nav-text">Your order, please</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-3"><span class="nav-number">4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-3"><span class="nav-number">4.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-3"><span class="nav-number">4.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -896,7 +920,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">74k</span>
+    <span title="站点总字数">75k</span>
   
 
   
@@ -907,7 +931,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">1:07</span>
+    <span title="站点阅读时长">1:08</span>
   
 </div>
 
