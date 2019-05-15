@@ -102,9 +102,11 @@
 <meta property="og:url" content="http://kxjzxc.github.io/2019/03/11/关于Linux不正常关机、软件包系统和输入法的错误/index.html">
 <meta property="og:site_name" content="kxj&#39;s Eden">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-05T15:20:57.099Z">
+<meta property="og:image" content="http://kxjzxc.github.io/2019/03/11/关于Linux不正常关机、软件包系统和输入法的错误/软件包.png">
+<meta property="og:updated_time" content="2019-05-15T01:07:39.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Linux不正常关机、软件包系统和输入法的错误">
+<meta name="twitter:image" content="http://kxjzxc.github.io/2019/03/11/关于Linux不正常关机、软件包系统和输入法的错误/软件包.png">
 
 
 
@@ -429,7 +431,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-05 23:20:57" itemprop="dateModified" datetime="2019-05-05T23:20:57+08:00">2019-05-05</time>
+                <time title="修改时间：2019-05-15 09:07:39" itemprop="dateModified" datetime="2019-05-15T09:07:39+08:00">2019-05-15</time>
               
             
           </span>
@@ -522,7 +524,7 @@
 <p>其实还有一些，只不过我忘记了。</p>
 <p>不过看网上的说法，是因为电脑不正常关机后再次开机必然会出现的画面。<br>网上的解决方法自然很多，但并非个个有效。试了许多方法后，只有这个指令有效<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fsck -y <span class="regexp">/dev/</span>sdb8</span><br></pre></td></tr></table></figure></p>
 <p><code>dev</code>后面应当是显示数据损坏的磁盘。出现一大堆字符后，<code>control-D</code>重启即可。</p>
-<h4 id="软件包系统错误"><a href="#软件包系统错误" class="headerlink" title="软件包系统错误"></a>软件包系统错误</h4><p>其实这个问题并无伤大雅，但会出现一个红色的圆圈，里面一条白色的杠，鼠标放在上面会显示：“发生了一个错误，请通过……”等字眼（忘记截图了）。这东西放在桌面上也挺糟心的，所以还是上网查了解决方法。<br>网上的解决方法是输入<code>sudo apt-get install -f</code>,然而当我输入yes的时候出现了一堆错误，无效。</p>
+<h4 id="软件包系统错误"><a href="#软件包系统错误" class="headerlink" title="软件包系统错误"></a>软件包系统错误</h4><p>其实这个问题并无伤大雅，但会出现一个红色的圆圈，里面一条白色的杠，鼠标放在上面会显示：“发生了一个错误，请通过……”等字眼<br><img src="软件包.png" alt><br>这东西放在桌面上也挺糟心的，所以还是上网查了解决方法。<br>网上的解决方法是输入<code>sudo apt-get install -f</code>,然而当我输入yes的时候出现了一堆错误，无效。</p>
 <p>后来当我打开“软件和更新”这个应用后，它显示了那个错误<strong>软件包系统已损坏</strong>，网上一搜，找到了解决方法。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> clean</span><br><span class="line">sudo apt-<span class="builtin-name">get</span> install -f</span><br></pre></td></tr></table></figure></p>
 <p>估计原因和那个博主一样，是更新系统时没下完就关机了。</p>
 <h4 id="输入法错误"><a href="#输入法错误" class="headerlink" title="输入法错误"></a>输入法错误</h4><p>这个错误是最让我糟心的，不仅是因为它严重影响到了我对电脑的使用以及日常计划，更在于这个问题我难以查询，因为我自己都表达不清。我找了好长时间的解决方法，甚至一度以为是上面那个问题惹得祸。所幸，最终让我幸运的找到了解决方法，当然，也知道了表述问题的方法。</p>
@@ -912,7 +914,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">1:08</span>
+    <span title="站点阅读时长">1:09</span>
   
 </div>
 

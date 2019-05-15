@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="kxj&#39;s Eden">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kxjzxc.github.io/2019/04/08/基于canvas的鼠标画图功能/mouseDraw.html">
-<meta property="og:updated_time" content="2019-04-14T09:44:48.531Z">
+<meta property="og:updated_time" content="2019-05-15T01:40:02.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于canvas的鼠标画图功能">
 <meta name="twitter:image" content="http://kxjzxc.github.io/2019/04/08/基于canvas的鼠标画图功能/mouseDraw.html">
@@ -431,7 +431,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-14 17:44:48" itemprop="dateModified" datetime="2019-04-14T17:44:48+08:00">2019-04-14</time>
+                <time title="修改时间：2019-05-15 09:40:02" itemprop="dateModified" datetime="2019-05-15T09:40:02+08:00">2019-05-15</time>
               
             
           </span>
@@ -535,7 +535,7 @@
 
       
         <p>在别人的前端demo中看到了鼠标画图这一项目，略感兴趣，于是读其代码，实现其功能。</p>
-<p><img src="/2019/04/08/基于canvas的鼠标画图功能/mouseDraw.html" alt></p>
+<p><img src="/2019/04/08/基于canvas的鼠标画图功能/mouseDraw.html" alt="点此体验"></p>
 <p>用鼠标画图的功能不是很难，原代码将html、css、javascript全部放在一份文档里都不算长。为了更好的阅读，我将其分成了三份。</p>
 <h4 id="html"><a href="#html" class="headerlink" title="html"></a>html</h4><p>在<code>&lt;head&gt;</code>标签中引用css和javascript代码<br>在<code>&lt;body&gt;</code>标签中构造按钮区域以及canvas画布<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=utf-8"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">title</span>&gt;</span>鼠标画图<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"mouseDraw.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"mouseDraw.css"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"button"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"重画"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!--定义画布元素，宽高要写在标签里。</span></span><br><span class="line"><span class="comment">     若在css文件设置，虽然canvas标签的大小会正常显示，绘制的图形则会按照缺省宽高比例放大缩小，缺省的高度是300px，宽度是150px--&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"can"</span> <span class="attr">width</span>=<span class="string">"500px"</span> <span class="attr">height</span>=<span class="string">"500px"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="css"><a href="#css" class="headerlink" title="css"></a>css</h4><p>无解说<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*允许中文字符*/</span></span><br><span class="line">@<span class="keyword">charset</span> <span class="string">"utf-8"</span>;</span><br><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line"> <span class="attribute">background</span>: <span class="number">#CCC</span>;</span><br><span class="line"> <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#button</span>&#123;</span><br><span class="line"> <span class="attribute">margin</span>: <span class="number">50px</span> auto;</span><br><span class="line"> <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#can</span>&#123;</span><br><span class="line"> <span class="attribute">background</span>: white;</span><br><span class="line"> <span class="attribute">margin-top</span>: -<span class="number">50px</span>;</span><br><span class="line"> <span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -925,7 +925,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">1:08</span>
+    <span title="站点阅读时长">1:09</span>
   
 </div>
 
