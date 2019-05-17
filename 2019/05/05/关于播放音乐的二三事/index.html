@@ -491,7 +491,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.2k</span>
+                <span title="本文字数">2.3k</span>
               
 
               
@@ -534,7 +534,7 @@
 <li>Hexo博客添加音乐</li>
 </ul>
 <hr>
-<h4 id="ubuntu里firefox无法播放音乐"><a href="#ubuntu里firefox无法播放音乐" class="headerlink" title="ubuntu里firefox无法播放音乐"></a>ubuntu里firefox无法播放音乐</h4><p>我在ubuntu环境下时一般使用RhythmBox播放本地音乐，而且也很少在此环境下看视频，所以我很少用浏览器播放音频和视频。但是有时候是必须用到浏览器播放，就像是下文所讲的下载付费音乐。然而当我第一次在ubuntu的firefox上打开网易云音乐网页版播放音乐时却发现无法播放。网上一查，大抵上是解码器不支持的缘故。幸运的是这个问题也好解决，安装个解码器即可。<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install ubuntu-restricted-extras</span><br></pre></td></tr></table></figure></p>
+<h4 id="ubuntu里firefox无法播放音乐"><a href="#ubuntu里firefox无法播放音乐" class="headerlink" title="ubuntu里firefox无法播放音乐"></a>ubuntu里firefox无法播放音乐</h4><p>我在ubuntu环境下时一般使用RhythmBox播放本地音乐，而且也很少在此环境下看视频，所以我很少用浏览器播放音频和视频。但是有时候是必须用到浏览器播放，就像是下文所讲的下载付费音乐。然而当我第一次在ubuntu的firefox上打开网易云音乐网页版播放音乐时却发现无法播放。网上一查，大抵上是解码器不支持的缘故。幸运的是这个问题也好解决，安装个解码器即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ubuntu-restricted-extras</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h4 id="网易云音乐付费音乐免费下载"><a href="#网易云音乐付费音乐免费下载" class="headerlink" title="网易云音乐付费音乐免费下载"></a>网易云音乐付费音乐免费下载</h4><p>这个方法只对可以在网页端听的音乐有用。</p>
 <ol>
@@ -556,7 +556,7 @@
 <h5 id="使用aplayer播放"><a href="#使用aplayer播放" class="headerlink" title="使用aplayer播放"></a>使用aplayer播放</h5><p>上述引用音乐平台外链的方法可以说是非常的方便了，只要获取代码添加一下即可。<br>然而对于一些老爵士、老摇滚和其他有版权保护的音乐是没办法添加外链的。<br><img src="Blog2.png" alt><br>网上虽然有如何获取这些歌曲外链的方法，但是我试过两次后，发现只能出现播放器，却无法播放。所以为了一劳永逸，我选择使用aplayer。<br>aplayer是一款音乐播放插件，即html5的嵌入式播放器，只要有歌曲的id即可。</p>
 <ol>
 <li><p>安装aplayer插件</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> <span class="comment">--save hexo-tag-aplayer</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-tag-aplayer</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使用MetingJS</p>
 <blockquote>
@@ -564,13 +564,13 @@
 </blockquote>
 </li>
 </ol>
-<p>上述是从别人博客里引用的关于MetingJS的介绍以及功能。<br>使用MetingJS需要在根目录下的<code>_config.yml</code>文件中添加以下语句：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">aplayer:</span></span><br><span class="line"><span class="attr">  meting:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>上述是从别人博客里引用的关于MetingJS的介绍以及功能。<br>使用MetingJS需要在根目录下的<code>_config.yml</code>文件中添加以下语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aplayer:</span><br><span class="line">  meting: true</span><br></pre></td></tr></table></figure></p>
 <ol start="3">
-<li>添加代码<br>准备工作完成了，接下来你只需要在你想加音乐的博客文章中添加以下代码即可：<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% meting <span class="string">"3880720"</span> <span class="string">"netease"</span> <span class="string">"song"</span> <span class="string">"theme:#555"</span> <span class="string">"mutex:true"</span> <span class="string">"listmaxheight:340px"</span> <span class="string">"preload:auto"</span> %&#125;</span><br></pre></td></tr></table></figure>
+<li>添加代码<br>准备工作完成了，接下来你只需要在你想加音乐的博客文章中添加以下代码即可：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% meting &quot;3880720&quot; &quot;netease&quot; &quot;song&quot; &quot;theme:#555&quot; &quot;mutex:true&quot; &quot;listmaxheight:340px&quot; &quot;preload:auto&quot; %&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>效果如下：<br>
-    <div id="aplayer-kGRiWnMq" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="3880720" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"></div><br>其中3880720是歌曲的id，可以在该歌曲页面的网址中找到。</p>
+    <div id="aplayer-LRzbuxRB" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="3880720" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"></div><br>其中3880720是歌曲的id，可以在该歌曲页面的网址中找到。</p>
 <p>这份代码中的各个参数配置如下：</p>
 <table>
 <thead>
