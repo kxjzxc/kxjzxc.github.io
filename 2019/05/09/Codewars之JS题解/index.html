@@ -102,7 +102,7 @@
 <meta property="og:url" content="http://kxjzxc.github.io/2019/05/09/Codewars之JS题解/index.html">
 <meta property="og:site_name" content="kxj&#39;s Eden">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-14T09:33:20.528Z">
+<meta property="og:updated_time" content="2019-05-21T10:05:45.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codewars之JS题解">
 
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-14 17:33:20" itemprop="dateModified" datetime="2019-05-14T17:33:20+08:00">2019-05-14</time>
+                <time title="修改时间：2019-05-21 18:05:45" itemprop="dateModified" datetime="2019-05-21T18:05:45+08:00">2019-05-21</time>
               
             
           </span>
@@ -496,7 +496,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.9k</span>
+                <span title="本文字数">3.2k</span>
               
 
               
@@ -510,7 +510,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">3 分钟</span>
               
             </div>
           
@@ -554,6 +554,16 @@
 <h4 id="Where-my-anagrams-at"><a href="#Where-my-anagrams-at" class="headerlink" title="Where my anagrams at?"></a>Where my anagrams at?</h4><h5 id="题目-4"><a href="#题目-4" class="headerlink" title="题目"></a>题目</h5><p>定义两个字符串等价，当且仅当它们拥有的每种字符的个数都相等。<br>问在给定的字符串数组中有多少字符串与给定的字符串word等价。</p>
 <h5 id="题解-4"><a href="#题解-4" class="headerlink" title="题解"></a>题解</h5><p>这题不难，所需函数上文都有。</p>
 <h5 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function anagrams(word, words) &#123;</span><br><span class="line">  word = word.split(&apos;&apos;).sort().join(&apos;&apos;);</span><br><span class="line">  return words.filter(a =&gt; a.split(&apos;&apos;).sort(&apos;&apos;).join(&apos;&apos;) == word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>5.20</p>
+<h4 id="Calculating-with-Functions"><a href="#Calculating-with-Functions" class="headerlink" title="Calculating with Functions"></a>Calculating with Functions</h4><h5 id="题目-5"><a href="#题目-5" class="headerlink" title="题目"></a>题目</h5><p>使用函数计算结果。<br>输入包括两个数字函数和一个符号函数，如<code>one(plus(two()));</code>形式，即要求计算1+1的结果。<br>数字函数代表函数名对应的数字。<br>符号函数代表函数名对应的符号。<br>除法向下取整。</p>
+<h5 id="题解-5"><a href="#题解-5" class="headerlink" title="题解"></a>题解</h5><p>因为这道题目我升到了5kyu<br>这道题其实并不难，用寻常的方法也是可以写的。<br>我再看了别人代码后修改了自己的代码。<br>其实主要的盲点就是函数可以直接返回一个函数。<br>代码不难，模拟一下即可。</p>
+<h5 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">zero</span>(<span class="params">Func</span>) </span>&#123;<span class="keyword">return</span> Func?Func(<span class="number">0</span>):<span class="number">0</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">one</span>(<span class="params">Func</span>) </span>&#123;<span class="keyword">return</span> Func?Func(<span class="number">1</span>):<span class="number">1</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">two</span>(<span class="params">Func</span>) </span>&#123;<span class="keyword">return</span> Func?Func(<span class="number">2</span>):<span class="number">2</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">three</span>(<span class="params">Func</span>) </span>&#123;<span class="keyword">return</span> Func?Func(<span class="number">3</span>):<span class="number">3</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">four</span>(<span class="params">Func</span>) </span>&#123;<span class="keyword">return</span> Func?Func(<span class="number">4</span>):<span class="number">4</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">five</span>(<span class="params">Func</span>) </span>&#123;<span class="keyword">return</span> Func?Func(<span class="number">5</span>):<span class="number">5</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">six</span>(<span class="params">Func</span>) </span>&#123;<span class="keyword">return</span> Func?Func(<span class="number">6</span>):<span class="number">6</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">seven</span>(<span class="params">Func</span>) </span>&#123;<span class="keyword">return</span> Func?Func(<span class="number">7</span>):<span class="number">7</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eight</span>(<span class="params">Func</span>) </span>&#123;<span class="keyword">return</span> Func?Func(<span class="number">8</span>):<span class="number">8</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nine</span>(<span class="params">Func</span>) </span>&#123;<span class="keyword">return</span> Func?Func(<span class="number">9</span>):<span class="number">9</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">plus</span>(<span class="params">b</span>) </span>&#123;<span class="keyword">return</span> <span class="function">(<span class="params">a</span>)=&gt;</span>a+b;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">minus</span>(<span class="params">b</span>) </span>&#123;<span class="keyword">return</span> <span class="function">(<span class="params">a</span>)=&gt;</span>a-b;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">times</span>(<span class="params">b</span>) </span>&#123;<span class="keyword">return</span> <span class="function">(<span class="params">a</span>)=&gt;</span>a*b;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dividedBy</span>(<span class="params">b</span>) </span>&#123;<span class="keyword">return</span> <span class="function">(<span class="params">a</span>)=&gt;</span><span class="built_in">Math</span>.floor(a/b);&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>5.21</p>
+<h4 id="Simple-Pig-Latin"><a href="#Simple-Pig-Latin" class="headerlink" title="Simple Pig Latin"></a>Simple Pig Latin</h4><h5 id="题目-6"><a href="#题目-6" class="headerlink" title="题目"></a>题目</h5><p>将给定字符串中的每个单词的第一个字母移到末尾，并在末尾加上’ay’。忽略标识符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pigIt(&apos;Pig latin is cool&apos;); // igPay atinlay siay oolcay</span><br><span class="line">pigIt(&apos;Hello world !&apos;);     // elloHay orldway !</span><br></pre></td></tr></table></figure></p>
+<h5 id="题解-6"><a href="#题解-6" class="headerlink" title="题解"></a>题解</h5><p>感觉这题还是主要考验</p>
+<h5 id="代码-6"><a href="#代码-6" class="headerlink" title="代码"></a>代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function pigIt(str)&#123;</span><br><span class="line">  return str.replace(/\b(\w)(\w*)\b/gi,&quot;$2$1ay&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -673,7 +683,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -892,7 +902,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Disemvowel-Trolls"><span class="nav-number">1.</span> <span class="nav-text">Disemvowel Trolls</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解"><span class="nav-number">1.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码"><span class="nav-number">1.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List-Filtering"><span class="nav-number">2.</span> <span class="nav-text">List Filtering</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-1"><span class="nav-number">2.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-1"><span class="nav-number">2.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Number-of-People-in-the-Bus"><span class="nav-number">3.</span> <span class="nav-text">Number of People in the Bus</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-2"><span class="nav-number">3.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-2"><span class="nav-number">3.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Your-order-please"><span class="nav-number">4.</span> <span class="nav-text">Your order, please</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-3"><span class="nav-number">4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-3"><span class="nav-number">4.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-3"><span class="nav-number">4.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Where-my-anagrams-at"><span class="nav-number">5.</span> <span class="nav-text">Where my anagrams at?</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-4"><span class="nav-number">5.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-4"><span class="nav-number">5.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-4"><span class="nav-number">5.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Disemvowel-Trolls"><span class="nav-number">1.</span> <span class="nav-text">Disemvowel Trolls</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解"><span class="nav-number">1.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码"><span class="nav-number">1.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List-Filtering"><span class="nav-number">2.</span> <span class="nav-text">List Filtering</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-1"><span class="nav-number">2.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-1"><span class="nav-number">2.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Number-of-People-in-the-Bus"><span class="nav-number">3.</span> <span class="nav-text">Number of People in the Bus</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-2"><span class="nav-number">3.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-2"><span class="nav-number">3.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Your-order-please"><span class="nav-number">4.</span> <span class="nav-text">Your order, please</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-3"><span class="nav-number">4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-3"><span class="nav-number">4.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-3"><span class="nav-number">4.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Where-my-anagrams-at"><span class="nav-number">5.</span> <span class="nav-text">Where my anagrams at?</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-4"><span class="nav-number">5.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-4"><span class="nav-number">5.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-4"><span class="nav-number">5.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Calculating-with-Functions"><span class="nav-number">6.</span> <span class="nav-text">Calculating with Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-5"><span class="nav-number">6.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-5"><span class="nav-number">6.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-5"><span class="nav-number">6.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Simple-Pig-Latin"><span class="nav-number">7.</span> <span class="nav-text">Simple Pig Latin</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-6"><span class="nav-number">7.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-6"><span class="nav-number">7.2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-6"><span class="nav-number">7.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -927,7 +937,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">81k</span>
+    <span title="站点总字数">84k</span>
   
 
   
@@ -938,7 +948,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">1:14</span>
+    <span title="站点阅读时长">1:17</span>
   
 </div>
 
