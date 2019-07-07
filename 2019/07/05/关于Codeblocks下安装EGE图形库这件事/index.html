@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://kxjzxc.github.io/2019/07/05/关于Codeblocks下安装EGE图形库这件事/EGE-lib.png">
 <meta property="og:image" content="http://kxjzxc.github.io/2019/07/05/关于Codeblocks下安装EGE图形库这件事/EGE-lib1.png">
 <meta property="og:image" content="http://kxjzxc.github.io/2019/07/05/关于Codeblocks下安装EGE图形库这件事/Compiler-setting.png">
-<meta property="og:updated_time" content="2019-07-06T06:18:29.328Z">
+<meta property="og:updated_time" content="2019-07-07T15:40:26.870Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Codeblocks下安装EGE图形库这件事">
 <meta name="twitter:image" content="http://kxjzxc.github.io/2019/07/05/关于Codeblocks下安装EGE图形库这件事/cb-mingw.png">
@@ -436,7 +436,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-06 14:18:29" itemprop="dateModified" datetime="2019-07-06T14:18:29+08:00">2019-07-06</time>
+                <time title="修改时间：2019-07-07 23:40:26" itemprop="dateModified" datetime="2019-07-07T23:40:26+08:00">2019-07-07</time>
               
             
           </span>
@@ -489,7 +489,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1k</span>
+                <span title="本文字数">1.2k</span>
               
 
               
@@ -533,12 +533,13 @@
 <li>将下载下来的EGE压缩包解压后，打开文件夹。<br><img src="EGE.png" alt></li>
 <li>打开include文件夹,将里面的东西复制到之前打开的MinGW文件夹中的include文件夹里<br><img src="EGE-include.png" alt></li>
 <li>打开lib文件夹，选择mingw4.8.1，将里面lib文件夹里的东西复制到MinGW文件夹中的lib中。<br><img src="EGE-lib.png" alt><br><img src="EGE-lib1.png" alt></li>
-<li>打开codeblocks，点击Setting-&gt;Compiler-&gt;Linker settings。在Link libraries中点击Add，选择添加文件的图标。进入MinGW下lib文件夹，寻找以下一系列文件”libgraphics.a””libgdi32.a” “libimm32.a” “libmsimg32.a””libole32.a” “liboleaut32.a” “libwinmm.a””libuuid.a”，可以直接全部粘贴上去，系统会自动生成路径。<br>然后在右边Other linker options中写上-mwindows。点击ok完成。<br><img src="Compiler-setting.png" alt><br>以上，EGE配置完成。之后你只要在敲代码是写上<code>#include&lt;graphics.h&gt;</code>就能使用图形库了。</li>
+<li>打开codeblocks，新建一个项目，点击Project-&gt;Build options-&gt;Linker settings。在Link libraries中点击Add，选择添加文件的图标。进入MinGW下lib文件夹，寻找以下一系列文件”libgraphics.a””libgdi32.a” “libimm32.a” “libmsimg32.a””libole32.a” “liboleaut32.a” “libwinmm.a””libuuid.a”，可以直接全部粘贴上去，系统会自动生成路径。<br>然后在右边Other linker options中写上-mwindows。点击ok完成。<br><img src="Compiler-setting.png" alt><br>以上，EGE配置完成。之后你只要在敲代码是写上<code>#include&lt;graphics.h&gt;</code>就能使用图形库了。</li>
 </ol>
 <h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><ol>
-<li>上述第五步与其他教程处理的位置并不相同。别的教程配置完成后，如果要使用EGE，每一个项目都需要进行第五步的配置，除非自己建立一个模板。而我的方法可以一劳永逸（大概）。</li>
+<li>上述方法仅适用于当前设置的项目。如果要有新建了一个项目，要使用EGE图形库的话，需要再次进行第五步的配置。</li>
+<li>如果觉得每次都设置很麻烦，可以自己新建一个模板，以后使用EGE的时候直接调用模板即可。<a href="https://blog.csdn.net/lx_asymmetric/article/details/78156734" target="_blank" rel="noopener">新建模板的方法点此</a>。 </li>
 <li>使用时可能会遇到中文乱码的问题，可以自己去网上找解决方案，我也是糊里糊涂才调好的。</li>
-<li></li>
+<li>设置完成后，该项目就变成了绘图模式。在该模式下寻常的输入输出是无法在终端中显示的，无论是否调用了<code>#include&lt;graphics.h&gt;</code>头文件。这也是为什么我们不选择一劳永逸的配置方法。</li>
 </ol>
 
       
