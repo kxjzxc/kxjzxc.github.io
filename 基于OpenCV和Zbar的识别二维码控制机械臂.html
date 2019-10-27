@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/V.ico?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="keywords" content="ROS,OpenCv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于OpenCV和Zbar的识别二维码控制机械臂">
+<meta property="og:url" content="http://kxjzxc.github.io/基于OpenCV和Zbar的识别二维码控制机械臂.html">
+<meta property="og:site_name" content="kxj&#39;s Eden">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://kxjzxc.github.io/识别二维码成功.png">
+<meta property="og:updated_time" content="2019-10-27T13:57:50.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于OpenCV和Zbar的识别二维码控制机械臂">
+<meta name="twitter:image" content="http://kxjzxc.github.io/识别二维码成功.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="kxj's Eden" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://kxjzxc.github.io/基于OpenCV和Zbar的识别二维码控制机械臂">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>基于OpenCV和Zbar的识别二维码控制机械臂 | kxj's Eden</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kxj's Eden</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/基于OpenCV和Zbar的识别二维码控制机械臂.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+      <meta itemprop="image" content="/images/V.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kxj's Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基于OpenCV和Zbar的识别二维码控制机械臂
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-13 16:55:14" itemprop="dateCreated datePublished" datetime="2019-08-13T16:55:14+08:00">2019-08-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-27 21:57:50" itemprop="dateModified" datetime="2019-10-27T21:57:50+08:00">2019-10-27</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/程序/" itemprop="url" rel="index"><span itemprop="name">程序</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/程序/OpenCv/" itemprop="url" rel="index"><span itemprop="name">OpenCv</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">8.3k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">8 分钟</span>
+              
+            </div>
+          
+
+          
+            <div class="post-description"> </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在越疆实习的时候并没有问部门里的人自己该干什么，所以似乎也没有什么任务交给我做。由于在培训的时候接触到了ROS，也就顺水推舟地朝着这个方向学了下去。第一周学习用ROS控制机械臂，消息、服务、启动文件之类的也都了解了大概。接下来就试着朝Opencv这一方面研究，在完成打开摄像头，人脸识别等简单项目后，我脑中浮现出了这个项目，二维码控制机器人。<br>这个构思的诞生，说来也是意外之思。当时我做完人脸识别项目后，看到《ROS机器人开发实践》这本书上后面的二维码识别,联想到其他班的同学的一个轮式机器人编队的项目，听说他那个项目中是通过二维码来确定小车的位置。于是我就想，我是不是也可以通过二维码传输指令给机械臂，以此控制机械臂运动呢？深入思考之后，发现可行，网上也有识别二维码的代码，只要将两者合在一块就能实现了。<br>虽说书上是有二维码识别的讲述，但是我并没有采用上面的方法。原因很简单，因为我并没有向部门里的人要摄像头，所以我现有的设备除了机械臂和气泵装置外，只有我笔记本自带的摄像头了。而书上的方法第一步就将我卡住了，因为它需要标定摄像头。我寻思着我这破摄像头也没法标定啊，只能放弃这个方法。所幸，根据之前做人脸识别的经验，我想到只要对摄像头获取的每一帧进行图像处理，即视觉识别即可。<br>终于，经过几天的查资料，自己折腾，我顺利做出了一个简单的版本。</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>运用OpenCV库调取摄像头的画面，然后使用Zbar库中的函数扫描画面，获取画面中存在的二维码的信息，并以ros消息的形式发布到话题上，由客户端节点订阅到话题上的消息后，调用加载到服务端的动态链接库来控制机械臂执行相应的命令</p>
+<h1 id="搭建开发环境"><a href="#搭建开发环境" class="headerlink" title="搭建开发环境"></a>搭建开发环境</h1><h2 id="Linux系统"><a href="#Linux系统" class="headerlink" title="Linux系统"></a>Linux系统</h2><p>我使用的是Ubuntu 18.04。安装Linux系统的教程网上很多，自行寻找。</p>
+<h2 id="机器人操作系统ROS"><a href="#机器人操作系统ROS" class="headerlink" title="机器人操作系统ROS"></a>机器人操作系统ROS</h2><p>从官网上安装对应linux系统的ROS，步骤很详细，一步一步照做即可</p>
+<h2 id="OpenCV库"><a href="#OpenCV库" class="headerlink" title="OpenCV库"></a>OpenCV库</h2><p>ROS中已经集成了OpenCV库以及相关接口功能包，如果你安装的是全桌面版的ROS，那么电脑中大概已经有OpenCV了。如果电脑中并没有OpenCV，那么可以通过以下命令来安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install ros-kinetic-vision-opencv libopencv-dev python-opencv</span><br></pre></td></tr></table></figure></p>
+<p>其中ros-kinetic-vision-opencv中的kinetic可以替换成相应的ros版本</p>
+<h2 id="Zbar库"><a href="#Zbar库" class="headerlink" title="Zbar库"></a>Zbar库</h2><blockquote>
+<p>ZBar是一个开源库,用于扫描、读取二维码和条形码。</p>
+</blockquote>
+<p>通过Zbar，我们可以扫描图像，检测其中的二维码，并且解析出其中的消息。<br>要在Ubuntu中使用Zbar，我们首先要安装Zbar库。下面是安装步骤：</p>
+<ol>
+<li><p>通过命令行直接下载zbar</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://downloads.sourceforge.net/project/zbar/zbar/0.10/zbar-0.10.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入压缩包所在的文件夹直接解压</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tar -zvxf zbar-0.10.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装相关依赖</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install python-gtk2-dev</span><br><span class="line">$ sudo apt-get install libqt4-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译Zbar</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure --enable-shared --disable-video --without-python --without-gtk --without-qt --without-imagemagick CFLAGS=&quot;&quot;</span><br><span class="line">$make </span><br><span class="line">$sudo make install</span><br><span class="line">$sudo ldconfig</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行examples</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$cd example</span><br><span class="line">$gcc scan_image.c -o scan_image -lzbar -lpng</span><br><span class="line">$./scan_image barcode.png</span><br></pre></td></tr></table></figure>
+<p> 输出结果：</p>
+<pre><code>decoded EAN-13 symbol &quot;9876543210128&quot;
+</code></pre></li>
+</ol>
+<h1 id="运行流程"><a href="#运行流程" class="headerlink" title="运行流程"></a>运行流程</h1><p>先由qrcode包中的my_pulisher节点打开摄像头，获取画面并且以消息的形式发布到话题“camera/image”上。<br>然后由my_subscriber节点扫描从话题“camera/image”上订阅到的图像。如果从图像中扫描到图像中的二维码，那么将解析出来的指令信息发布到话题“GetCtrl_msg”上。<br>最后由dobot包中的DobotClient_PTP节点订阅话题”GetCtrl_msg”上的指令，并根据指令，向服务端DobotServer节点请求相应的服务，控制机械臂。</p>
+<h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><p><a href="https://github.com/kxjzxc/ROS_demo" target="_blank" rel="noopener">代码位置</a></p>
+<h2 id="my-publisher"><a href="#my-publisher" class="headerlink" title="my_publisher"></a>my_publisher</h2><p>该节点是打开摄像头，并获取摄像头图像消息，发布到话题”camera/image”的代码。</p>
+<p>程序1.1加载ROS、Opencv头文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;ros/ros.h&gt;  </span><br><span class="line">#include &lt;image_transport/image_transport.h&gt;  </span><br><span class="line">#include &lt;opencv2/highgui/highgui.hpp&gt;  </span><br><span class="line">#include &lt;cv_bridge/cv_bridge.h&gt;  </span><br><span class="line">#include &lt;sstream&gt; // for converting the command line parameter to integer</span><br></pre></td></tr></table></figure></p>
+<p>程序1.2初始化节点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ros::init(argc, argv, &quot;image_publisher&quot;);</span><br><span class="line">ros::NodeHandle nh;</span><br></pre></td></tr></table></figure></p>
+<p>程序1.3注册话题到ROS Master上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">image_transport::ImageTransport it(nh);  </span><br><span class="line">image_transport::Publisher pub = it.advertise(&quot;camera/image&quot;, 1);  //在发布图像消息时消息队列的长度只能是1</span><br></pre></td></tr></table></figure></p>
+<p>程序1.4 打开摄像头<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">// Convert the passed as command line parameter index for the video device to an integer</span><br><span class="line">int video_source;  </span><br><span class="line">bool check=ros::param::get(&quot;/image_publisher/video&quot;,video_source);</span><br><span class="line"></span><br><span class="line">/*检查视频源是否已作为参数传递*/ </span><br><span class="line">if(check == 0)   </span><br><span class="line">&#123;  </span><br><span class="line">    ROS_INFO(&quot;no camera %d\n&quot;,video_source);  </span><br><span class="line">    return 1;  </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">cv::VideoCapture cap(video_source);  </span><br><span class="line">//判断视频读取或者摄像头调用是否成功</span><br><span class="line">if(!cap.isOpened())   </span><br><span class="line">&#123;  </span><br><span class="line">    ROS_INFO(&quot;can not opencv video device\n&quot;);  </span><br><span class="line">    return 1;  </span><br><span class="line">&#125;  </span><br><span class="line">程序1.5 发布摄像头图像消息到话题”camera/image”上</span><br><span class="line">//ROS中的图像消息类型</span><br><span class="line">sensor_msgs::ImagePtr msg;  </span><br><span class="line">ros::Rate loop_rate(5);  </span><br><span class="line">while (nh.ok()) </span><br><span class="line">&#123;  </span><br><span class="line">    cap &gt;&gt; frame;  </span><br><span class="line">    // Check if grabbed frame is actually full with some content  </span><br><span class="line">    if(!frame.empty()) </span><br><span class="line">    &#123;  </span><br><span class="line">     	//将opencv格式的图像转化为ROS所支持的消息类型</span><br><span class="line">            msg = cv_bridge::CvImage(std_msgs::Header(), &quot;bgr8&quot;, frame).toImageMsg();  </span><br><span class="line">            pub.publish(msg);  </span><br><span class="line">            //cv::Wait(1);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="my-subscriber"><a href="#my-subscriber" class="headerlink" title="my_subscriber"></a>my_subscriber</h2><p>该节点则是将订阅到的图像消息进行图像处理，即二维码识别。<br>在识别到二维码后，将解析出来的信息以消息的形式发布到话题”GetCtrl_msg”上。<br>其中，wait这个变量是为了在识别过后等待一段时间在识别下一个二维码。</p>
+<p>程序2.1 加载ROS，OpenCV，Zbar的头文件和命名空间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;ros/ros.h&gt;  </span><br><span class="line">#include &quot;std_msgs/String.h&quot;</span><br><span class="line"></span><br><span class="line">#include &quot;iostream&quot;</span><br><span class="line">#include &quot;string.h&quot;</span><br><span class="line">#include &quot;fstream&quot;</span><br><span class="line">#include &quot;signal.h&quot;</span><br><span class="line">#include &lt;termios.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;sys/poll.h&gt;</span><br><span class="line">#include &lt;boost/thread/thread.hpp&gt;</span><br><span class="line"></span><br><span class="line">#include &quot;opencv2/core/core.hpp&quot; </span><br><span class="line">#include &quot;opencv2/highgui/highgui.hpp&quot; </span><br><span class="line">#include &quot;opencv2/imgproc/imgproc.hpp&quot; </span><br><span class="line">#include &lt;opencv2/opencv.hpp&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;image_transport/image_transport.h&gt;  </span><br><span class="line">#include &lt;cv_bridge/cv_bridge.h&gt;  </span><br><span class="line">#include &lt;zbar.h&gt;</span><br><span class="line">#define oo 1e9+7</span><br><span class="line">using namespace std;</span><br><span class="line">using namespace zbar;  //添加zbar名称空间      </span><br><span class="line">using namespace cv;</span><br></pre></td></tr></table></figure></p>
+<p>程序 2.2 初始化节点，窗口，并注册发布和订阅的话题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ros::init(argc, argv, &quot;image_listener&quot;);  </span><br><span class="line">ros::NodeHandle nh;  </span><br><span class="line">cv::namedWindow(&quot;Source Image&quot;);  </span><br><span class="line">//开始窗口线程</span><br><span class="line">cv::startWindowThread();  </span><br><span class="line">image_transport::ImageTransport it(nh);  </span><br><span class="line">signal(SIGINT, MySigintHandler);</span><br><span class="line">ros::Publisher pub=nh.advertise&lt;std_msgs::String&gt;(&quot;GetCtrl_msg&quot;,1000);</span><br><span class="line">image_transport::Subscriber sub = it.subscribe(&quot;camera/image&quot;, 1,boost::bind(&amp;imageCallback,_1,boost::ref(pub)));</span><br></pre></td></tr></table></figure></p>
+<p>程序2.3 订阅到图像消息后回调函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">void imageCallback(const sensor_msgs::ImageConstPtr&amp; msg,ros::Publisher pub)  </span><br><span class="line">&#123;  </span><br><span class="line">    try  </span><br><span class="line">    &#123;  </span><br><span class="line">		Mat image=cv_bridge::toCvShare(msg, &quot;bgr8&quot;)-&gt;image;</span><br><span class="line">		imshow(&quot;Source Image&quot;, image);</span><br><span class="line">		if(wait==100)&#123;</span><br><span class="line">			wait=-1;</span><br><span class="line">			ROS_INFO(&quot; Continue to identify &quot;);</span><br><span class="line">		&#125; </span><br><span class="line">		else if(wait!=-1)&#123;</span><br><span class="line">			wait++;</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		cvtColor(image, image, CV_RGB2GRAY);</span><br><span class="line">		</span><br><span class="line">		if(Scan(image,pub))&#123;</span><br><span class="line">			wait=0;</span><br><span class="line">		&#125;</span><br><span class="line">        //waitKey(30);  </span><br><span class="line">    &#125;  </span><br><span class="line">    catch (cv_bridge::Exception&amp; e)  //异常处理</span><br><span class="line">    &#123;  </span><br><span class="line">        ROS_ERROR(&quot;Could not convert from &apos;%s&apos; to &apos;bgr8&apos;.&quot;, msg-&gt;encoding.c_str());  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>程序2.4 使用Zbar库识别二维码并发布解析出来的消息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">bool Scan(Mat image,ros::Publisher pub)&#123;</span><br><span class="line">	//zbar类，定义扫描器</span><br><span class="line">	ImageScanner scanner;</span><br><span class="line">	//配置参数，初始化</span><br><span class="line">	scanner.set_config(ZBAR_NONE, ZBAR_CFG_ENABLE, 1);</span><br><span class="line"></span><br><span class="line">	int width = image.cols;</span><br><span class="line">	int height = image.rows;</span><br><span class="line">	uchar *raw = (uchar *)image.data;</span><br><span class="line">	//封装图像数据 Y800单色图像格式</span><br><span class="line">	Image imageZbar(width, height, &quot;Y800&quot;, raw, width * height);</span><br><span class="line">	</span><br><span class="line">	//扫描条码或者二维码</span><br><span class="line">	scanner.scan(imageZbar);</span><br><span class="line">	</span><br><span class="line">	for (Image::SymbolIterator symbol = imageZbar.symbol_begin(); symbol != imageZbar.symbol_end(); ++symbol)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; &quot;类型：&quot; &lt;&lt; endl &lt;&lt; symbol-&gt;get_type_name() &lt;&lt; endl &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; &quot;二维码：&quot; &lt;&lt; endl &lt;&lt; symbol-&gt;get_data() &lt;&lt; endl &lt;&lt; endl;</span><br><span class="line">    //发布消息到话题“GetCtrl_msg”上</span><br><span class="line">		std_msgs::String msg;</span><br><span class="line">		msg.data=symbol-&gt;get_data();</span><br><span class="line">		pub.publish(msg);</span><br><span class="line">		imageZbar.set_data(NULL, 0);</span><br><span class="line">		return 1;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//清除缓存	</span><br><span class="line">	imageZbar.set_data(NULL, 0);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="DobotClient-PTP"><a href="#DobotClient-PTP" class="headerlink" title="DobotClient_PTP"></a>DobotClient_PTP</h2><p>该节点是订阅话题”GetCtrl_msg”上的指令消息，并做出相应的行为。<br>程序3.1 初始化节点<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ros::init(argc, argv, &quot;DobotClient&quot;);</span><br><span class="line">ros::NodeHandle n;</span><br></pre></td></tr></table></figure></p>
+<p>程序3.2 注册订阅器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros::Subscriber sub = n.subscribe&lt;std_msgs::String&gt;(&quot;GetCtrl_msg&quot;, 1000,messageCallback);</span><br></pre></td></tr></table></figure></p>
+<p>程序3.3 回调函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void messageCallback(const std_msgs::String::ConstPtr &amp;msg)&#123;</span><br><span class="line">	std::string cmd=msg-&gt;data.c_str();</span><br><span class="line">	if(cmd==&quot;0&quot;)DobotHome();</span><br><span class="line">	else if(cmd==&quot;1&quot;)Action();</span><br><span class="line">	else if(cmd==&quot;2&quot;)getPoint();</span><br><span class="line">	else if(cmd==&quot;3&quot;)Point.clear();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上DobotHome(),Action(),getPoint()函数中就是通过服务请求的方式向 DobotServer节点请求相应的服务，此处并未展现。</p>
+<h1 id="结果测试"><a href="#结果测试" class="headerlink" title="结果测试"></a>结果测试</h1><p>启动ros master<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ roscore</span><br></pre></td></tr></table></figure></p>
+<p>打开新终端，运行DobotServer<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rosrun dobot DobotServer</span><br></pre></td></tr></table></figure></p>
+<p>打开新终端，启动launch文件，可同时打开qrcode功能包中的my_subscriber和my_publisher节点，dobot功能包中的DobotClient_PTP和DobotClient_GetInfor。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ roslaunch qrcode camera.launch</span><br></pre></td></tr></table></figure></p>
+<p>启动文件成功运行后，将含有指令信息的二维码对准摄像头，控制机械臂运动。<br>0 回零 1 执行 2 记录点位 3 清空点位<br>通过按下机械臂上的解锁按钮，手动移动机械臂。当松开按钮时，机械臂将自动记录末端点位。<br>以上操作也可以通过键盘来操控机械臂运动，按下0～3相应的按键可操作。按Ctrl+C可终止启动文件。<br><img src="识别二维码成功.png" alt="识别二维码成功"></p>
+<h1 id="不足之处"><a href="#不足之处" class="headerlink" title="不足之处"></a>不足之处</h1><ol>
+<li>实现的功能过少</li>
+<li>有时候会一下子识别好几次二维码，原因不明。</li>
+<li>其实很多节点都可以合并成一处。不过分到不同节点上去也可以使人对于节点间的通讯更加了解。</li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这个项目可以说是把我这一个月来所学的东西都揉在一块，ROS、OpenCV、Zbar……作为我本次实习出来的结果也算是令人满意。<br>原本作为一个大一刚刚结束的学生，其实根本没想过自己实习的时候能做些什么，毕竟一开始什么也不会，ROS,OpenCV这些也只不过是听过而已。但是经过三个周的自我探索，对这些东西也有了一个初步的了解，对于脑中时不时浮现的奇思妙想也有更加具体的构思，而并非以前那样的天马行空，形而上学。</p>
+<p>大一实习生到底能做些什么呢？<strong>我觉得什么都做不了，但什么都能做</strong>。</p>
+<p>毕竟大一接触的专业知识并不多，大多还只是通识教育。若是在实习初期就告诉我要做个balabala玩意我估计会一脸懵逼，不知所云。<br>但是我不会毫无办法，甚至逃避现实。因为我深知工作中所运用的大部分知识都根本没有必要非得在学校里学习，这些只是完全是可以通过自学来掌握的。没有学过的东西，只要不是必须需要非常高深的理论知识，我们完全可以现学现用。像是ROS和OpenCV这类东西，学校里一般是不会教学生的，基本上需要学生自学掌握。<br>在做项目的过程中也不一定非要完全掌握了某样东西才能去做。学海无涯，bug不止，哪有人能百分百的精通一个技能。人总会遇到自己无法解决的问题，这个时候只要百度，谷歌一下，总能找到解决方法。</p>
+<p><strong>重要的，是耐下心来，脚踏实地，慢慢探索。</strong></p>
+<p>我其实很感谢我高中学习竞赛的那段经历。<br>虽然我并没有获得完美的收场，但是我的确收获了很多。<br>编程的入门，算法的理解，搜索的方法，以及……自学的觉悟。<br>因为在看题解的时候，我常常会遇到一些我没有学过的，老师也没讲过（虽然老师很少讲东西）的新算法或者数据结构。一开始，我大惊小怪，感到很坑，怀着这玩意是高级货的心态去学习，弄得自己好像是刚出新手村就碰见四大天王的勇者。然而后来这种事情经历的多了，也就习以为常了，碰到不懂的东西？莽就完事了。对我而言，很少有东西是自学学不会的（动手操作除外），只要肯投入实践，到处查资料，自己折腾一番，最后总能搞出个所以然来。</p>
+<p>此文到此结束，感谢观看。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ROS/" rel="tag"># ROS</a>
+          
+            <a href="/tags/OpenCv/" rel="tag"># OpenCv</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/关于我重装ubuntu系统后所做的那些事.html" rel="next" title="关于我重装ubuntu系统后所做的那些事">
+                <i class="fa fa-chevron-left"></i> 关于我重装ubuntu系统后所做的那些事
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/关于四害驱赶家用机器人声武器系统这个坑.html" rel="prev" title="关于四害驱赶家用机器人声武器系统这个坑">
+                关于四害驱赶家用机器人声武器系统这个坑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/V.jpg" alt="Kermit">
+            
+              <p class="site-author-name" itemprop="name">Kermit</p>
+              <div class="site-description motion-element" itemprop="description">人间无笑，我亦长歌</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/kxjzxc" title="GitHub &rarr; https://github.com/kxjzxc" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:kxjzxc@outlook.com" title="E-Mail &rarr; mailto:kxjzxc@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://leefir.github.io/" title="http://leefir.github.io/" rel="noopener" target="_blank">Leefir</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://yummyjay.github.io/" title="https://yummyjay.github.io/" rel="noopener" target="_blank">YummyJay</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bblss123.github.io/" title="https://bblss123.github.io/" rel="noopener" target="_blank">bblss123</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://kyleyoung-ymj.github.io/" title="https://kyleyoung-ymj.github.io/" rel="noopener" target="_blank">KyleYoung</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://unicornt.github.io/" title="https://unicornt.github.io/" rel="noopener" target="_blank">unicornt</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shinfeb.github.io/" title="https://shinfeb.github.io/" rel="noopener" target="_blank">ShinFeb</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://kafuumegumi.github.io/" title="https://kafuumegumi.github.io/" rel="noopener" target="_blank">Kafuumegumi</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建开发环境"><span class="nav-number">3.</span> <span class="nav-text">搭建开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统"><span class="nav-number">3.1.</span> <span class="nav-text">Linux系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器人操作系统ROS"><span class="nav-number">3.2.</span> <span class="nav-text">机器人操作系统ROS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenCV库"><span class="nav-number">3.3.</span> <span class="nav-text">OpenCV库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zbar库"><span class="nav-number">3.4.</span> <span class="nav-text">Zbar库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运行流程"><span class="nav-number">4.</span> <span class="nav-text">运行流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码分析"><span class="nav-number">5.</span> <span class="nav-text">代码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-publisher"><span class="nav-number">5.1.</span> <span class="nav-text">my_publisher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#my-subscriber"><span class="nav-number">5.2.</span> <span class="nav-text">my_subscriber</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DobotClient-PTP"><span class="nav-number">5.3.</span> <span class="nav-text">DobotClient_PTP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结果测试"><span class="nav-number">6.</span> <span class="nav-text">结果测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不足之处"><span class="nav-number">7.</span> <span class="nav-text">不足之处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">119k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">1:48</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
