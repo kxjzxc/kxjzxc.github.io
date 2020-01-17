@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="kxj&#39;s Eden">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kxjzxc.github.io/基于C++的vector类的编写/运行结果.png">
-<meta property="og:updated_time" content="2020-01-17T13:57:03.390Z">
+<meta property="og:updated_time" content="2020-01-17T14:30:25.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于C++的vector类的编写">
 <meta name="twitter:image" content="http://kxjzxc.github.io/基于C++的vector类的编写/运行结果.png">
@@ -414,7 +414,7 @@
                 
               
 
-              <time title="创建时间：2020-01-17 17:46:36 / 修改时间：21:57:03" itemprop="dateCreated datePublished" datetime="2020-01-17T17:46:36+08:00">2020-01-17</time>
+              <time title="创建时间：2020-01-17 17:46:36 / 修改时间：22:30:25" itemprop="dateCreated datePublished" datetime="2020-01-17T17:46:36+08:00">2020-01-17</time>
             
 
             
@@ -486,7 +486,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">6.2k</span>
+                <span title="本文字数">6.1k</span>
               
 
               
@@ -522,7 +522,7 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第二个实验是编写vector类，实现动态的建立，插入，删除等功能。<br>类可以说是C++区别于C语言最重要的一个部分，也是我想要学习的重点。类和C语言中的结构体很相似，可以看作是在结构体的基础上改进的新东西。<br>这个实验本身并不要求算法或者什么需要理解的数据结构，仅仅是通过完成这样一个拥有多个功能的类的实验，来让我们更好的掌握C++这门语言。</p>
+        <h1 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h1><p>编写vector类，实现动态的建立，插入，删除等功能。</p>
 <h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol>
 <li>构造函数<br> 定义对象时调用该函数，可以定义许多个不同的构造函数</li>
 <li>析构函数<br> 释放对象时调用该函数，只有一个</li>
@@ -554,7 +554,7 @@
 <li><p><strong>说明不同的构造函数中，初始化操作的方式以及意义。</strong><br> 答：vector_ss()是默认构造函数，开辟一个内存空间，v_size赋值为0，capacity赋值为1。<br> vector_ss(int n)是构造一个初始大小为n的数组的函数。分配n个连续的内存空间，v_size和capacity都赋值为n。<br> vector_ss(int n,T t)是构造一个初始大小为n的数组，且元素均为t的函数。分配n个连续的内存空间，且将每个变量赋值为t。v_size和capacity都赋值为n。<br> vector_ss(const vector_ss &amp;v)是拷贝对象v的构造函数。分配与对象v相同容量的连续内存，并拷贝v中数组的元素值。v_size和capacity分别赋值为v.size()与v.capacity。<br> vector_ss(const vector_ss &amp;v,int start,int end)是拷贝对象v中start位置到end位置的元素的构造函数。分配与对象v相同容量的连续内存，并拷贝v中数组的元素值。v_size和capacity分别赋值为end-start+1与v.capacity。</p>
 </li>
 </ol>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>这次实验主要还是动态内存的分配和构造函数的使用，还是学到了很多东西。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>类可以说是C++区别于C语言最重要的一个部分，也是我想要学习的重点。类和C语言中的结构体很相似，可以看作是在结构体的基础上改进的新东西。<br>这个实验本身并不要求算法或者什么需要理解的数据结构，仅仅是通过完成这样一个拥有多个功能的类的实验，来让我们更好的掌握C++这门语言。</p>
 
       
     </div>
@@ -591,8 +591,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/基于python的开机自动登陆网站.html" rel="next" title="基于python的开机自动登陆网站">
-                <i class="fa fa-chevron-left"></i> 基于python的开机自动登陆网站
+              <a href="/基于C++的堆排序实现.html" rel="next" title="基于C++的堆排序实现">
+                <i class="fa fa-chevron-left"></i> 基于C++的堆排序实现
               </a>
             
           </div>
@@ -601,8 +601,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/基于C++的堆排序实现.html" rel="prev" title="基于C++的堆排序实现">
-                基于C++的堆排序实现 <i class="fa fa-chevron-right"></i>
+              <a href="/基于C++的矩阵类的编写.html" rel="prev" title="基于C++的矩阵类的编写 ">
+                基于C++的矩阵类的编写  <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -674,7 +674,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-count">46</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -804,7 +804,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">29</span>
+                      
+                    
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -913,7 +915,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#知识点"><span class="nav-number">2.</span> <span class="nav-text">知识点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">3.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#头文件"><span class="nav-number">3.2.1.</span> <span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试代码"><span class="nav-number">3.2.2.</span> <span class="nav-text">测试代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果"><span class="nav-number">3.3.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">4.</span> <span class="nav-text">Q&amp;A</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#要求"><span class="nav-number">1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#知识点"><span class="nav-number">2.</span> <span class="nav-text">知识点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">3.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#头文件"><span class="nav-number">3.2.1.</span> <span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试代码"><span class="nav-number">3.2.2.</span> <span class="nav-text">测试代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果"><span class="nav-number">3.3.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">4.</span> <span class="nav-text">Q&amp;A</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
 
           </div>
@@ -948,7 +950,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">131k</span>
+    <span title="站点总字数">152k</span>
   
 
   
@@ -959,7 +961,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">1:59</span>
+    <span title="站点阅读时长">2:18</span>
   
 </div>
 
