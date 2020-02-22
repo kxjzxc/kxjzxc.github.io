@@ -541,14 +541,14 @@
 <blockquote>
 <p>boost::bind是标准库函数std::bind1st和std::bind2nd的一种泛化形式。其可以支持函数对象、函数、函数指针、成员函数指针，并且绑定任意参数到某个指定值上或者将输入参数传入任意位置。</p>
 </blockquote>
-<p>boost::bind(f,1,2) –&gt; f(1,2)<br>boost::bind(f,_1,1) –&gt; f(x,1)<br><a href="https://www.cnblogs.com/benxintuzi/p/4862129.html" target="_blank" rel="noopener">具体用法参见此博客</a></p>
+<p>boost::bind(f,1,2) —&gt; f(1,2)<br>boost::bind(f,_1,1) —&gt; f(x,1)<br><a href="https://www.cnblogs.com/benxintuzi/p/4862129.html" target="_blank" rel="noopener">具体用法参见此博客</a></p>
 <p>此处举两个例子</p>
 <ol>
 <li>订阅消息<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ros::Subscriber sub = n.subscribe&lt;dobot::GetCtrl_msg&gt;(<span class="string">"GetCtrl_msg"</span>, <span class="number">1000</span>,messageCallback);<span class="comment">//单参数</span></span><br><span class="line">ros::Subscriber sub = n.subscribe&lt;dobot::GetCtrl_msg&gt;(<span class="string">"GetCtrl_msg"</span>, <span class="number">1000</span>,boost::bind(&amp;messageCallback,\_1,point);多参数</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>其中_1是占位符，代表回调函数中原先的参数<code>const dobot::GetCtrl_msg::ConstPtr &amp;msg</code>。</p>
-<ol start="2">
+<ol>
 <li>多线程<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">boost::<span class="function">thread <span class="title">t</span><span class="params">(keboard)</span></span>;<span class="comment">//单参数</span></span><br><span class="line">boost::<span class="function">thread <span class="title">t1</span><span class="params">(boost::bind(&amp;keyboard,boost::ref(pub)))</span></span>;<span class="comment">//多参数</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
@@ -674,7 +674,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -950,7 +950,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">152k</span>
+    <span title="站点总字数">154k</span>
   
 
   
@@ -961,7 +961,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">2:18</span>
+    <span title="站点阅读时长">2:20</span>
   
 </div>
 
@@ -1447,6 +1447,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

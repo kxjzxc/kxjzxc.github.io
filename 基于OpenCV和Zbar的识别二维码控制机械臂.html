@@ -560,7 +560,7 @@
 <li><p>运行examples</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$cd example</span><br><span class="line">$gcc scan_image.c -o scan_image -lzbar -lpng</span><br><span class="line">$./scan_image barcode.png</span><br></pre></td></tr></table></figure>
 <p> 输出结果：</p>
-<pre><code>decoded EAN-13 symbol &quot;9876543210128&quot;
+<pre><code> decoded EAN-13 symbol &quot;9876543210128&quot;
 </code></pre></li>
 </ol>
 <h1 id="运行流程"><a href="#运行流程" class="headerlink" title="运行流程"></a>运行流程</h1><p>先由qrcode包中的my_pulisher节点打开摄像头，获取画面并且以消息的形式发布到话题“camera/image”上。<br>然后由my_subscriber节点扫描从话题“camera/image”上订阅到的图像。如果从图像中扫描到图像中的二维码，那么将解析出来的指令信息发布到话题“GetCtrl_msg”上。<br>最后由dobot包中的DobotClient_PTP节点订阅话题”GetCtrl_msg”上的指令，并根据指令，向服务端DobotServer节点请求相应的服务，控制机械臂。</p>
@@ -715,7 +715,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -991,7 +991,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">152k</span>
+    <span title="站点总字数">154k</span>
   
 
   
@@ -1002,7 +1002,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">2:18</span>
+    <span title="站点阅读时长">2:20</span>
   
 </div>
 
@@ -1488,6 +1488,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

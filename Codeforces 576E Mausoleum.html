@@ -532,7 +532,7 @@
       
 
       
-        <h3 id="task"><a href="#task" class="headerlink" title="task"></a>task</h3><p>有n种底为1*1的长方体，高分别是1到n，而每种长方体只有两个。这种我们要求办这些长方体排成一排，满足前半部分单调不减，后半部分单调不增，两个部分也可以只有一个部分。如以下这些方案：<br>[1, 2, 2, 3, 4, 4, 3, 1];<br>[1, 1];<br>[2, 2, 1, 1];<br>[1, 2, 3, 3, 2, 1].<br>现在我们还有(1&lt;=m&lt;=100)个限制，如x&gt;y,表示第x个长方体的高度大于第y个长方体的高度。这样的限制有5种，分别是”x&lt;y”,”x&gt;y”,”x=y”,”x&lt;=y”,”x&gt;=y”。<br>求方案数。<br>$1&lt;=n&lt;=35$<br>$1&lt;=m&lt;=100$</p>
+        <h3 id="task"><a href="#task" class="headerlink" title="task"></a>task</h3><p>有n种底为1*1的长方体，高分别是1到n，而每种长方体只有两个。这种我们要求办这些长方体排成一排，满足前半部分单调不减，后半部分单调不增，两个部分也可以只有一个部分。如以下这些方案：<br>[1, 2, 2, 3, 4, 4, 3, 1];<br>[1, 1];<br>[2, 2, 1, 1];<br>[1, 2, 3, 3, 2, 1].<br>现在我们还有(1&lt;=m&lt;=100)个限制，如x&gt;y,表示第x个长方体的高度大于第y个长方体的高度。这样的限制有5种，分别是”x<y”,”x>y”,”x=y”,”x&lt;=y”,”x&gt;=y”。<br>求方案数。<br>$1&lt;=n&lt;=35$<br>$1&lt;=m&lt;=100$</y”,”x></p>
 <h3 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h3><p>一看题目就知道是dp题。</p>
 <p>$dp[L][R]$表示区间[L,R]内的方案数。</p>
 <p>如果我们从小到大放每种的两个数我们可以知道我们只有三种放法：</p>
@@ -542,7 +542,7 @@
 <li>一个数放区间的左边，一个数放区间的右边。</li>
 </ol>
 <p>而且根据经验，这种状态的dp一般都是用记忆化搜索来写，所以我们状态的转移就是</p>
-<p>$$dp[L][R]=dp[L+2][R]+dp[L][R−2]+dp[L+1][R−1]$$<br>而边界就是$R-L==1$.</p>
+<script type="math/tex; mode=display">dp[L][R]=dp[L+2][R]+dp[L][R−2]+dp[L+1][R−1]</script><p>而边界就是$R-L==1$.</p>
 <p>但是这题并不是简单的记忆化搜索，而是还有限制条件的。</p>
 <p>对于每个限制条件我们可以把这些数的关系存下来，然后每次转移前都判断一下。</p>
 <p>对于所有情况，我们都需要判断一下放的这两个数的位置是否可以相等的关系。</p>
@@ -671,7 +671,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -947,7 +947,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">152k</span>
+    <span title="站点总字数">154k</span>
   
 
   
@@ -958,7 +958,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">2:18</span>
+    <span title="站点阅读时长">2:20</span>
   
 </div>
 
@@ -1444,6 +1444,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

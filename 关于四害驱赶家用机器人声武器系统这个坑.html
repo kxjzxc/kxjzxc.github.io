@@ -531,7 +531,7 @@
 
       
         
-    <div id="aplayer-VmsiEkhP" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="17822784" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"></div>
+    <div id="aplayer-krELCVlZ" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="17822784" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"></div>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>昨天早上，历时半年多的大一立项终于完成了最后的答辩。<br>“四害驱赶家用机器人声武器系统的研制”，这是去年年底我们的导师给毫无想法的我们选定的课题。在仓促的几天中完成立项并且答辩成功后，我们就在这个坑中渐行渐远。从一开始的一脸懵逼，充满怀疑，到最后的彻底绝望，自暴自弃，我们理所当然地并没有做出什么成果。<br>虽然这个项目做得一塌糊涂，而且无甚成果，但是……嗯，但是，好歹完成了答辩。心想着深压硬盘底也没什么用，倒不如发布到博客上，也算是给他人排排雷。</p>
 <h1 id="课题背景"><a href="#课题背景" class="headerlink" title="课题背景"></a>课题背景</h1><p>自古以来，四害问题一直困扰着人类。<br>传统的驱逐和消灭方法效率低。经过网上国内外的查询，发现并没有较为有效的驱逐四害的方法，大多数是以人为驱逐的方式，但效率不高；也有药物驱逐，但对人体的身体健康有着危害。</p>
 <p>我们小组决定使用人耳听觉频段范围外的声波驱逐四害，原因主要有：</p>
@@ -560,6 +560,7 @@
 </ol>
 <p>大致结构如下图所示：<br><img src="关于四害驱赶家用机器人声武器系统这个坑/图5.png" alt="图5. 高功率超声波电路结构"><br>我们采用的放大器模块为LM386，但是事实上，市面上的放大器模块的放大功率的效果并不是特别好，在限定工作电压范围内，大多无法满足放大到我们需求的倍数，所以我们需要寻找另一种放大超声波功率的方案。<br>受到我们的师兄正在研究基于相控阵的超声悬浮的启发，我组认为通过使用多个探头组成相控阵，发出相同频率的超声波，并且调整激励信号与声源的几何位置，使其满足一定的关系，可以将产生的超声波能够在某一固定点处相叠加，产生高强度的声波能量，从而达到放大功率的效果。<br>根据师兄提供的论文，该相列阵的电路结构大致如图所示：<br><img src="关于四害驱赶家用机器人声武器系统这个坑/图6.png" alt="图6. 超声阵列电路结构图"><br>用FPGA电路板作为控制模块，将信号传递给驱动板。然后由驱动板驱动相应的排成阵列的探头，产生相应频率的超声波。超声波将在空气中某一点聚焦，成为高功率的声波。<br>但是由于我组能力上的不足，尽管理论与方案都已给出，未能完成超声相控阵列，只能完成使用放大器模块放大超声波的方案。</p>
 <h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p>以下是我们通过示波器检测到波功率的结果。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -608,6 +609,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p><img src="关于四害驱赶家用机器人声武器系统这个坑/图7.png" alt="图7. 外加11V电压时40khz正弦波信号，峰值为44V"><br><img src="关于四害驱赶家用机器人声武器系统这个坑/图8.png" alt="图8. 外加11V电压时接受到的40khz超声波波形，峰值为102V"><br>虽然我们利用放大器成功放大了产生的超声波，但是放大的倍数仅为原先的两倍，效果不是非常的好。<br>而且由于各种现实条件以及自身经验缺乏的原因，我组未能定制最后检验效果的实验方案，没有进行最终的检测。<br>首先是实验动物的缺失，学校里没有动物中心这类地方，我组也未能联系到提供实验动物的机构。如果自己捕获四害的话，没有合适的处理方式，会导致实验的正确性不高。再有我组并没有动物实验的经验，对于实验的步骤与实验结果的分析都毫无头绪。</p>
 <p><strong>综上所述，我们的方案并没能经过实验的验证。</strong></p>
 <h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>如果你看完了这篇博文，你自然可以明白我们的项目是多么的水，多么的不切实际。不仅硬件上碰到困难，理论上无法证实，动物实验不会做，本身能学到的东西也是少的可怜。<br>我们最初的方案就只有次声波，超声波的方案是次声波方案确认无法继续之后才临时决定的，虽然这个方案从原理上就是错误的。<br><a href="https://www.guokr.com/article/49122/" target="_blank" rel="noopener">声波驱蚊？一直在坑爹，从未生过效</a></p>
@@ -734,7 +736,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1010,7 +1012,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">152k</span>
+    <span title="站点总字数">154k</span>
   
 
   
@@ -1021,7 +1023,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">2:18</span>
+    <span title="站点阅读时长">2:20</span>
   
 </div>
 
@@ -1507,6 +1509,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

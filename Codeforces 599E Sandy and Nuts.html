@@ -496,7 +496,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.5k</span>
+                <span title="本文字数">533</span>
               
 
               
@@ -510,7 +510,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">1 分钟</span>
               
             </div>
           
@@ -543,7 +543,8 @@
 <li>在子集i中是否有一个点与j的lca不是j，若是则不行。</li>
 <li>在子集i中是否有另外一个点与x已有边，若是则不行。</li>
 </ol>
-<p>如果成立，那么说明此点可以作为子树的根，那么我们就可以转移了。<br>$$Dp[x][s]+=dfs(j,i-1&lt;&lt;j)*dfs(x,s^i)$$<br>为什么要相乘呢？因为这两部分可以作为同一棵树的两个部分，是相关，如果一个部分无解，那么就算另一个部分方案数再大也无济于事。<br>最后要注意两个情况：</p>
+<p>如果成立，那么说明此点可以作为子树的根，那么我们就可以转移了。</p>
+<script type="math/tex; mode=display">Dp[x][s]+=dfs(j,i-1<<j)*dfs(x,s^i)</script><p>为什么要相乘呢？因为这两部分可以作为同一棵树的两个部分，是相关，如果一个部分无解，那么就算另一个部分方案数再大也无济于事。<br>最后要注意两个情况：</p>
 <ol>
 <li>转移是要保证$i&lt;s^i$，这样可以完美的杜绝重复状况。</li>
 <li>记得开long long。</li>
@@ -668,7 +669,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -944,7 +945,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">152k</span>
+    <span title="站点总字数">154k</span>
   
 
   
@@ -955,7 +956,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">2:18</span>
+    <span title="站点阅读时长">2:20</span>
   
 </div>
 
@@ -1441,6 +1442,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 
