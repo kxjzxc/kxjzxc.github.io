@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/V.ico?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="keywords" content="Hack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HackingLab之基础关攻略">
+<meta property="og:url" content="http://kxjzxc.github.io/HackingLab之基础关攻略.html">
+<meta property="og:site_name" content="kxj&#39;s Eden">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://kxjzxc.github.io/第八关.png">
+<meta property="og:updated_time" content="2020-04-08T03:37:06.951Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HackingLab之基础关攻略">
+<meta name="twitter:image" content="http://kxjzxc.github.io/第八关.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="kxj's Eden" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://kxjzxc.github.io/HackingLab之基础关攻略">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>HackingLab之基础关攻略 | kxj's Eden</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kxj's Eden</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/HackingLab之基础关攻略.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+      <meta itemprop="image" content="/images/V.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kxj's Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HackingLab之基础关攻略
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-07 17:58:05" itemprop="dateCreated datePublished" datetime="2020-04-07T17:58:05+08:00">2020-04-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-04-08 11:37:06" itemprop="dateModified" datetime="2020-04-08T11:37:06+08:00">2020-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/Hack/" itemprop="url" rel="index"><span itemprop="name">Hack</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">3.5k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">3 分钟</span>
+              
+            </div>
+          
+
+          
+            <div class="post-description"> </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>作为一无所知的小白，我仅仅是将此作为摸鱼时的一种解谜游戏看待，因此不会事先去恶补过多的知识，遇到盲点也会果断放弃，上网查攻略，毕竟乐趣作为重要。</p>
+<p>每一关的解法并不唯一，可以用抓包工具，也可以只用python，我的想法是能写多少写多少方法。题目什么的我也懒得复制粘贴了，毕竟没有意义。</p>
+<p><a herf="http://hackinglab.cn/">攻防平台</a></p>
+<h1 id="闯关"><a href="#闯关" class="headerlink" title="闯关"></a>闯关</h1><h2 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h2><p>讲道理，看到题目就想到查看源代码。直接F12，答案写在注释里。</p>
+<blockquote>
+<p>jflsjklejflkdsjfklds</p>
+</blockquote>
+<h2 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a>第二关</h2><p>密文再加密一次又变回明文，既然全是小写字母，就很容易想到与13位后的对应字母替换。查询可知这种加密算法叫做Rot13。</p>
+<blockquote>
+<p>23ksdjfkfds</p>
+</blockquote>
+<h2 id="第三关"><a href="#第三关" class="headerlink" title="第三关"></a>第三关</h2><p>大致看一下密文，发现最后一位是特殊字符“=”，搜索一下与等号有关的加密算法，查到base64算法。在线解密，最终可以得到key。</p>
+<blockquote>
+<p>jkljdkl232jkljkdl2389</p>
+</blockquote>
+<h2 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a>第四关</h2><p>既然题目都说了MD5，何不一试？</p>
+<blockquote>
+<p>bighp</p>
+</blockquote>
+<h2 id="第五关"><a href="#第五关" class="headerlink" title="第五关"></a>第五关</h2><p>小白没什么思路，搜索关键字无果，于是看攻略。修改请求头中的Accept-Language参数。<br>这意思就是根据语言判断是否是外国人呗……<br><strong>方法一：</strong><br>直接修改浏览器的语言，把中文删去。<br><strong>方法二：</strong><br>用python的request库伪造请求头的Accept-Language参数，然后访问网址，并打印响应内容。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"http://lab1.xseclab.com/base1_0ef337f3afbe42d5619d7a36c19c20ab/index.php"</span></span><br><span class="line">headers = &#123;<span class="string">'Accept-Language'</span>: <span class="string">'q=0.5,en-US;q=0.3,en;q=0.2'</span>&#125;<span class="comment">#伪造请求头参数</span></span><br><span class="line">r = requests.get(url,headers=headers)<span class="comment"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span></span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = <span class="string">'utf-8'</span></span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><em>(TU687jksf6&amp;</em></p>
+</blockquote>
+<h2 id="第六关"><a href="#第六关" class="headerlink" title="第六关"></a>第六关</h2><p>搜索引擎搜索关键字，发现似乎与“User-Agent”这个属性有关。F12到Network观察请求头，找到该属性，后面参数可以明显看出和浏览器相关，或许修改此处即可。<br><strong>方法一（以Chrome为准）：</strong><br>F12打开开发者工具，点击右上方三个点，点击<code>More Tools</code>-&gt;<code>Network conditions</code>，直接修改User-Agent的值。<br><strong>方法二：</strong><br>用python的request库伪造请求头的User-Agent参数，然后访问网址，并打印响应内容。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"http://lab1.xseclab.com/base6_6082c908819e105c378eb93b6631c4d3/index.php"</span></span><br><span class="line">headers = &#123;<span class="string">'User-Agent'</span>:<span class="string">'HAHA'</span>&#125;</span><br><span class="line">r = requests.get(url,headers=headers)</span><br><span class="line"><span class="comment"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span></span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = <span class="string">'utf-8'</span></span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>meiyouHAHAliulanqi</p>
+</blockquote>
+<h2 id="第七关"><a href="#第七关" class="headerlink" title="第七关"></a>第七关</h2><p>没什么想法，看攻略说是藏在响应头里。<br><strong>方法一：</strong><br>F12到开发者工具查看Network里的响应头，就看到答案了。<br><strong>方法二：</strong><br>用python的request库申请资源，打印响应头。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"http://lab1.xseclab.com/base7_eb68bd2f0d762faf70c89799b3c1cc52/index.php"</span></span><br><span class="line">r = requests.get(url)</span><br><span class="line"><span class="comment"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span></span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = <span class="string">'utf-8'</span></span><br><span class="line">print(r.headers)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>kjh%#$#%FDjjj</p>
+</blockquote>
+<h2 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h2><p>将鼠标放在超链接“_到这里找key__”上时，发现左下角显示链接与点击链接后的网址不同，可知发生了重定向。<br>搜索浏览器如何阻止重定向，方法无效。<br>搜索python的request库访问如何阻止重定向，找到解决方法，只需再get函数中添加属性<code>allow_redirects=False</code>即可。注意申请的链接是超链接显示的链接。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"http://lab1.xseclab.com/base8_0abd63aa54bef0464289d6a42465f354/search_key.php"</span></span><br><span class="line">r = requests.get(url,allow_redirects=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span></span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = <span class="string">'utf-8'</span></span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+<p><img src="./第八关.png" alt="响应内容"><br>可以得到一个网址<a herf="http://lab1.xseclab.com/base8_0abd63aa54bef0464289d6a42465f354/key_is_here_now_.php">./key_is_here_now_.php</a></p>
+<blockquote>
+<p>ohHTTP302dd</p>
+</blockquote>
+<h2 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h2><p>搜索关键字，发现登录信息与cookie有关，并且发现测试网址使用了一个名为“Login”的cookie。<br>F12到Network查看请求头，发现参数<code>Cookie:Login=0</code>,于是尝试用python的request库伪造请求头的Cookie参数，使Login=1，然后访问网址，并打印响应内容，得到答案。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"http://lab1.xseclab.com/base9_ab629d778e3a29540dfd60f2e548a5eb/index.php"</span></span><br><span class="line">headers = &#123;<span class="string">'Cookie'</span>:<span class="string">'Login=1'</span>&#125;</span><br><span class="line">r = requests.get(url,headers=headers)</span><br><span class="line"><span class="comment">#r = requests.post(url,data=&#123;'v':'111111'&#125;)</span></span><br><span class="line"><span class="comment"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span></span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = <span class="string">'utf-8'</span></span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>yescookieedit7823789KJ</p>
+</blockquote>
+<h2 id="第十关"><a href="#第十关" class="headerlink" title="第十关"></a>第十关</h2><p>发现只能输入3位数字，而999依旧显示太小。<br>F12查看源代码，发现标签属性中限制了输入长度。<br><strong>方法一</strong><br>直接F12在开发者工具里修改源代码，使之能够输入一个极大的数，直接得出答案。<br><strong>方法二</strong><br>用python提交不受标签限制<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"http://lab1.xseclab.com/base10_0b4e4866096913ac9c3a2272dde27215/index.php"</span></span><br><span class="line">r = requests.post(url,data=&#123;<span class="string">'v'</span>:<span class="string">'111111'</span>&#125;)</span><br><span class="line"><span class="comment"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span></span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = <span class="string">'utf-8'</span></span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>768HKyu678567&amp;*&amp;K</p>
+</blockquote>
+<h2 id="第十一关"><a href="#第十一关" class="headerlink" title="第十一关"></a>第十一关</h2><p>题目崩了，答案就直接放在源代码注释里了。</p>
+<blockquote>
+<p>^&amp;*(UIHKJjkadshf</p>
+</blockquote>
+<h2 id="第十二关"><a href="#第十二关" class="headerlink" title="第十二关"></a>第十二关</h2><p>没有思路，上网查攻略，发现与robots协议有关，虽然不知道是怎么想到的……</p>
+<blockquote>
+<p>robots协议也叫robots.txt（统一小写）是一种存放于网站根目录下的ASCII编码的文本文件，它通常告诉网络搜索引擎的漫游器（又称网络蜘蛛），此网站中的哪些内容是不应被搜索引擎的漫游器获取的，哪些是可以被漫游器获取的。</p>
+</blockquote>
+<p>既然如此，就直接访问<a href="http://lab1.xseclab.com/base12_44f0d8a96eed21afdc4823a0bf1a316b/robots.txt" target="_blank" rel="noopener">./robots.txt</a>,看到<code>Disallow: /9fb97531fe95594603aff7e794ab2f5f/</code>。<br>于是访问<a href="http://lab1.xseclab.com/base12_44f0d8a96eed21afdc4823a0bf1a316b/9fb97531fe95594603aff7e794ab2f5f/" target="_blank" rel="noopener">该网址</a>,得到提示说此页面不是登陆页面，继续搜索。<br>一般来说登录页面就是在网址后面加<code>/login.php</code>，尝试，成功看到答案。</p>
+<blockquote>
+<p>UIJ%%IOOqweqwsdf</p>
+</blockquote>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>至此，基础十二关便结束了。<br>虽然总是在上网查攻略，但依旧乐趣不减，毕竟都是我没接触过的东西。<br>感觉学到了不少东西，作为娱乐方式，还是很赚的。<br>以后可能补上抓包工具的解法。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hack/" rel="tag"># Hack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/最优停止理论——如何适“可”而止.html" rel="next" title="最优停止理论——如何适“可”而止">
+                <i class="fa fa-chevron-left"></i> 最优停止理论——如何适“可”而止
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/V.jpg" alt="Kermit">
+            
+              <p class="site-author-name" itemprop="name">Kermit</p>
+              <div class="site-description motion-element" itemprop="description">人间无笑，我亦长歌</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/kxjzxc" title="GitHub &rarr; https://github.com/kxjzxc" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:kxjzxc@outlook.com" title="E-Mail &rarr; mailto:kxjzxc@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://leefir.github.io/" title="http://leefir.github.io/" rel="noopener" target="_blank">Leefir</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://yummyjay.github.io/" title="https://yummyjay.github.io/" rel="noopener" target="_blank">YummyJay</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://bblss123.github.io/" title="https://bblss123.github.io/" rel="noopener" target="_blank">bblss123</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://kyleyoung-ymj.github.io/" title="https://kyleyoung-ymj.github.io/" rel="noopener" target="_blank">KyleYoung</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://unicornt.github.io/" title="https://unicornt.github.io/" rel="noopener" target="_blank">unicornt</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shinfeb.github.io/" title="https://shinfeb.github.io/" rel="noopener" target="_blank">ShinFeb</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://kafuumegumi.github.io/" title="https://kafuumegumi.github.io/" rel="noopener" target="_blank">Kafuumegumi</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闯关"><span class="nav-number">2.</span> <span class="nav-text">闯关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一关"><span class="nav-number">2.1.</span> <span class="nav-text">第一关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二关"><span class="nav-number">2.2.</span> <span class="nav-text">第二关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三关"><span class="nav-number">2.3.</span> <span class="nav-text">第三关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四关"><span class="nav-number">2.4.</span> <span class="nav-text">第四关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五关"><span class="nav-number">2.5.</span> <span class="nav-text">第五关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第六关"><span class="nav-number">2.6.</span> <span class="nav-text">第六关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第七关"><span class="nav-number">2.7.</span> <span class="nav-text">第七关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第八关"><span class="nav-number">2.8.</span> <span class="nav-text">第八关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第九关"><span class="nav-number">2.9.</span> <span class="nav-text">第九关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第十关"><span class="nav-number">2.10.</span> <span class="nav-text">第十关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第十一关"><span class="nav-number">2.11.</span> <span class="nav-text">第十一关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第十二关"><span class="nav-number">2.12.</span> <span class="nav-text">第十二关</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">157k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">2:23</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.1.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
