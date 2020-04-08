@@ -102,11 +102,11 @@
 <meta property="og:url" content="http://kxjzxc.github.io/HackingLab之基础关攻略.html">
 <meta property="og:site_name" content="kxj&#39;s Eden">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kxjzxc.github.io/第八关.png">
-<meta property="og:updated_time" content="2020-04-08T03:37:06.951Z">
+<meta property="og:image" content="http://kxjzxc.github.io/HackingLab之基础关攻略/第八关.png">
+<meta property="og:updated_time" content="2020-04-08T03:40:19.638Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HackingLab之基础关攻略">
-<meta name="twitter:image" content="http://kxjzxc.github.io/第八关.png">
+<meta name="twitter:image" content="http://kxjzxc.github.io/HackingLab之基础关攻略/第八关.png">
 
 
 
@@ -431,7 +431,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-04-08 11:37:06" itemprop="dateModified" datetime="2020-04-08T11:37:06+08:00">2020-04-08</time>
+                <time title="修改时间：2020-04-08 11:40:19" itemprop="dateModified" datetime="2020-04-08T11:40:19+08:00">2020-04-08</time>
               
             
           </span>
@@ -560,7 +560,7 @@
 </blockquote>
 <h2 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h2><p>将鼠标放在超链接“_到这里找key__”上时，发现左下角显示链接与点击链接后的网址不同，可知发生了重定向。<br>搜索浏览器如何阻止重定向，方法无效。<br>搜索python的request库访问如何阻止重定向，找到解决方法，只需再get函数中添加属性<code>allow_redirects=False</code>即可。注意申请的链接是超链接显示的链接。</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"http://lab1.xseclab.com/base8_0abd63aa54bef0464289d6a42465f354/search_key.php"</span></span><br><span class="line">r = requests.get(url,allow_redirects=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span></span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = <span class="string">'utf-8'</span></span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-<p><img src="./第八关.png" alt="响应内容"><br>可以得到一个网址<a herf="http://lab1.xseclab.com/base8_0abd63aa54bef0464289d6a42465f354/key_is_here_now_.php">./key_is_here_now_.php</a></p>
+<p><img src="./HackingLab之基础关攻略/第八关.png" alt="响应内容"><br>可以得到一个网址<a herf="http://lab1.xseclab.com/base8_0abd63aa54bef0464289d6a42465f354/key_is_here_now_.php">./key_is_here_now_.php</a></p>
 <blockquote>
 <p>ohHTTP302dd</p>
 </blockquote>
