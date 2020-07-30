@@ -102,11 +102,13 @@
 <meta property="og:url" content="http://kxjzxc.github.io/【RPGMakerMV】滑冰谜题.html">
 <meta property="og:site_name" content="Kerke&#39;s Eden">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kxjzxc.github.io/地图设置.png">
-<meta property="og:updated_time" content="2020-07-30T10:36:02.484Z">
+<meta property="og:image" content="http://kxjzxc.github.io/【RPGMakerMV】滑冰谜题/地图设置.png">
+<meta property="og:image" content="http://kxjzxc.github.io/【RPGMakerMV】滑冰谜题/公共事件1.png">
+<meta property="og:image" content="http://kxjzxc.github.io/【RPGMakerMV】滑冰谜题/公共事件2.png">
+<meta property="og:updated_time" content="2020-07-30T10:44:59.610Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【RPGMakerMV】滑冰谜题">
-<meta name="twitter:image" content="http://kxjzxc.github.io/地图设置.png">
+<meta name="twitter:image" content="http://kxjzxc.github.io/【RPGMakerMV】滑冰谜题/地图设置.png">
 
 
 
@@ -414,7 +416,7 @@
                 
               
 
-              <time title="创建时间：2020-07-30 17:45:21 / 修改时间：18:36:02" itemprop="dateCreated datePublished" datetime="2020-07-30T17:45:21+08:00">2020-07-30</time>
+              <time title="创建时间：2020-07-30 17:45:21 / 修改时间：18:44:59" itemprop="dateCreated datePublished" datetime="2020-07-30T17:45:21+08:00">2020-07-30</time>
             
 
             
@@ -479,7 +481,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">426</span>
+                <span title="本文字数">414</span>
               
 
               
@@ -516,20 +518,22 @@
 
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>project1论坛上已经有过<a href="https://mp.weixin.qq.com/s?__biz=MzIzMDA3ODg0NA==&amp;mid=501963472&amp;idx=1&amp;sn=d56bf38ff1f95e8b78d8366873fbd128&amp;chksm=70a71ac347d093d58e0479b0e6b3d7e3c4bffc968320597acdfa6b126ce445e7e103af421b7e#rd" target="_blank" rel="noopener">滑冰谜题</a>的教程了，但是这个教程里的滑冰谜题和我想要的不太一样。我想要做的是遇到障碍物才停止的效果，而并非离开冰面停止。<br>网上搜了搜，好像并没有教程，倒是看到有人说可以用YEP_SlipperyTiles插件完成，然而我没搞清楚这个插件的用法。因此最后就自己根据原先的那个教程改进了一下，得到了自己想要的效果。</p>
-<h1 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h1><h2 id="地图设置"><a href="#地图设置" class="headerlink" title="地图设置"></a>地图设置</h2><p><img src="地图设置.png" alt="地图设置"></p>
+<h1 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h1><h2 id="地图设置"><a href="#地图设置" class="headerlink" title="地图设置"></a>地图设置</h2><p><img src="/【RPGMakerMV】滑冰谜题/地图设置.png" alt="地图设置"></p>
 <p>区域ID：2个</p>
 <p>1：踩到就进入滑冰状态，向当前朝向前进一步。覆盖冰面。</p>
 <p>2: 踩到就离开滑冰状态，恢复正常。放置于冰面出口</p>
 <p>注意点：冰面四周要铺满无法通行的障碍物，因为$gamePlayer.isMapPassable()无法判定地图边界。</p>
 <h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p><strong>变量：3个</strong></p>
-<p>001 玩家坐标X (地图坐标X)</p>
-<p>002 玩家坐标Y (地图坐标Y)</p>
-<p>003 玩家坐标区域ID</p>
+<p>001 X (玩家地图坐标X)</p>
+<p>002 Y (玩家地图坐标Y)</p>
+<p>003 RegionID</p>
 <p><strong>开关：1个</strong></p>
-<p>001 滑行</p>
-<p><strong>公共事件：1个</strong><br>001 滑冰</p>
-<p>！<a href="公共事件1.png">公共事件</a><br>！<a href="公共事件2.png">公共事件</a></p>
-<p><strong>地图事件</strong><br>同样我们也要在地图里放一个并行事件调用滑冰公共事件</p>
+<p>001 滑冰</p>
+<p><strong>公共事件：1个</strong></p>
+<p>001 滑冰</p>
+<p><img src="/【RPGMakerMV】滑冰谜题/公共事件1.png" alt="公共事件"><br><img src="/【RPGMakerMV】滑冰谜题/公共事件2.png" alt="公共事件"></p>
+<p><strong>地图事件</strong></p>
+<p>同样我们也要在地图里放一个并行事件调用滑冰公共事件</p>
 
       
     </div>
