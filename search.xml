@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数字图像处理之图像获取与直方图均衡化]]></title>
+    <url>%2F%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96.html</url>
+    <content type="text"><![CDATA[前言咕了一个学期，终于有时间也有东西可写了，虽然只是大三上修的数字图像处理的实验而已。 实验要求 统计每个灰度下的像素个数 绘制出直方图 计算累计密度 重新计算均衡化后的灰度值，四舍五入 直方图均衡化，更新原图每个点的像素值 直方图均衡化直方图均衡化是常用的图像增强处理技术，其原理为：r：原图像灰度级s：均衡化后的图像灰度级$ P_r(w)$：图像灰度概率分布$ P_s(w)$：均衡化后的图像灰度概率分布设直方图均衡化变换函数为s=T(r)，有\int_{rmin}^r{P_r(w)dw}=\int_{smin}^s{P_s(w)dw}=C(r)其中C(r)为累计分布函数若期望变换后输出图像的灰度概率密度均匀分布，即P_s(s)=\frac{1}{smax-smin}，则C(r)=\int_{smin}^s{\frac{1}{smax-smin}dw}=\frac{s-smin}{smax-smin}所以可得s=[smax-smin]C(r)+smin 代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980#include &lt;iostream&gt;#include &lt;opencv2/opencv.hpp&gt;using namespace std;using namespace cv;int p_cnt[256];float p_sum[256];int s[256];int rows,cols;void DrawHistogram(string name,Mat src)&#123; for(int i=0;i&lt;256;i++)p_cnt[i]=0; int maxvalue = 0; for(int i=0;i&lt;rows;i++) &#123; for(int j=0;j&lt;cols;j++) &#123; int p = src.at&lt;uchar&gt;(i,j); p_cnt[p]+=1; if(p_cnt[p]&gt;maxvalue)&#123; maxvalue=p_cnt[p]; &#125; &#125; &#125; cv::Mat histogram(Size(256,256),CV_8U,Scalar(0)); for(int i=0;i&lt;256;i++)&#123; int h=p_cnt[i]*255/maxvalue;//归一化 line(histogram,Point(i,255),Point(i,255-h),Scalar(255)); &#125; imshow(name,histogram);&#125;int main(int argc,char **argv)&#123; Mat img_in,img_out; //读取原始图像 img_in=imread(argv[1],IMREAD_UNCHANGED); //检查是否读取图像 if(img_in.empty())&#123; cout&lt;&lt;"Error! Input image cannot be read...\n"; return -1; &#125; imshow("src",img_in); //转化为灰度图 //code cv::Mat grayimg; cv::cvtColor(img_in,grayimg,CV_BGR2GRAY); imshow("均衡化前的图像",grayimg); rows = grayimg.rows; cols = grayimg.cols; int N = cols*rows; DrawHistogram("均衡化前的直方图",grayimg); //直方图均衡化 for(int i=0;i&lt;256;i++)&#123; if(i==0)&#123; p_sum[i]=1.0*p_cnt[i]/N; &#125; else p_sum[i]=p_sum[i-1]+1.0*p_cnt[i]/N; s[i] = p_sum[i]*255+0.5; &#125; //更新像素灰度值 cv::Mat finaimg(grayimg); for(int i=0;i&lt;rows;i++) &#123; for(int j=0;j&lt;cols;j++) &#123; int p = grayimg.at&lt;uchar&gt;(i,j); finaimg.at&lt;uchar&gt;(i,j) = s[p]; &#125; &#125; imshow("均衡化后的图像",finaimg); DrawHistogram("均衡化后的直方图",finaimg); cout &lt;&lt; "Press any key to exit...\n"; waitKey(); // Wait for key press return 0;&#125; 运行结果]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>数字图像处理</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>OpenCV</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[【RPGMakerMV】滑冰谜题]]></title>
     <url>%2F%E3%80%90RPGMakerMV%E3%80%91%E6%BB%91%E5%86%B0%E8%B0%9C%E9%A2%98.html</url>
     <content type="text"><![CDATA[前言project1论坛上已经有过滑冰谜题的教程了，但是这个教程里的滑冰谜题和我想要的不太一样。我想要做的是遇到障碍物才停止的效果，而并非离开冰面停止。网上搜了搜，好像并没有教程，倒是看到有人说可以用YEP_SlipperyTiles插件完成，然而我没搞清楚这个插件的用法。因此最后就自己根据原先的那个教程改进了一下，得到了自己想要的效果。 实现方法地图设置 区域ID：2个 1：踩到就进入滑冰状态，向当前朝向前进一步。覆盖冰面。 2: 踩到就离开滑冰状态，恢复正常。放置于冰面出口 注意点：冰面四周要铺满无法通行的障碍物，因为$gamePlayer.isMapPassable()无法判定地图边界。 事件变量：3个 001 X (玩家地图坐标X) 002 Y (玩家地图坐标Y) 003 RegionID 开关：1个 001 滑冰 公共事件：1个 001 滑冰 地图事件 同样我们也要在地图里放一个并行事件调用滑冰公共事件]]></content>
@@ -124,8 +137,8 @@
         <category>C/C++</category>
       </categories>
       <tags>
-        <tag>C++</tag>
         <tag>堆排序</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
