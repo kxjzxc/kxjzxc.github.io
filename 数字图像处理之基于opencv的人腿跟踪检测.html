@@ -96,15 +96,19 @@
 
 
 
-  <meta name="keywords" content="教程,Linux">
+  <meta name="keywords" content="C++,OpenCV">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于u盘运行veket系统这件事">
-<meta property="og:url" content="http://kxjzxc.github.io/关于u盘运行veket系统这件事.html">
+<meta property="og:title" content="数字图像处理之基于opencv的人腿跟踪检测">
+<meta property="og:url" content="http://kxjzxc.github.io/数字图像处理之基于opencv的人腿跟踪检测.html">
 <meta property="og:site_name" content="Kerke&#39;s Eden">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-15T15:14:20.941Z">
+<meta property="og:image" content="http://kxjzxc.github.io/数字图像处理之基于opencv的人腿跟踪检测/颜色分离.png">
+<meta property="og:image" content="http://kxjzxc.github.io/数字图像处理之基于opencv的人腿跟踪检测/方框选取.png">
+<meta property="og:image" content="http://kxjzxc.github.io/数字图像处理之基于opencv的人腿跟踪检测/机器人控制.png">
+<meta property="og:updated_time" content="2021-06-26T08:49:19.624Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于u盘运行veket系统这件事">
+<meta name="twitter:title" content="数字图像处理之基于opencv的人腿跟踪检测">
+<meta name="twitter:image" content="http://kxjzxc.github.io/数字图像处理之基于opencv的人腿跟踪检测/颜色分离.png">
 
 
 
@@ -114,7 +118,7 @@
 
   
   
-  <link rel="canonical" href="http://kxjzxc.github.io/关于u盘运行veket系统这件事">
+  <link rel="canonical" href="http://kxjzxc.github.io/数字图像处理之基于opencv的人腿跟踪检测">
 
 
 
@@ -124,7 +128,7 @@
   };
 </script>
 
-  <title>关于u盘运行veket系统这件事 | Kerke's Eden</title>
+  <title>数字图像处理之基于opencv的人腿跟踪检测 | Kerke's Eden</title>
   
 
 
@@ -369,7 +373,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/关于u盘运行veket系统这件事.html">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/数字图像处理之基于opencv的人腿跟踪检测.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kermit">
@@ -386,7 +390,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于u盘运行veket系统这件事
+          <h1 class="post-title" itemprop="name headline">数字图像处理之基于opencv的人腿跟踪检测
 
               
             
@@ -412,7 +416,7 @@
                 
               
 
-              <time title="创建时间：2020-04-15 12:07:01 / 修改时间：23:14:20" itemprop="dateCreated datePublished" datetime="2020-04-15T12:07:01+08:00">2020-04-15</time>
+              <time title="创建时间：2021-06-26 16:25:33 / 修改时间：16:49:19" itemprop="dateCreated datePublished" datetime="2021-06-26T16:25:33+08:00">2021-06-26</time>
             
 
             
@@ -434,7 +438,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/数字图像处理/" itemprop="url" rel="index"><span itemprop="name">数字图像处理</span></a></span>
 
                 
                 
@@ -470,7 +481,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">892</span>
+                <span title="本文字数">5.5k</span>
               
 
               
@@ -484,7 +495,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -506,22 +517,27 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上网冲浪时，我偶然了解到可以装在u盘里随身携带的轻量级操作系统。想到家里有一台硬盘损坏无法安装操作系统的老笔记本电脑，我琢磨着能否通过这类操作系统让这台老家伙摆脱被贱卖的命运。</p>
-<h1 id="所需工具"><a href="#所需工具" class="headerlink" title="所需工具"></a>所需工具</h1><ul>
-<li><strong>轻量级Linux系统veket</strong><br>veket是一个容量很小，资源要求很低，同时集成了大部分常用软件的操作系统。更重要的是，该系统的图形界面接近于windows，长辈容易操作。</li>
-<li><strong>YUMI MulitbootUSB</strong><br>其实只要一种讲iso镜像文件写入u盘的工具就好了，常用的软碟通就行。我选择这个工具主要是因为我本来想搞多重引导的u盘。</li>
-<li><strong>8G的U盘</strong><br>一个不小于4G的U盘就够用了，毕竟veket才500M左右。</li>
-<li><strong>一台老电脑</strong><br>最好还是内存不小于2G吧（1G似乎也行？）。</li>
-</ul>
-<h1 id="使用过程"><a href="#使用过程" class="headerlink" title="使用过程"></a>使用过程</h1><p>其实安装过程也没甚好写的，毕竟这玩意比普通安装系统还要简单，我就随便水水流程好了。</p>
-<ol>
-<li>通过YUMI工具将veket的iso镜像文件写入U盘。由于使用的工具可能不大一样，所以我就不写具体操作了。</li>
-<li>进入老电脑的BIOS界面，将电脑设置成优先USB方式启动。不同电脑的设置方式不同，不过网上一般都有教程。</li>
-<li>将U盘插入老电脑，再次开机，进入启动界面。一般来说全选择第一个选项就好，除非使用者有其他用途。</li>
-<li>如此便可以使用了。不过veket系统需要注意的是第一次关机时，系统会询问你是否保存数据。如果使用者没有保存数据的需求（比如只是为了体验），那么选择不保存即可。如果先要保存数据，也只需要安装提示一步一步来（以后就不用了）。</li>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本项目是数字图像处理课程的大作业，选题为人腿跟踪的机器人。与之前实验不同的是本次实验将应用到机器人平台进行验证，所以使用了ROS系统控制。</p>
+<h1 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h1><ol>
+<li>Ubuntu18.04</li>
+<li>ROS melodic</li>
+<li>Opencv3</li>
 </ol>
-<p>若有什么地方不太明白，可以到<a href="http://www.lucky8k.com/forum.php" target="_blank" rel="noopener">veket的论坛</a>上逛一逛。</p>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>挺水的一篇教程，主要目的也只是记录一下使用的工具。<br>以前发现笔记本的硬盘损坏后，我也想过直接使用Ubuntu启动盘里的试用系统，然而连个视频都看不了就放弃了。如今使用veket系统后，虽然长时间使用的话电脑还是会卡死（硬伤，莫得办法），但是好歹平时用得还是挺流畅的。<br>其实我本来是在纠结到底选择CDLinux还是veket的，后来想着全都要算了，结果发现CDLinux不知道为何写入不了U盘，只能作罢。所以我的多引导系统U盘并没能完成，着实感到遗憾。</p>
+<h1 id="研究目标"><a href="#研究目标" class="headerlink" title="研究目标"></a>研究目标</h1><p>1、实现机器小车识别并跟踪人腿的功能</p>
+<h1 id="研究内容"><a href="#研究内容" class="headerlink" title="研究内容"></a>研究内容</h1><p>1、采用颜色分割算法，实现对黑色的提取功能。<br>2、采用特征提取算法，实现对已分割图像的有效轮廓提取。<br>3、采用运动决策算法，实现依据有效轮廓对小车的运动控制。</p>
+<h1 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h1><h2 id="针对颜色分离功能"><a href="#针对颜色分离功能" class="headerlink" title="针对颜色分离功能"></a>针对颜色分离功能</h2><p>1.1 先对图像进行伽马变换，使从摄像头获得的图片变亮，利于后续的颜色选择<br>1.2 对图片进行高斯模糊，消去噪声，<br>1.3 将图片从RGB色度空间转换到HSV色度空间，利于图像的颜色分割。<br>1.4 对提取的图片进行灰度变换并进行开运算，减少其他区域干扰。<br>源程序：<br>伽马校正(网上复制粘贴的)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GammaCorrection</span><span class="params">(Mat src, Mat &amp;dst, <span class="keyword">float</span> fGamma)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// build look up table</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">char</span> lut[<span class="number">256</span>];</span><br><span class="line">	<span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">256</span>; i++ )</span><br><span class="line">	&#123;</span><br><span class="line">		lut[i] = saturate_cast&lt;uchar&gt;(<span class="built_in">pow</span>((<span class="keyword">float</span>)(i/<span class="number">255.0</span>), fGamma) * <span class="number">255.0f</span>);<span class="comment">//防止颜色溢出操作</span></span><br><span class="line">	&#125;</span><br><span class="line">	dst = src.clone();</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> channels = dst.channels();</span><br><span class="line">	<span class="keyword">switch</span>(channels)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">			&#123;</span><br><span class="line">				MatIterator_&lt;uchar&gt; it, end;</span><br><span class="line">				<span class="keyword">for</span>( it = dst.begin&lt;uchar&gt;(), end = dst.end&lt;uchar&gt;(); it != end; it++ )</span><br><span class="line">					*it = lut[(*it)];</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">3</span>: </span><br><span class="line">			&#123;</span><br><span class="line"> </span><br><span class="line">				MatIterator_&lt;Vec3b&gt; it, end;</span><br><span class="line">				<span class="keyword">for</span>( it = dst.begin&lt;Vec3b&gt;(), end = dst.end&lt;Vec3b&gt;(); it != end; it++ )</span><br><span class="line">				&#123;</span><br><span class="line">					(*it)[<span class="number">0</span>] = lut[((*it)[<span class="number">0</span>])];</span><br><span class="line">					(*it)[<span class="number">1</span>] = lut[((*it)[<span class="number">1</span>])];</span><br><span class="line">					(*it)[<span class="number">2</span>] = lut[((*it)[<span class="number">2</span>])];</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>颜色分割</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Separate</span><span class="params">(Mat src,Mat &amp;dst)</span></span></span><br><span class="line"><span class="function"></span>&#123;	</span><br><span class="line">    GammaCorrection(src,src,<span class="number">1</span>/<span class="number">1.6</span>);<span class="comment">//伽马变换</span></span><br><span class="line">	imshow(<span class="string">"src"</span>,src);</span><br><span class="line">	GaussianBlur(src,src,Size(<span class="number">7</span>,<span class="number">7</span>),<span class="number">7</span>,<span class="number">7</span>);<span class="comment">//高斯模糊</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//转换到HSV色度空间</span></span><br><span class="line">	Mat hsv;</span><br><span class="line">	cvtColor(src,hsv,COLOR_BGR2HSV);<span class="comment">//</span></span><br><span class="line">	<span class="comment">//提取黑色</span></span><br><span class="line">	<span class="comment">//thre.convertTo(thre,CV_8UC1,-1,255);</span></span><br><span class="line">	inRange(hsv, Scalar(<span class="number">0</span>,<span class="number">0</span>, <span class="number">0</span>),Scalar(<span class="number">180</span>,<span class="number">255</span>, <span class="number">46</span>), dst);<span class="comment">//颜色分割</span></span><br><span class="line">	<span class="comment">//开运算</span></span><br><span class="line">	Mat element=getStructuringElement(MORPH_RECT, Size(<span class="number">15</span>,<span class="number">15</span>));</span><br><span class="line">	Mat opened;</span><br><span class="line">	morphologyEx(dst, dst, MORPH_OPEN, element);;</span><br><span class="line">	imshow(<span class="string">"black"</span>,dst);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="针对特征识别功能"><a href="#针对特征识别功能" class="headerlink" title="针对特征识别功能"></a>针对特征识别功能</h2><p>2.1 对处理后的灰度图进行寻找轮廓，绘画轮廓边框和轮廓中心点，判断边框是否是所需要的轮廓边框。<br>2.2 判断依据有矩形的长宽比是否为长边形，边框是否是大致竖直状态，边框大小是否处于面积阈值范围。<br>2.3 得到人腿的准确边框。<br>源程序：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//两点间距离</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">SideCalc</span><span class="params">(Point a,Point b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> sqrtf(powf(a.x-b.x,<span class="number">2</span>)+powf(a.y-b.y,<span class="number">2</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//直线的斜率</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Grad</span><span class="params">(Point a,Point b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a.x==b.x)<span class="keyword">return</span> oo;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">fabs</span>(a.y-b.y)/<span class="built_in">fabs</span>(a.x-b.x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Command</span><span class="params">(Mat src,geometry_msgs::Twist &amp;cmd_red)</span><span class="comment">//根据分离出来的图像决定dashgo的行动</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//寻找轮廓</span></span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;Point&gt;&gt; contours;</span><br><span class="line">	<span class="built_in">vector</span>&lt;Vec4i&gt; hierarchy;</span><br><span class="line">	findContours(src, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(<span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">	<span class="comment">//对每个找到的轮廓创建可倾斜的边界框</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;RotatedRect&gt; minRect(contours.size());</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; contours.size(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">	    minRect[i] = minAreaRect(Mat(contours[i]));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> flag=<span class="literal">false</span>;<span class="comment">//是否有且仅有一个符合条件的边框</span></span><br><span class="line">	<span class="function">Point <span class="title">center</span><span class="params">(<span class="number">0</span>,<span class="number">0</span>)</span></span>;<span class="comment">//轮廓中心点</span></span><br><span class="line">	<span class="keyword">double</span> Area=<span class="number">-1</span>;</span><br><span class="line">	<span class="comment">//筛选边框并且根据有效轮廓决定运动参数（如果有多个，则参数无意义）</span></span><br><span class="line">	<span class="comment">//绘出有效轮廓及其可倾斜的边界框</span></span><br><span class="line">	Mat drawing = Mat::zeros(src.size(), CV_8UC3);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; contours.size(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">	    Point2f rect_points[<span class="number">4</span>]; <span class="comment">//轮廓四个拐点</span></span><br><span class="line">		minRect[i].points(rect_points);</span><br><span class="line">		<span class="comment">//计算方框相邻边长和面积</span></span><br><span class="line">		<span class="keyword">double</span> side1=SideCalc(rect_points[<span class="number">0</span>],rect_points[<span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">double</span> side2=SideCalc(rect_points[<span class="number">1</span>],rect_points[<span class="number">2</span>]);</span><br><span class="line">		<span class="keyword">double</span> area=side1*side2;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//cout&lt;&lt;"area:"&lt;&lt;area&lt;&lt;endl;</span></span><br><span class="line">		<span class="comment">//判断轮廓形状是否是要求长方形</span></span><br><span class="line">		<span class="comment">//cout&lt;&lt;"WHratio:"&lt;&lt;side1/side2&lt;&lt;" "&lt;&lt;side2/side1&lt;&lt;endl;</span></span><br><span class="line">		<span class="keyword">if</span>(side1/side2&gt;WHRATIO&amp;&amp;side2/side1&gt;WHRATIO)<span class="keyword">continue</span>;</span><br><span class="line">		<span class="comment">//判断长方形长边的斜率</span></span><br><span class="line">		<span class="keyword">double</span> longGrad;</span><br><span class="line">		<span class="keyword">if</span>(side1&gt;side2)longGrad=Grad(rect_points[<span class="number">0</span>],rect_points[<span class="number">1</span>]);</span><br><span class="line">		<span class="keyword">else</span> longGrad=Grad(rect_points[<span class="number">1</span>],rect_points[<span class="number">2</span>]);</span><br><span class="line">		<span class="comment">//cout&lt;&lt;"longGrad:"&lt;&lt;longGrad&lt;&lt;endl;</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(longGrad&lt;GRAD)<span class="keyword">continue</span>;<span class="comment">//如果过于平缓，则淘汰该矩形</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//判断轮廓的大小，并且根据可能轮廓判断轮廓与机器人距离</span></span><br><span class="line">		<span class="keyword">if</span>(area&gt;=<span class="number">130000</span>||area&lt;<span class="number">15000</span>)<span class="keyword">continue</span>;<span class="comment">//如果距离过远或者过近则不运动，同时排除掉过小的边框</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//寻找轮廓中心点，并绘制边框</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++)</span><br><span class="line">	    &#123;            </span><br><span class="line">	    	line(drawing, rect_points[j], rect_points[(j + <span class="number">1</span>) % <span class="number">4</span>], Scalar(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">1</span>, <span class="number">50</span>);</span><br><span class="line">	    	center.x+=rect_points[j].x;</span><br><span class="line">	    	center.y+=rect_points[j].y;</span><br><span class="line">	 	&#125;</span><br><span class="line">		center.x/=<span class="number">4</span>;</span><br><span class="line">		center.y/=<span class="number">4</span>;</span><br><span class="line">		circle(drawing,center,<span class="number">2</span>,Scalar(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>));</span><br><span class="line">		……</span><br><span class="line">	&#125;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="针对运动决策功能"><a href="#针对运动决策功能" class="headerlink" title="针对运动决策功能"></a>针对运动决策功能</h2><p>3.1 对得到的边框进行筛选，并依据边框的大小进行判断目标的远近，边框中心点与图像中心点比较得到目标的左右偏离位置<br>3.2 依据具体大小，偏离距离进行角速度和线速度的规划，并设置阻尼函数，使小车运行，线速度随远近而变大或变小，角速度随偏离距离增加或减小。<br>3.3 最终实现机器人的人腿跟踪识别。<br>源程序：<br>运动规划</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> vec=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">double</span> angle_vec=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Command</span><span class="params">(Mat src,geometry_msgs::Twist &amp;cmd_red)</span><span class="comment">//根据分离出来的图像决定dashgo的行动</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	……</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; contours.size(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		……</span><br><span class="line">		<span class="keyword">if</span>(Area&gt;<span class="number">-1</span>)<span class="comment">//已有有效边框</span></span><br><span class="line">		&#123;</span><br><span class="line">			Area=<span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> Area=area;</span><br><span class="line">			</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	imshow(<span class="string">"Contours"</span>,drawing);</span><br><span class="line">    <span class="comment">//制定机器人指令</span></span><br><span class="line">    <span class="keyword">if</span>(Area==<span class="number">-1</span>)<span class="comment">//视野没有有效轮廓</span></span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//判断机器人速度</span></span><br><span class="line">	<span class="keyword">double</span> ref_vec=<span class="number">1.0f</span>*(<span class="number">130000</span>-Area)/<span class="number">260000.0f</span>;<span class="comment">//目标速度</span></span><br><span class="line">	vec=Damp(ref_vec,vec);<span class="comment">//算出阻尼后的速度</span></span><br><span class="line">	cmd_red.linear.x=vec;</span><br><span class="line">    <span class="comment">//判断机器人前进的方向</span></span><br><span class="line">    <span class="keyword">double</span> centerL=drawing.cols*<span class="number">5</span>/<span class="number">11</span>;</span><br><span class="line">    <span class="keyword">double</span> centerR=drawing.rows*<span class="number">6</span>/<span class="number">11</span>;</span><br><span class="line">	<span class="keyword">double</span> ref_angle_vec=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(center.x&lt;=centerL)ref_angle_vec=(centerL-center.x)/centerL;<span class="comment">//左边</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(center.x&gt;centerR)ref_angle_vec=(centerR-center.x)/centerL;<span class="comment">//右边</span></span><br><span class="line">	angle_vec=Damp(ref_angle_vec,angle_vec);<span class="comment">//算出阻尼后的速度</span></span><br><span class="line">	cmd_red.angular.z=angle_vec;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>阻尼函数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Kp 0.1</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Damp</span><span class="params">(<span class="keyword">double</span> vec,<span class="keyword">double</span> last_vec)</span></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> error=vec-last_vec;</span><br><span class="line">	<span class="keyword">double</span> output=last_vec+error*Kp;</span><br><span class="line">	<span class="keyword">return</span> output;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4</p>
+<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><p>分别对颜色分割、特征提取、运动决策功能进行了实验验证，实验过程介绍<br>结果1：对色度空间的转换和伽马变换实现了对黑色较好的的颜色分割。<br>结果图：<br><img src="/数字图像处理之基于opencv的人腿跟踪检测/颜色分离.png" alt="颜色分离"><br>结果2：对已分割完成后的图片进行轮廓绘画并标出其中心点，并依据判断条件去除不符合条件的边框。<br>结果图：<br><img src="/数字图像处理之基于opencv的人腿跟踪检测/方框选取.png" alt="方框选取"><br>结果3：根据轮廓中心点与图像中心点的坐标判断，得到机器人左右控制的速度指令。根据轮廓面积的大小控制机器人前进的速度大小。<br>结果图：<br><img src="/数字图像处理之基于opencv的人腿跟踪检测/机器人控制.png" alt="机器人控制"></p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>本文设计了颜色分离，特征提取，运动决策算法，实现了对黑色的提取、对分离图片的边框选取、对机器人小车的运动控制功能，取得了有效提取并分离出黑色、对已分割图片轮廓的完好提取并绘画边框、较良好的控制小车的运动的效果。实验过程说明了颜色分割效果较好、轮廓边框判断选取准确、小车速度转速控制稳定。<br>本文设计的算法具有如下优缺点：<br>优点：使用最基础的算法和代码实现了较为良好的效果；算法条理清晰，并可以消除大量黑色干扰物体；消除了小车突然启动时的速度突变现象。<br>缺点：背景中不能有大块的黑色干扰，否则会与人腿形状融合导致无法成为有效边框；只能识别纯色裤子的人腿，非常花哨的裤子可能会干扰；多个轮廓直接停止运动，不会继续跟随<br>可以通过哪些方法进行改进：通过深度学习或者模式识别，直接针对人腿进行识别，可以较为良好的避免背景中的干扰，并且不再收到颜色的干扰；刚出现多个轮廓时，直接跟踪最大轮廓。</p>
 
       
     </div>
@@ -545,9 +561,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/教程/" rel="tag"># 教程</a>
+            <a href="/tags/C/" rel="tag"># C++</a>
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/OpenCV/" rel="tag"># OpenCV</a>
           
         </div>
       
@@ -560,8 +576,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/HackingLab之基础关攻略.html" rel="next" title="HackingLab之基础关攻略">
-                <i class="fa fa-chevron-left"></i> HackingLab之基础关攻略
+              <a href="/数字图像处理之目标颜色识别.html" rel="next" title="数字图像处理之目标颜色识别">
+                <i class="fa fa-chevron-left"></i> 数字图像处理之目标颜色识别
               </a>
             
           </div>
@@ -569,10 +585,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/HackingLab之脚本关攻略.html" rel="prev" title="HackingLab之脚本关攻略">
-                HackingLab之脚本关攻略 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -896,7 +908,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#所需工具"><span class="nav-number">2.</span> <span class="nav-text">所需工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用过程"><span class="nav-number">3.</span> <span class="nav-text">使用过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发环境"><span class="nav-number">2.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#研究目标"><span class="nav-number">3.</span> <span class="nav-text">研究目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#研究内容"><span class="nav-number">4.</span> <span class="nav-text">研究内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法实现"><span class="nav-number">5.</span> <span class="nav-text">算法实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#针对颜色分离功能"><span class="nav-number">5.1.</span> <span class="nav-text">针对颜色分离功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#针对特征识别功能"><span class="nav-number">5.2.</span> <span class="nav-text">针对特征识别功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#针对运动决策功能"><span class="nav-number">5.3.</span> <span class="nav-text">针对运动决策功能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验结果"><span class="nav-number">6.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number">7.</span> <span class="nav-text">结论</span></a></li></ol></div>
             
 
           </div>
@@ -1433,6 +1445,46 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
