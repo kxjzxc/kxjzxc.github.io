@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://kxjzxc.github.io/数字图像处理之基于opencv的人腿跟踪检测/颜色分离.png">
 <meta property="og:image" content="http://kxjzxc.github.io/数字图像处理之基于opencv的人腿跟踪检测/方框选取.png">
 <meta property="og:image" content="http://kxjzxc.github.io/数字图像处理之基于opencv的人腿跟踪检测/机器人控制.png">
-<meta property="og:updated_time" content="2021-06-26T08:49:19.624Z">
+<meta property="og:updated_time" content="2021-06-26T08:53:03.191Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数字图像处理之基于opencv的人腿跟踪检测">
 <meta name="twitter:image" content="http://kxjzxc.github.io/数字图像处理之基于opencv的人腿跟踪检测/颜色分离.png">
@@ -416,7 +416,7 @@
                 
               
 
-              <time title="创建时间：2021-06-26 16:25:33 / 修改时间：16:49:19" itemprop="dateCreated datePublished" datetime="2021-06-26T16:25:33+08:00">2021-06-26</time>
+              <time title="创建时间：2021-06-26 16:25:33 / 修改时间：16:53:03" itemprop="dateCreated datePublished" datetime="2021-06-26T16:25:33+08:00">2021-06-26</time>
             
 
             
@@ -535,7 +535,6 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> vec=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">double</span> angle_vec=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Command</span><span class="params">(Mat src,geometry_msgs::Twist &amp;cmd_red)</span><span class="comment">//根据分离出来的图像决定dashgo的行动</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	……</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; contours.size(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		……</span><br><span class="line">		<span class="keyword">if</span>(Area&gt;<span class="number">-1</span>)<span class="comment">//已有有效边框</span></span><br><span class="line">		&#123;</span><br><span class="line">			Area=<span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> Area=area;</span><br><span class="line">			</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	imshow(<span class="string">"Contours"</span>,drawing);</span><br><span class="line">    <span class="comment">//制定机器人指令</span></span><br><span class="line">    <span class="keyword">if</span>(Area==<span class="number">-1</span>)<span class="comment">//视野没有有效轮廓</span></span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//判断机器人速度</span></span><br><span class="line">	<span class="keyword">double</span> ref_vec=<span class="number">1.0f</span>*(<span class="number">130000</span>-Area)/<span class="number">260000.0f</span>;<span class="comment">//目标速度</span></span><br><span class="line">	vec=Damp(ref_vec,vec);<span class="comment">//算出阻尼后的速度</span></span><br><span class="line">	cmd_red.linear.x=vec;</span><br><span class="line">    <span class="comment">//判断机器人前进的方向</span></span><br><span class="line">    <span class="keyword">double</span> centerL=drawing.cols*<span class="number">5</span>/<span class="number">11</span>;</span><br><span class="line">    <span class="keyword">double</span> centerR=drawing.rows*<span class="number">6</span>/<span class="number">11</span>;</span><br><span class="line">	<span class="keyword">double</span> ref_angle_vec=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(center.x&lt;=centerL)ref_angle_vec=(centerL-center.x)/centerL;<span class="comment">//左边</span></span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(center.x&gt;centerR)ref_angle_vec=(centerR-center.x)/centerL;<span class="comment">//右边</span></span><br><span class="line">	angle_vec=Damp(ref_angle_vec,angle_vec);<span class="comment">//算出阻尼后的速度</span></span><br><span class="line">	cmd_red.angular.z=angle_vec;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>阻尼函数</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Kp 0.1</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Damp</span><span class="params">(<span class="keyword">double</span> vec,<span class="keyword">double</span> last_vec)</span></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> error=vec-last_vec;</span><br><span class="line">	<span class="keyword">double</span> output=last_vec+error*Kp;</span><br><span class="line">	<span class="keyword">return</span> output;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>4</p>
 <h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><p>分别对颜色分割、特征提取、运动决策功能进行了实验验证，实验过程介绍<br>结果1：对色度空间的转换和伽马变换实现了对黑色较好的的颜色分割。<br>结果图：<br><img src="/数字图像处理之基于opencv的人腿跟踪检测/颜色分离.png" alt="颜色分离"><br>结果2：对已分割完成后的图片进行轮廓绘画并标出其中心点，并依据判断条件去除不符合条件的边框。<br>结果图：<br><img src="/数字图像处理之基于opencv的人腿跟踪检测/方框选取.png" alt="方框选取"><br>结果3：根据轮廓中心点与图像中心点的坐标判断，得到机器人左右控制的速度指令。根据轮廓面积的大小控制机器人前进的速度大小。<br>结果图：<br><img src="/数字图像处理之基于opencv的人腿跟踪检测/机器人控制.png" alt="机器人控制"></p>
 <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>本文设计了颜色分离，特征提取，运动决策算法，实现了对黑色的提取、对分离图片的边框选取、对机器人小车的运动控制功能，取得了有效提取并分离出黑色、对已分割图片轮廓的完好提取并绘画边框、较良好的控制小车的运动的效果。实验过程说明了颜色分割效果较好、轮廓边框判断选取准确、小车速度转速控制稳定。<br>本文设计的算法具有如下优缺点：<br>优点：使用最基础的算法和代码实现了较为良好的效果；算法条理清晰，并可以消除大量黑色干扰物体；消除了小车突然启动时的速度突变现象。<br>缺点：背景中不能有大块的黑色干扰，否则会与人腿形状融合导致无法成为有效边框；只能识别纯色裤子的人腿，非常花哨的裤子可能会干扰；多个轮廓直接停止运动，不会继续跟随<br>可以通过哪些方法进行改进：通过深度学习或者模式识别，直接针对人腿进行识别，可以较为良好的避免背景中的干扰，并且不再收到颜色的干扰；刚出现多个轮廓时，直接跟踪最大轮廓。</p>
 
@@ -585,6 +584,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/基于OpenCV和图像金字塔的模板匹配——火花塞间隙尺寸测量.html" rel="prev" title="基于OpenCV和图像金字塔的模板匹配——火花塞间隙尺寸测量">
+                基于OpenCV和图像金字塔的模板匹配——火花塞间隙尺寸测量 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -655,7 +658,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -797,9 +800,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -943,7 +944,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">188k</span>
+    <span title="站点总字数">198k</span>
   
 
   
@@ -954,7 +955,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">2:51</span>
+    <span title="站点阅读时长">3:01</span>
   
 </div>
 
