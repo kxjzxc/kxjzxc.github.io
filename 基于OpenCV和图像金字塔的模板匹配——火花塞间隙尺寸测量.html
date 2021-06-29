@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://kxjzxc.github.io/基于OpenCV和图像金字塔的模板匹配——火花塞间隙尺寸测量/匹配结果1.png">
 <meta property="og:image" content="http://kxjzxc.github.io/基于OpenCV和图像金字塔的模板匹配——火花塞间隙尺寸测量/匹配结果2.png">
 <meta property="og:image" content="http://kxjzxc.github.io/基于OpenCV和图像金字塔的模板匹配——火花塞间隙尺寸测量/匹配结果3.png">
-<meta property="og:updated_time" content="2021-06-27T14:35:34.908Z">
+<meta property="og:updated_time" content="2021-06-27T14:40:10.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于OpenCV和图像金字塔的模板匹配——火花塞间隙尺寸测量">
 <meta name="twitter:image" content="http://kxjzxc.github.io/基于OpenCV和图像金字塔的模板匹配——火花塞间隙尺寸测量/流程图.png">
@@ -418,7 +418,7 @@
                 
               
 
-              <time title="创建时间：2021-06-27 21:42:32 / 修改时间：22:35:34" itemprop="dateCreated datePublished" datetime="2021-06-27T21:42:32+08:00">2021-06-27</time>
+              <time title="创建时间：2021-06-27 21:42:32 / 修改时间：22:40:10" itemprop="dateCreated datePublished" datetime="2021-06-27T21:42:32+08:00">2021-06-27</time>
             
 
             
@@ -490,7 +490,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">9.4k</span>
+                <span title="本文字数">9.5k</span>
               
 
               
@@ -530,7 +530,7 @@
 <h1 id="算法说明"><a href="#算法说明" class="headerlink" title="算法说明"></a>算法说明</h1><p><img src="/基于OpenCV和图像金字塔的模板匹配——火花塞间隙尺寸测量/流程图.png" alt="流程图"><br>程序主要分成四个部分：</p>
 <h2 id="预处理："><a href="#预处理：" class="headerlink" title="预处理："></a>预处理：</h2><p>在此部分中，将完成模板的创建和待处理图片的路径读取。程序将从文件夹中读取model.png图片作为模板。如果文件夹中没有该图片，则将从第一张待处理图片中截取所需区域作为模板。</p>
 <h2 id="匹配："><a href="#匹配：" class="headerlink" title="匹配："></a>匹配：</h2><p>此函数主要调用OpenCV库中的matchTemplate函数以及相关函数寻找各种角度的图片中与模板的最佳匹配点，并且根据该点找寻区域的中心位置。模板匹配算法根据需要决定，本项目使用平均方差。</p>
-<h3 id="旋转图像"><a href="#旋转图像" class="headerlink" title="旋转图像"></a>旋转图像</h3><p>为了匹配旋转的图像，所以在匹配时要将图像进行旋转。<br>旋转使用的是仿射变换，仿射矩阵可用getRotationMatrix2D()得到M1。<br>由于在旋转图像后，图像的大小也会改变，所以不能直接使用M1进行变换，而是要用getAffineTransform()函数再获得一个大小变换矩阵M2<br>最后将M1的旋转部分和M2的大小变换部分相结合变成一个新的变换矩阵M，使用warpAffine()函数就能完成图像的仿射变换。<br>由于代码需要，还需要写坐标变换的函数，公式如下<br><img src="/基于OpenCV和图像金字塔的模板匹配——火花塞间隙尺寸测量/仿射变换.png" alt="仿射变换"></p>
+<h3 id="旋转图像"><a href="#旋转图像" class="headerlink" title="旋转图像"></a>旋转图像</h3><p>为了匹配旋转的图像，所以在匹配时要将图像进行旋转。<br>旋转使用的是仿射变换，仿射矩阵可用getRotationMatrix2D()得到M1。<br>由于在旋转图像后，图像的大小也会改变，所以不能直接使用M1进行变换，而是要用getAffineTransform()函数再获得一个大小变换矩阵M2<br>最后将M1的旋转部分和M2的大小变换部分相结合变成一个新的变换矩阵M，使用warpAffine()函数就能完成图像的仿射变换。<br>由于代码需要，还需要写坐标变换的函数，公式如下<br><img src="/基于OpenCV和图像金字塔的模板匹配——火花塞间隙尺寸测量/仿射变换.png" alt="仿射变换"><br>M就是一个3*2的矩阵</p>
 <h3 id="图像金字塔"><a href="#图像金字塔" class="headerlink" title="图像金字塔"></a>图像金字塔</h3><p>如果单纯使用模板匹配，时间复杂度将爆炸，但我们可以使用图像金字塔来进行优化</p>
 <ol>
 <li><p>建立n层图像金字塔，对于每一层金字塔，将图像向下采样，每$2^n$行$2^n$列取一个像素。由此获得$\frac{1}{2^n}$倍的图像和模板。采样完后的图像可用高斯滤波器滤波（本项目没有）</p>

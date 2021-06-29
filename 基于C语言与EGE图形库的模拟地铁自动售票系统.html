@@ -103,16 +103,16 @@
 <meta property="og:site_name" content="Kerke&#39;s Eden">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kxjzxc.github.io/流程图.png">
-<meta property="og:image" content="http://kxjzxc.github.io/欢迎界面.png">
-<meta property="og:image" content="http://kxjzxc.github.io/系统主菜单.png">
-<meta property="og:image" content="http://kxjzxc.github.io/输入起止站.png">
-<meta property="og:image" content="http://kxjzxc.github.io/输入票数.png">
-<meta property="og:image" content="http://kxjzxc.github.io/询问是否购买.png">
-<meta property="og:image" content="http://kxjzxc.github.io/投币.png">
-<meta property="og:image" content="http://kxjzxc.github.io/购票成功界面.png">
-<meta property="og:image" content="http://kxjzxc.github.io/地图查询界面.png">
-<meta property="og:image" content="http://kxjzxc.github.io/系统说明.png">
-<meta property="og:updated_time" content="2019-07-10T01:41:02.000Z">
+<meta property="og:image" content="http://kxjzxc.github.io/基于C语言与EGE图形库的模拟地铁自动售票系统/欢迎界面.png">
+<meta property="og:image" content="http://kxjzxc.github.io/基于C语言与EGE图形库的模拟地铁自动售票系统/系统主菜单.png">
+<meta property="og:image" content="http://kxjzxc.github.io/基于C语言与EGE图形库的模拟地铁自动售票系统/输入起止站.png">
+<meta property="og:image" content="http://kxjzxc.github.io/基于C语言与EGE图形库的模拟地铁自动售票系统/输入票数.png">
+<meta property="og:image" content="http://kxjzxc.github.io/基于C语言与EGE图形库的模拟地铁自动售票系统/询问是否购买.png">
+<meta property="og:image" content="http://kxjzxc.github.io/基于C语言与EGE图形库的模拟地铁自动售票系统/投币.png">
+<meta property="og:image" content="http://kxjzxc.github.io/基于C语言与EGE图形库的模拟地铁自动售票系统/购票成功界面.png">
+<meta property="og:image" content="http://kxjzxc.github.io/基于C语言与EGE图形库的模拟地铁自动售票系统/地图查询界面.png">
+<meta property="og:image" content="http://kxjzxc.github.io/基于C语言与EGE图形库的模拟地铁自动售票系统/系统说明.png">
+<meta property="og:updated_time" content="2021-06-29T04:49:31.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于C语言与EGE图形库的模拟地铁自动售票系统">
 <meta name="twitter:image" content="http://kxjzxc.github.io/流程图.png">
@@ -440,7 +440,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-10 09:41:02" itemprop="dateModified" datetime="2019-07-10T09:41:02+08:00">2019-07-10</time>
+                <time title="修改时间：2021-06-29 12:49:31" itemprop="dateModified" datetime="2021-06-29T12:49:31+08:00">2021-06-29</time>
               
             
           </span>
@@ -564,15 +564,15 @@
 <h2 id="调试过程"><a href="#调试过程" class="headerlink" title="调试过程"></a>调试过程</h2><p>我首先编写完系统的核心代码，如地图查询与购买车票。这一块没有遇到太大的问题。改正几处简单的错误之后，便通过了测试。<br>接下来我开始绘制图形界面。按钮、输入框、文字等只需要稍微计算一下便能够符合我的预期。<br>较为困难的是用户交互机制的设计。我先是设计键盘交互的部分，这一块较为简单。也没有需要调试的地方。但是当我加入鼠标交互功能是，却遇到了难题：当用户输入的时候，无法通过鼠标点击相应按钮实现功能。必须等到输入结束之后才能实现鼠标点击。而且需要鼠标点击的阶段也无法通过键盘操作。即无法同时用鼠标和键盘进行操作。<br>为了解决这一问题，我在需要用户操作的阶段设置了一个while(1)循环，里面先检测是否有键盘消息，如果没有再检测是否有鼠标消息。通过这样类似于多线程的方法，系统可以实现同时通过鼠标和键盘操作，代码如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(kbhit())&#123;</span><br><span class="line">            <span class="keyword">char</span> k=getch();</span><br><span class="line">            <span class="keyword">if</span>(k==<span class="string">'\r'</span>)<span class="keyword">break</span>;<span class="comment">//确定</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> x,y;</span><br><span class="line">        <span class="keyword">if</span>(checkClick(&amp;x,&amp;y))&#123;</span><br><span class="line">            <span class="keyword">if</span>(checkIn(x,y,WIDTH/<span class="number">2</span><span class="number">-210</span>, HEIGHT<span class="number">-340</span>, <span class="number">160</span>, <span class="number">50</span>))<span class="keyword">break</span>;<span class="comment">//确定</span></span><br><span class="line">            <span class="keyword">if</span>(checkIn(x,y,WIDTH/<span class="number">2</span>+<span class="number">50</span>, HEIGHT<span class="number">-340</span>, <span class="number">160</span>, <span class="number">50</span>))<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//返回</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>但是此时又造成了另一个问题——页面无法及时的更新。在之前的代码中，程序只有到getch()，即等待用户按键的时候，才会更新页面。原先因为只有键盘输入所以不会造成影响。而如今只有检测到键盘消息，才读取键盘操作，导致页面无法及时更新。思考片刻后，我认为系统只有等待的时候才会更新界面，所以我在每一处改变页面的代码之后加了<code>delay_fps(60)</code>延时函数。正如我猜想，加入延时函数之后，问题成功解决。</p>
 <h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><ol>
-<li>进入系统后，显示欢迎界面：<br><img src="欢迎界面.png" alt></li>
-<li>按任意键进入系统主菜单，点击对应按钮进入对应的功能界面。<br><img src="系统主菜单.png" alt></li>
-<li>进入购买车票的界面后，出现起止站的输入框。首先通过键盘输入起始站，将在输入框中出现相应字符。最多输入3个字符，而且必须是数字。点击确定或者按下回车键后，可以在目的地的输入框中输入。点击刷新按钮后可以从起始站重新输入。点击返回或者按下esc键将回到主界面。起止站输入完成后，点击确定键或者回车键，如果站台编号符合要求将进入输入票数的界面。若是不符合将被要求重新输入站台编号。<br><img src="输入起止站.png" alt></li>
-<li>输入票数的界面中，标题下方显示两个站点之间最短距离的票价。再下面是询问购买的票数，可通过键盘输入数字字符，最多可输入一个字符。点击返回或者按下esc键回到上一界面。点击确定或者按下回车键进入下一界面。<br><img src="输入票数.png" alt></li>
-<li>显示总价格，并且最后询问是否购买车票。点击返回或者按下esc键回到上一界面。点击确定或者按下回车键进入下一界面。<br><img src="询问是否购买.png" alt></li>
-<li>投币界面中标题下方出现提示。按数字键可以在界面右下方的输入框中输入数字字符，最多可输入两个字符。点击确定或者回车键，如果投入的钱币小于总价格，则显示“钱币不足，请再次投币”。直到投入钱币总和大于等于总价格，到下一界面。<br><img src="投币.png" alt></li>
-<li>购买成功后，显示信息与提示，按任意键返回主界面。<br><img src="购票成功界面.png" alt></li>
-<li>进入地图查询界面后，显示地铁线路图，并且在线路图下方有输入框，可以输入站点编号。只能输入数字，且最多三个字符。点击查询可以在线路图右侧显示查询的地图信息。在屏幕右下方出现“继续查询”与“购票”按钮。点击“继续查询”，可以继续输入站点编码。点击“购票”按钮直接进入购票界面。点击返回或者按下esc键返回系统主界面。<br><img src="地图查询界面.png" alt></li>
-<li>系统说明界面显示购票流程与用户须知，按任意键返回系统主界面。<br><img src="系统说明.png" alt></li>
+<li>进入系统后，显示欢迎界面：<br><img src="/基于C语言与EGE图形库的模拟地铁自动售票系统/欢迎界面.png" alt></li>
+<li>按任意键进入系统主菜单，点击对应按钮进入对应的功能界面。<br><img src="/基于C语言与EGE图形库的模拟地铁自动售票系统/系统主菜单.png" alt></li>
+<li>进入购买车票的界面后，出现起止站的输入框。首先通过键盘输入起始站，将在输入框中出现相应字符。最多输入3个字符，而且必须是数字。点击确定或者按下回车键后，可以在目的地的输入框中输入。点击刷新按钮后可以从起始站重新输入。点击返回或者按下esc键将回到主界面。起止站输入完成后，点击确定键或者回车键，如果站台编号符合要求将进入输入票数的界面。若是不符合将被要求重新输入站台编号。<br><img src="/基于C语言与EGE图形库的模拟地铁自动售票系统/输入起止站.png" alt></li>
+<li>输入票数的界面中，标题下方显示两个站点之间最短距离的票价。再下面是询问购买的票数，可通过键盘输入数字字符，最多可输入一个字符。点击返回或者按下esc键回到上一界面。点击确定或者按下回车键进入下一界面。<br><img src="/基于C语言与EGE图形库的模拟地铁自动售票系统/输入票数.png" alt></li>
+<li>显示总价格，并且最后询问是否购买车票。点击返回或者按下esc键回到上一界面。点击确定或者按下回车键进入下一界面。<br><img src="/基于C语言与EGE图形库的模拟地铁自动售票系统/询问是否购买.png" alt></li>
+<li>投币界面中标题下方出现提示。按数字键可以在界面右下方的输入框中输入数字字符，最多可输入两个字符。点击确定或者回车键，如果投入的钱币小于总价格，则显示“钱币不足，请再次投币”。直到投入钱币总和大于等于总价格，到下一界面。<br><img src="/基于C语言与EGE图形库的模拟地铁自动售票系统/投币.png" alt></li>
+<li>购买成功后，显示信息与提示，按任意键返回主界面。<br><img src="/基于C语言与EGE图形库的模拟地铁自动售票系统/购票成功界面.png" alt></li>
+<li>进入地图查询界面后，显示地铁线路图，并且在线路图下方有输入框，可以输入站点编号。只能输入数字，且最多三个字符。点击查询可以在线路图右侧显示查询的地图信息。在屏幕右下方出现“继续查询”与“购票”按钮。点击“继续查询”，可以继续输入站点编码。点击“购票”按钮直接进入购票界面。点击返回或者按下esc键返回系统主界面。<br><img src="/基于C语言与EGE图形库的模拟地铁自动售票系统/地图查询界面.png" alt></li>
+<li>系统说明界面显示购票流程与用户须知，按任意键返回系统主界面。<br><img src="/基于C语言与EGE图形库的模拟地铁自动售票系统/系统说明.png" alt></li>
 </ol>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
 <li>无法输入中文字符。EGE自带的键盘输入字符函数是直接从读取按下的键盘按键，所以无法从输入法输入中文。唯一的解决方法是通inputbox_getline()函数，用对话框让用户输入一个字符串。但是因为对话框样式风格与系统界面不符，也没有找到改变对话框样式的方法，所以没有通过输入站台名称查询站台信息的功能。</li>

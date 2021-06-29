@@ -102,16 +102,16 @@
 <meta property="og:url" content="http://kxjzxc.github.io/关于Codeblocks下安装EGE图形库这件事.html">
 <meta property="og:site_name" content="Kerke&#39;s Eden">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kxjzxc.github.io/cb-mingw.png">
-<meta property="og:image" content="http://kxjzxc.github.io/EGE.png">
-<meta property="og:image" content="http://kxjzxc.github.io/EGE-include.png">
-<meta property="og:image" content="http://kxjzxc.github.io/EGE-lib.png">
-<meta property="og:image" content="http://kxjzxc.github.io/EGE-lib1.png">
-<meta property="og:image" content="http://kxjzxc.github.io/Compiler-setting.png">
-<meta property="og:updated_time" content="2019-07-07T15:43:48.000Z">
+<meta property="og:image" content="http://kxjzxc.github.io/关于Codeblocks下安装EGE图形库这件事/cb-mingw.png">
+<meta property="og:image" content="http://kxjzxc.github.io/关于Codeblocks下安装EGE图形库这件事/EGE.png">
+<meta property="og:image" content="http://kxjzxc.github.io/关于Codeblocks下安装EGE图形库这件事/EGE-include.png">
+<meta property="og:image" content="http://kxjzxc.github.io/关于Codeblocks下安装EGE图形库这件事/EGE-lib.png">
+<meta property="og:image" content="http://kxjzxc.github.io/关于Codeblocks下安装EGE图形库这件事/EGE-lib1.png">
+<meta property="og:image" content="http://kxjzxc.github.io/关于Codeblocks下安装EGE图形库这件事/Compiler-setting.png">
+<meta property="og:updated_time" content="2021-06-29T04:50:24.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Codeblocks下安装EGE图形库这件事">
-<meta name="twitter:image" content="http://kxjzxc.github.io/cb-mingw.png">
+<meta name="twitter:image" content="http://kxjzxc.github.io/关于Codeblocks下安装EGE图形库这件事/cb-mingw.png">
 
 
 
@@ -436,7 +436,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-07 23:43:48" itemprop="dateModified" datetime="2019-07-07T23:43:48+08:00">2019-07-07</time>
+                <time title="修改时间：2021-06-29 12:50:24" itemprop="dateModified" datetime="2021-06-29T12:50:24+08:00">2021-06-29</time>
               
             
           </span>
@@ -529,11 +529,11 @@
 <hr>
 <h5 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h5><p>Codeblocks：最好安装最新版本。<br>EGE：我使用的是15.0.4版本，更高级的版本我实在用不来。反正我也不打算再用这玩意做图形界面了，就凑和着用。</p>
 <h5 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h5><ol>
-<li>找到Codeblock的文件夹，打开其中的MinGW文件夹<br><img src="cb-mingw.png" alt></li>
-<li>将下载下来的EGE压缩包解压后，打开文件夹。<br><img src="EGE.png" alt></li>
-<li>打开include文件夹,将里面的东西复制到之前打开的MinGW文件夹中的include文件夹里<br><img src="EGE-include.png" alt></li>
-<li>打开lib文件夹，选择mingw4.8.1，将里面lib文件夹里的东西复制到MinGW文件夹中的lib中。<br><img src="EGE-lib.png" alt><br><img src="EGE-lib1.png" alt></li>
-<li>打开codeblocks，新建一个项目，点击Project-&gt;Build options-&gt;Linker settings。在Link libraries中点击Add，选择添加文件的图标。进入MinGW下lib文件夹，寻找以下一系列文件”libgraphics.a””libgdi32.a” “libimm32.a” “libmsimg32.a””libole32.a” “liboleaut32.a” “libwinmm.a””libuuid.a”，可以直接全部粘贴上去，系统会自动生成路径。<br>然后在右边Other linker options中写上-mwindows。点击ok完成。<br><img src="Compiler-setting.png" alt><br>以上，EGE配置完成。之后你只要在敲代码是写上<code>#include&lt;graphics.h&gt;</code>就能使用图形库了。</li>
+<li>找到Codeblock的文件夹，打开其中的MinGW文件夹<br><img src="/关于Codeblocks下安装EGE图形库这件事/cb-mingw.png" alt></li>
+<li>将下载下来的EGE压缩包解压后，打开文件夹。<br><img src="/关于Codeblocks下安装EGE图形库这件事/EGE.png" alt></li>
+<li>打开include文件夹,将里面的东西复制到之前打开的MinGW文件夹中的include文件夹里<br><img src="/关于Codeblocks下安装EGE图形库这件事/EGE-include.png" alt></li>
+<li>打开lib文件夹，选择mingw4.8.1，将里面lib文件夹里的东西复制到MinGW文件夹中的lib中。<br><img src="/关于Codeblocks下安装EGE图形库这件事/EGE-lib.png" alt><br><img src="/关于Codeblocks下安装EGE图形库这件事/EGE-lib1.png" alt></li>
+<li>打开codeblocks，新建一个项目，点击Project-&gt;Build options-&gt;Linker settings。在Link libraries中点击Add，选择添加文件的图标。进入MinGW下lib文件夹，寻找以下一系列文件”libgraphics.a””libgdi32.a” “libimm32.a” “libmsimg32.a””libole32.a” “liboleaut32.a” “libwinmm.a””libuuid.a”，可以直接全部粘贴上去，系统会自动生成路径。<br>然后在右边Other linker options中写上-mwindows。点击ok完成。<br><img src="/关于Codeblocks下安装EGE图形库这件事/Compiler-setting.png" alt><br>以上，EGE配置完成。之后你只要在敲代码是写上<code>#include&lt;graphics.h&gt;</code>就能使用图形库了。</li>
 </ol>
 <h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><ol>
 <li>上述方法仅适用于当前设置的项目。如果要有新建了一个项目，要使用EGE图形库的话，需要再次进行第五步的配置。</li>
