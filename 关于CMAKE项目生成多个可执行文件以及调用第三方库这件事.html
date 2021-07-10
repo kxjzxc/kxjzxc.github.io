@@ -96,15 +96,17 @@
 
 
 
-  <meta name="keywords" content="动态规划,数位dp">
+  <meta name="keywords" content="教程,CMake">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SWERC 2013 F Odd and Even Zeroes">
-<meta property="og:url" content="http://kxjzxc.github.io/SWERC 2013 F Odd and Even Zeroes.html">
+<meta property="og:title" content="关于CMAKE项目生成多个可执行文件以及调用第三方库这件事">
+<meta property="og:url" content="http://kxjzxc.github.io/关于CMAKE项目生成多个可执行文件以及调用第三方库这件事.html">
 <meta property="og:site_name" content="Kerke&#39;s Eden">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-09T14:07:48.000Z">
+<meta property="og:image" content="http://kxjzxc.github.io/关于CMAKE项目生成多个可执行文件以及调用第三方库这件事/bug1.png">
+<meta property="og:updated_time" content="2021-07-10T11:27:48.881Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SWERC 2013 F Odd and Even Zeroes">
+<meta name="twitter:title" content="关于CMAKE项目生成多个可执行文件以及调用第三方库这件事">
+<meta name="twitter:image" content="http://kxjzxc.github.io/关于CMAKE项目生成多个可执行文件以及调用第三方库这件事/bug1.png">
 
 
 
@@ -114,7 +116,7 @@
 
   
   
-  <link rel="canonical" href="http://kxjzxc.github.io/SWERC 2013 F Odd and Even Zeroes">
+  <link rel="canonical" href="http://kxjzxc.github.io/关于CMAKE项目生成多个可执行文件以及调用第三方库这件事">
 
 
 
@@ -124,7 +126,7 @@
   };
 </script>
 
-  <title>SWERC 2013 F Odd and Even Zeroes | Kerke's Eden</title>
+  <title>关于CMAKE项目生成多个可执行文件以及调用第三方库这件事 | Kerke's Eden</title>
   
 
 
@@ -369,7 +371,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/SWERC 2013 F Odd and Even Zeroes.html">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/关于CMAKE项目生成多个可执行文件以及调用第三方库这件事.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kermit">
@@ -386,7 +388,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SWERC 2013 F Odd and Even Zeroes
+          <h1 class="post-title" itemprop="name headline">关于CMAKE项目生成多个可执行文件以及调用第三方库这件事
 
               
             
@@ -412,24 +414,12 @@
                 
               
 
-              <time title="创建时间：2016-11-17 08:59:42" itemprop="dateCreated datePublished" datetime="2016-11-17T08:59:42+08:00">2016-11-17</time>
+              <time title="创建时间：2021-07-10 11:54:33 / 修改时间：19:27:48" itemprop="dateCreated datePublished" datetime="2021-07-10T11:54:33+08:00">2021-07-10</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-09 22:07:48" itemprop="dateModified" datetime="2019-05-09T22:07:48+08:00">2019-05-09</time>
               
             
           </span>
@@ -446,21 +436,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/程序/" itemprop="url" rel="index"><span itemprop="name">程序</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/计算机/程序/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/教程/" itemprop="url" rel="index"><span itemprop="name">教程</span></a></span>
 
                 
                 
@@ -532,9 +508,17 @@
       
 
       
-        <h3 id="task"><a href="#task" class="headerlink" title="task"></a>task</h3><p>在数学中，一个数n的阶乘写作n!，且定义如下：<br>$n! = 1 × 2 × 3 × 4 × $• • • $× (n − 1) × n =\prod_{i=1}^N i$<br>0!被认为是1。n!将会随着n迅速增长。如下一些数的阶乘：<br>0! = 1 5! = 120<br>1! = 1 10! = 3628800<br>2! = 2 14! = 87178291200<br>3! = 6 18! = 6402373705728000<br>4! = 24 22! = 1124000727777607680000<br>通过观察可以发现，有些数的阶乘末尾中有奇数个零(即5！和18！)，而有些数的阶乘的末尾中有偶数个零(即0！，10！，20！)。那么问题来了，给定一个数n，求在1~n中有多少数的阶乘的末尾有偶数个0？<br>$n&lt;=10^{18}$</p>
-<h3 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h3><p>首先我们需要知道怎样的数字的阶乘是可以有偶数个零。<br>肯定是是由偶数个10相乘，而10=2*5，所以我们只用统计2和5的因子的个数，看一下它们是否能够组成偶数个10，那么10的个数一定是根据个数较少的那个因子判定的，而在一个数的阶乘当中因子2的个数总是不少于5的，所以我们就只用统计n的阶乘中5的个数。<br>那么怎么统计呢？最暴力的写法就是用字母那题的方法判断，一个数我们可以算的很快，但是我们需要1~n的所有的数的阶乘中因子5的个数，而n最大可达$10^{18}$，显然会超时。<br>原先我想着用数学的方法去写，但是随着想法越来越复杂，只能放弃。<br>对于判断一个数的阶乘是否有偶数个5，正解有更好的方法：以530为例，我们将其转化为5进制，即4110，而1~530中为5的倍数的数用411(5进制)个，为25的倍数的有41(5进制)个，为125的倍数的有4(5进制)个，那么我们可以发现当411的每一位数字之和为偶数的话，那么1~530中就有偶数个数为5的倍数。25，和125都可以以此类推。<br>所以接下来我们就可以用数位dp来计算个数了。<br>$dp[f][p][pre][x]$表示当前数字是第x位时，前面几位上的数字这和的末位的奇偶性为pre，p为前面几位时的pre之和的奇偶性。如果前面有一位的数字是小于n那一位上的数字，那么接下来取什么数字，都将小于n，所以我们需要一个f，来判断当前数字是否可以随便取。<br>记忆化搜索的边界是但x&lt;0时，只有p=0时，才说明是有偶数个5，我们返回一个1.</p>
-<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> num[<span class="number">30</span>];</span><br><span class="line">ll dp[<span class="number">2</span>][<span class="number">2</span>][<span class="number">2</span>][<span class="number">27</span>];</span><br><span class="line"><span class="function">ll <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> f,<span class="keyword">int</span> p,<span class="keyword">int</span> pre)</span></span>&#123;<span class="comment">//x-th digit,have or haven't limit,parity,the sum of pre x digit's parity</span></span><br><span class="line">	<span class="keyword">if</span>(x&lt;<span class="number">0</span>)<span class="keyword">return</span> p==<span class="number">0</span>;</span><br><span class="line">	ll &amp;t=dp[f][p][pre][x];</span><br><span class="line">	<span class="keyword">if</span>(t==<span class="number">-1</span>)&#123;</span><br><span class="line">		t=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(f)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=num[x];i++)</span><br><span class="line">				t+=dfs(x<span class="number">-1</span>,i==num[x],(p+pre+i)&amp;<span class="number">1</span>,(pre+i)&amp;<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)</span><br><span class="line">				t+=dfs(x<span class="number">-1</span>,<span class="number">0</span>,(p+pre+i)&amp;<span class="number">1</span>,(pre+i)&amp;<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">solve</span><span class="params">(ll n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n&lt;<span class="number">5</span>)<span class="keyword">return</span> n+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> c=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(n)num[c++]=n%<span class="number">5</span>,n/=<span class="number">5</span>;</span><br><span class="line">	<span class="built_in">memset</span>(dp,<span class="number">-1</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">	<span class="keyword">return</span> dfs(c<span class="number">-1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ll n;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">		<span class="keyword">if</span>(n==<span class="number">-1</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;solve(n)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><ol>
+<li>CMake工程中多个cpp文件分别生成exe可执行文件</li>
+<li>调用第三方静态和动态库</li>
+</ol>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>先上CMakeLists.txt吧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required (VERSION 3.10)</span><br><span class="line">project(Mosquitto)</span><br><span class="line"># specify the C++ standard</span><br><span class="line">set(CMAKE_CXX_STANDARD 11)</span><br><span class="line">set(CMAKE_CXX_STANDARD_REQUIRED True)</span><br><span class="line"></span><br><span class="line">set(CMAKE_CXX_FLAGS &quot;$&#123;CMAKE_CXX_FLAGS&#125; -g&quot;)</span><br><span class="line"></span><br><span class="line"># 设置变量</span><br><span class="line">set(Mosquitto_DLL_DIR D:\\Program_Files\\Mosquitto)</span><br><span class="line">set(Mosquitto_DIR D:\\Program_Files\\Mosquitto\\devel)</span><br><span class="line">set(CMAKE_RUNTIME_OUTPUT_DIRECTORY $&#123;CMAKE_BINARY_DIR&#125;)</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 生成时拷贝dll到Bin中</span><br><span class="line">file(GLOB dll_src &quot;$&#123;Mosquitto_DLL_DIR&#125;/*.dll&quot; )</span><br><span class="line">file(COPY $&#123;dll_src&#125; DESTINATION $&#123;CMAKE_RUNTIME_OUTPUT_DIRECTORY&#125;)</span><br><span class="line"></span><br><span class="line"># find_package(OpenCV  REQUIRED) 如果第三方库里有.cmake文件可以直接调用find_package找路径</span><br><span class="line"># 头文件目录</span><br><span class="line">include_directories($&#123;Mosquitto_DIR&#125;)</span><br><span class="line"></span><br><span class="line"># 库目录</span><br><span class="line">link_directories(</span><br><span class="line">    $&#123;Mosquitto_DIR&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"># 找到所有含有mian函数的cpp文件，保存在mians里</span><br><span class="line">file(</span><br><span class="line">    GLOB_RECURSE mains RELATIVE &quot;$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;&quot;</span><br><span class="line">    &quot;$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/subscribe.cpp&quot;</span><br><span class="line">    &quot;$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/publish.cpp&quot;</span><br><span class="line">)</span><br><span class="line"># 循环遍历每个含main的文件，分别编译生成exe文件</span><br><span class="line">foreach(mainfile IN LISTS mains)</span><br><span class="line">    # Get file name without directory</span><br><span class="line">    get_filename_component(mainname $&#123;mainfile&#125; NAME_WE)</span><br><span class="line">    add_executable($&#123;mainname&#125; $&#123;mainfile&#125;)</span><br><span class="line">    # 添加库文件目录</span><br><span class="line">    target_link_libraries($&#123;mainname&#125; mosquitto mosquittopp)# 链接库文件</span><br><span class="line">endforeach()</span><br></pre></td></tr></table></figure>
+<ol>
+<li>关于生成多个可执行文件<br>主要就是对于每个cpp分别进行操作，链接库之类的<br>我Cmake里使用了<code>file</code>和<code>foreach</code>，可以减少行数。</li>
+<li>关于调用第三方库<br>代码中注释也说了，如果第三方库里有.cmake文件可以直接调用<code>find_package</code>找路径，具体可以打开.cmake文件看看<br>如果没有的话就需要自己也用<code>set</code>设置路径变量<br>一般来说用<code>link_directories</code>、<code>target_link_libraries</code>就能够链接库文件了。<br>但我出现了以下问题<br><img src="/关于CMAKE项目生成多个可执行文件以及调用第三方库这件事/bug1.png" alt="bug"><br>通过网上查询资料，猜测是没找到dll文件的位置。<br>此时需要将dll添加到build文件夹里，详情见cmakelists文件。<br>理论上添加环境变量也是可以的，但是我并没有成功，原因未知。</li>
+</ol>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>说实话，到最后CMakeLists还是一头雾水，莫名其妙地成功了，很多东西都是囫囵吞枣，能用就不深究，这样属实不行，将来必然吃亏。有时间还是得多多了解多多写。</p>
 
       
     </div>
@@ -558,9 +542,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+            <a href="/tags/教程/" rel="tag"># 教程</a>
           
-            <a href="/tags/数位dp/" rel="tag"># 数位dp</a>
+            <a href="/tags/CMake/" rel="tag"># CMake</a>
           
         </div>
       
@@ -573,8 +557,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/SWERC 2013 D Decoding the Hallway.html" rel="next" title="SWERC 2013 D Decoding the Hallway">
-                <i class="fa fa-chevron-left"></i> SWERC 2013 D Decoding the Hallway
+              <a href="/关于不同仓库部署到同一个Github这件事.html" rel="next" title="关于不同仓库部署到同一个Github这件事">
+                <i class="fa fa-chevron-left"></i> 关于不同仓库部署到同一个Github这件事
               </a>
             
           </div>
@@ -582,10 +566,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/SWERC 2013 H Binary Tree.html" rel="prev" title="SWERC 2013 H Binary Tree">
-                SWERC 2013 H Binary Tree <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -915,7 +895,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#task"><span class="nav-number">1.</span> <span class="nav-text">task</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#solution"><span class="nav-number">2.</span> <span class="nav-text">solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code"><span class="nav-number">3.</span> <span class="nav-text">Code</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
 
           </div>
