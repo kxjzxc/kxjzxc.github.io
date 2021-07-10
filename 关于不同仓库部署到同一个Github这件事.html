@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://kxjzxc.github.io/关于不同仓库部署到同一个Github这件事/1.png">
 <meta property="og:image" content="http://kxjzxc.github.io/关于不同仓库部署到同一个Github这件事/2.png">
 <meta property="og:image" content="http://kxjzxc.github.io/关于不同仓库部署到同一个Github这件事/3.png">
-<meta property="og:updated_time" content="2021-07-09T16:48:50.147Z">
+<meta property="og:updated_time" content="2021-07-10T02:52:40.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于不同仓库部署到同一个Github这件事">
 <meta name="twitter:image" content="http://kxjzxc.github.io/关于不同仓库部署到同一个Github这件事/1.png">
@@ -416,7 +416,7 @@
                 
               
 
-              <time title="创建时间：2021-07-10 00:18:33 / 修改时间：00:48:50" itemprop="dateCreated datePublished" datetime="2021-07-10T00:18:33+08:00">2021-07-10</time>
+              <time title="创建时间：2021-07-10 00:18:33 / 修改时间：10:52:40" itemprop="dateCreated datePublished" datetime="2021-07-10T00:18:33+08:00">2021-07-10</time>
             
 
             
@@ -510,9 +510,9 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直以来，我做出来的web小项目，如<a href="https://kxjzxc.github.io/kxj-s-first-website-%E6%94%B9.html">我的第一个网站</a>、<a href="https://kxjzxc.github.io/web/%E8%B4%AA%E5%90%83%E8%9B%87/snake.html">贪吃蛇</a>等都是直接塞到博客里和博客一起上传到网站，但是上传<a href="https://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EVue%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E7%BD%91%E7%AB%99.html">上一篇博文</a>时，发现即使跳过渲染，js文件在<code>hexo g</code>之后还是会出问题，研究了半天猜测是我之前安装的aplayer插件引起的bug，因为在js文件前总会出现这样几行代码：</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直以来，我做出来的web小项目，如<a href="https://kxjzxc.github.io/web/kxj-s-first-website-%E6%94%B9/kxj&#39;s%20first%20website%E6%94%B9.html">我的第一个网站</a>、<a href="https://kxjzxc.github.io/web/%E8%B4%AA%E5%90%83%E8%9B%87/snake.html">贪吃蛇</a>等都是直接塞到博客里和博客一起上传到网站，但是上传<a href="https://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EVue%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E7%BD%91%E7%AB%99.html">上一篇博文</a>时，发现即使跳过渲染，js文件在<code>hexo g</code>之后还是会出问题，研究了半天猜测是我之前安装的aplayer插件引起的bug，因为在js文件前总会出现这样几行代码：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">class</span>=<span class="string">"aplayer-secondary-style-marker"</span> <span class="attr">href</span>=<span class="string">"\assets\css\APlayer.min.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"\assets\js\APlayer.min.js"</span> <span class="attr">class</span>=<span class="string">"aplayer-secondary-script-marker"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">class</span>=<span class="string">"meting-secondary-script-marker"</span> <span class="attr">src</span>=<span class="string">"\assets\js\Meting.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>最后索性改变策略，将Vue项目上传到一个新的仓库，然后部署到kxjzxc.github.io的子网站<a href="https://kxjzxc.gitub.io/Vue-Image-tool" target="_blank" rel="noopener">kxjzxc.gitub.io/Vue-Image-tool</a>上</p>
+<p>最后索性改变策略，将Vue项目上传到一个新的仓库，然后部署到kxjzxc.github.io的子网站<a href="https://kxjzxc.github.io/Vue-Image-tool/">kxjzxc.gitub.io/Vue-Image-tool</a>上</p>
 <h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>关于Github Pages这里就不赘述了，仅仅谈论对于一个已经有一个博客或者个人网站的人怎么部署。</p>
 <ol>
 <li>点击新仓库的Setting<br><img src="/关于不同仓库部署到同一个Github这件事/1.png" alt="Setting位置"></li>

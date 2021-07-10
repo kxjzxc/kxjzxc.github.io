@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kxjzxc.github.io/"/>
-  <updated>2021-07-09T16:48:50.147Z</updated>
+  <updated>2021-07-10T02:52:40.733Z</updated>
   <id>http://kxjzxc.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://kxjzxc.github.io/%E5%85%B3%E4%BA%8E%E4%B8%8D%E5%90%8C%E4%BB%93%E5%BA%93%E9%83%A8%E7%BD%B2%E5%88%B0%E5%90%8C%E4%B8%80%E4%B8%AAGithub%E8%BF%99%E4%BB%B6%E4%BA%8B.html"/>
     <id>http://kxjzxc.github.io/关于不同仓库部署到同一个Github这件事.html</id>
     <published>2021-07-09T16:18:33.000Z</published>
-    <updated>2021-07-09T16:48:50.147Z</updated>
+    <updated>2021-07-10T02:52:40.733Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直以来，我做出来的web小项目，如<a href="https://kxjzxc.github.io/kxj-s-first-website-%E6%94%B9.html">我的第一个网站</a>、<a href="https://kxjzxc.github.io/web/%E8%B4%AA%E5%90%83%E8%9B%87/snake.html">贪吃蛇</a>等都是直接塞到博客里和博客一起上传到网站，但是上传<a href="https://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EVue%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E7%BD%91%E7%AB%99.html">上一篇博文</a>时，发现即使跳过渲染，js文件在<code>hexo g</code>之后还是会出问题，研究了半天猜测是我之前安装的aplayer插件引起的bug，因为在js文件前总会出现这样几行代码：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">class</span>=<span class="string">"aplayer-secondary-style-marker"</span> <span class="attr">href</span>=<span class="string">"\assets\css\APlayer.min.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"\assets\js\APlayer.min.js"</span> <span class="attr">class</span>=<span class="string">"aplayer-secondary-script-marker"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">class</span>=<span class="string">"meting-secondary-script-marker"</span> <span class="attr">src</span>=<span class="string">"\assets\js\Meting.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>最后索性改变策略，将Vue项目上传到一个新的仓库，然后部署到kxjzxc.github.io的子网站<a href="https://kxjzxc.gitub.io/Vue-Image-tool" target="_blank" rel="noopener">kxjzxc.gitub.io/Vue-Image-tool</a>上</p><h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>关于Github Pages这里就不赘述了，仅仅谈论对于一个已经有一个博客或者个人网站的人怎么部署。</p><ol><li>点击新仓库的Setting<br><img src="/关于不同仓库部署到同一个Github这件事/1.png" alt="Setting位置"></li><li>选择pages选项<br><img src="/关于不同仓库部署到同一个Github这件事/2.png" alt="pages位置"></li><li>选择分支并点击Save<br>关于这一步，选择的分支的根目录下必须有且只有你想要显示的页面的html或者md文件。如果你的仓库包括源文件和最后编译生成的文件，建议将这两部分分到两个分支中<br><img src="/关于不同仓库部署到同一个Github这件事/3.png" alt="选择分支"></li></ol><h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>其实搞完后发现以前我朋友帮我搞过这种操作，就是<a href="https://kxjzxc.github.io/adarkroom">adarkroom</a>和<a href="https://kxjzxc.github.io/candybox">candybox</a>这两个网站，可惜我当时并没有问他咋搞的。</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一直以来，我做出来的web小项目，如<a href="https://kxjzxc.github.io/web/kxj-s-first-website-%E6%94%B9/kxj&#39;s%20first%20website%E6%94%B9.html">我的第一个网站</a>、<a href="https://kxjzxc.github.io/web/%E8%B4%AA%E5%90%83%E8%9B%87/snake.html">贪吃蛇</a>等都是直接塞到博客里和博客一起上传到网站，但是上传<a href="https://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EVue%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E7%BD%91%E7%AB%99.html">上一篇博文</a>时，发现即使跳过渲染，js文件在<code>hexo g</code>之后还是会出问题，研究了半天猜测是我之前安装的aplayer插件引起的bug，因为在js文件前总会出现这样几行代码：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">class</span>=<span class="string">"aplayer-secondary-style-marker"</span> <span class="attr">href</span>=<span class="string">"\assets\css\APlayer.min.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"\assets\js\APlayer.min.js"</span> <span class="attr">class</span>=<span class="string">"aplayer-secondary-script-marker"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">class</span>=<span class="string">"meting-secondary-script-marker"</span> <span class="attr">src</span>=<span class="string">"\assets\js\Meting.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>最后索性改变策略，将Vue项目上传到一个新的仓库，然后部署到kxjzxc.github.io的子网站<a href="https://kxjzxc.github.io/Vue-Image-tool/">kxjzxc.gitub.io/Vue-Image-tool</a>上</p><h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>关于Github Pages这里就不赘述了，仅仅谈论对于一个已经有一个博客或者个人网站的人怎么部署。</p><ol><li>点击新仓库的Setting<br><img src="/关于不同仓库部署到同一个Github这件事/1.png" alt="Setting位置"></li><li>选择pages选项<br><img src="/关于不同仓库部署到同一个Github这件事/2.png" alt="pages位置"></li><li>选择分支并点击Save<br>关于这一步，选择的分支的根目录下必须有且只有你想要显示的页面的html或者md文件。如果你的仓库包括源文件和最后编译生成的文件，建议将这两部分分到两个分支中<br><img src="/关于不同仓库部署到同一个Github这件事/3.png" alt="选择分支"></li></ol><h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>其实搞完后发现以前我朋友帮我搞过这种操作，就是<a href="https://kxjzxc.github.io/adarkroom">adarkroom</a>和<a href="https://kxjzxc.github.io/candybox">candybox</a>这两个网站，可惜我当时并没有问他咋搞的。</p>]]></content>
     
     <summary type="html">
     
@@ -325,9 +325,9 @@
     <link href="http://kxjzxc.github.io/%E7%94%A8%E9%94%AE%E7%9B%98%E6%8E%A7%E5%88%B6%E5%9B%BE%E6%A0%87%E7%A7%BB%E5%8A%A8/keyScrollico.html"/>
     <id>http://kxjzxc.github.io/用键盘控制图标移动/keyScrollico.html</id>
     <published>2020-04-07T03:31:09.523Z</published>
-    <updated>2019-05-22T14:09:56.000Z</updated>
+    <updated>2019-05-22T14:56:48.000Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>@charset "utf-8";body{background:#CCC;}div{width:60px;height:60px;background:brown;position:absolute;/*属性允许向元素添加圆角*/border-radius:30px;}]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>键盘控制图标</title><link rel="stylesheet" href="keyScrollball.css"><script src="keyScrollball.js"></script></head><body><div id="box"></div></body></html>]]></content>
     
     <summary type="html">
     
@@ -367,30 +367,9 @@
     <link href="http://kxjzxc.github.io/%E7%94%A8%E9%94%AE%E7%9B%98%E6%8E%A7%E5%88%B6%E5%9B%BE%E6%A0%87%E7%A7%BB%E5%8A%A8/keyScrollico.html"/>
     <id>http://kxjzxc.github.io/用键盘控制图标移动/keyScrollico.html</id>
     <published>2020-04-07T03:31:09.523Z</published>
-    <updated>2019-05-22T14:56:48.000Z</updated>
+    <updated>2019-05-22T14:09:56.000Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>键盘控制图标</title><link rel="stylesheet" href="keyScrollball.css"><script src="keyScrollball.js"></script></head><body><div id="box"></div></body></html>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8Ejs%E7%9A%84%E5%9B%BE%E6%A0%87%E7%A7%BB%E5%8A%A8%E4%BB%A3%E7%A0%81/moveLoad.html"/>
-    <id>http://kxjzxc.github.io/基于js的图标移动代码/moveLoad.html</id>
-    <published>2020-04-07T03:31:09.454Z</published>
-    <updated>2019-05-17T15:55:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>window.onload=function(){//图标var oDiv=document.getElementsByTagName("div")[0];var aInput=document.getElementsByTagName("input");var oP=document.getElementsByTagName("p")[0];//移动到鼠标点击的位置aInput[0].onclick=function(event){//清空事件clearEvent();this.value +="(已激活)";oP.innerHTML="鼠标点击页面，图标将移动至鼠标位置！"//鼠标点击document.onclick=function(event){var event=event||window.event;//开始移动clearInterval(oDiv.timer);oDiv.timer=setInterval(function (){                var X=(event.clientX-oDiv.offsetLeft)/5;                var Y=(event.clientY-oDiv.offsetTop)/5;                //ceil()向上取整，floor()向下取整                X=X>0?Math.ceil(X):Math.floor(X);                Y=Y>0?Math.ceil(Y):Math.floor(Y);               if(event.clientX==oDiv.offsetLeft&&event.clientY==oDiv.offsetTop){                        clearInterval(oDiv.timer);                }                else {                        oDiv.style.left=oDiv.offsetLeft+X+"px";                        oDiv.style.top=oDiv.offsetTop+Y+"px";                }        },30);return false;}};        //图标跟随鼠标移动轨迹移动aInput[1].onclick=function(event){clearEvent();this.value+="(已激活)";oP.innerHTML = "按住鼠标左键，在页面划动，图标将按照鼠标轨迹移动。" //鼠标的位置var aPos=[{x:oDiv.offsetLeft,y:oDiv.offsetTop}];//鼠标按下document.onmousedown=function(event){var event=event||window.event;//记录当前图标的位置aPos.push({x:event.clientX,y:event.clientY});document.onmousemove=function(event){var event=event||window.event;//记录路上鼠标的位置aPos.push({x:event.clientX,y:event.clientY});return false;}return false;}document.onmouseup=function(event){//初始化鼠标移动的事件document.onmousemove=null;//setInterval(code,time)可按照指定的周期（以毫秒计）来调用函数或计算表达式。var timer=setInterval(function(){//如果没有坐标需要移动了，停止周期函数if(aPos.length==0){clearInterval(timer);return;}//设置图标位置oDiv.style.left=aPos[0].x+"px";oDiv.style.top=aPos[0].y+"px";//弹出数组中的元素aPos.shift();},30);}}//清空事件function clearEvent(){document.onclick=null;document.onmousedown=null;document.onmousemove=null;document.onmouseup=null;for(var i=0;i]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>@charset "utf-8";body{background:#CCC;}div{width:60px;height:60px;background:brown;position:absolute;/*属性允许向元素添加圆角*/border-radius:30px;}]]></content>
     
     <summary type="html">
     
@@ -412,6 +391,27 @@
     <updated>2019-05-17T15:33:26.000Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"><title>图标移动</title><script src="moveLoad.js"></script><!--<link rel="stylesheet" hrel="moveLoad.css"/>--><style>*{       margin: 0;padding: 0;}div{position: absolute;width: 30px;height: 45px; background: url("./images/V.ico") no-repeat center center;background-size: 76px 55px;top:100px;left:50px;}p,input{margin: 10px;}</style></head><body><input type="button" value="根据鼠标点击位置移动"><input type="button" value="根据标鼠标轨迹移动"><p>请点击按钮激活功能！</p><div></div></body></html>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8Ejs%E7%9A%84%E5%9B%BE%E6%A0%87%E7%A7%BB%E5%8A%A8%E4%BB%A3%E7%A0%81/moveLoad.html"/>
+    <id>http://kxjzxc.github.io/基于js的图标移动代码/moveLoad.html</id>
+    <published>2020-04-07T03:31:09.454Z</published>
+    <updated>2019-05-17T15:55:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>window.onload=function(){//图标var oDiv=document.getElementsByTagName("div")[0];var aInput=document.getElementsByTagName("input");var oP=document.getElementsByTagName("p")[0];//移动到鼠标点击的位置aInput[0].onclick=function(event){//清空事件clearEvent();this.value +="(已激活)";oP.innerHTML="鼠标点击页面，图标将移动至鼠标位置！"//鼠标点击document.onclick=function(event){var event=event||window.event;//开始移动clearInterval(oDiv.timer);oDiv.timer=setInterval(function (){                var X=(event.clientX-oDiv.offsetLeft)/5;                var Y=(event.clientY-oDiv.offsetTop)/5;                //ceil()向上取整，floor()向下取整                X=X>0?Math.ceil(X):Math.floor(X);                Y=Y>0?Math.ceil(Y):Math.floor(Y);               if(event.clientX==oDiv.offsetLeft&&event.clientY==oDiv.offsetTop){                        clearInterval(oDiv.timer);                }                else {                        oDiv.style.left=oDiv.offsetLeft+X+"px";                        oDiv.style.top=oDiv.offsetTop+Y+"px";                }        },30);return false;}};        //图标跟随鼠标移动轨迹移动aInput[1].onclick=function(event){clearEvent();this.value+="(已激活)";oP.innerHTML = "按住鼠标左键，在页面划动，图标将按照鼠标轨迹移动。" //鼠标的位置var aPos=[{x:oDiv.offsetLeft,y:oDiv.offsetTop}];//鼠标按下document.onmousedown=function(event){var event=event||window.event;//记录当前图标的位置aPos.push({x:event.clientX,y:event.clientY});document.onmousemove=function(event){var event=event||window.event;//记录路上鼠标的位置aPos.push({x:event.clientX,y:event.clientY});return false;}return false;}document.onmouseup=function(event){//初始化鼠标移动的事件document.onmousemove=null;//setInterval(code,time)可按照指定的周期（以毫秒计）来调用函数或计算表达式。var timer=setInterval(function(){//如果没有坐标需要移动了，停止周期函数if(aPos.length==0){clearInterval(timer);return;}//设置图标位置oDiv.style.left=aPos[0].x+"px";oDiv.style.top=aPos[0].y+"px";//弹出数组中的元素aPos.shift();},30);}}//清空事件function clearEvent(){document.onclick=null;document.onmousedown=null;document.onmousemove=null;document.onmouseup=null;for(var i=0;i]]></content>
     
     <summary type="html">
     
