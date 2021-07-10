@@ -349,27 +349,6 @@
     <link href="http://kxjzxc.github.io/%E7%94%A8%E9%94%AE%E7%9B%98%E6%8E%A7%E5%88%B6%E5%9B%BE%E6%A0%87%E7%A7%BB%E5%8A%A8/keyScrollico.html"/>
     <id>http://kxjzxc.github.io/用键盘控制图标移动/keyScrollico.html</id>
     <published>2020-04-07T03:31:09.523Z</published>
-    <updated>2019-05-22T15:10:08.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>window.onload=function(){var box=document.getElementById("box");//网页可见区域宽，兼容各种浏览器var MapWidth=document.body.clientWidth||document.documentElement.clientWidth;//网页可见区域高，兼容各种浏览器var MapHeight=document.body.clientHeight||document.documentElement.clientHeight;var timer=null;document.onkeydown=function(ev){var ev=ev||window.event;clearInterval(timer);timer=setInterval(function(){switch(ev.keyCode){case 37: if(box.offsetLeft>0){box.style.left=box.offsetLeft-10+"px";}break;case 38:if(box.offsetTop>0){box.style.top=box.offsetTop-10+"px";}break;case 39:if(box.offsetLeft]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://kxjzxc.github.io/%E7%94%A8%E9%94%AE%E7%9B%98%E6%8E%A7%E5%88%B6%E5%9B%BE%E6%A0%87%E7%A7%BB%E5%8A%A8/keyScrollico.html"/>
-    <id>http://kxjzxc.github.io/用键盘控制图标移动/keyScrollico.html</id>
-    <published>2020-04-07T03:31:09.523Z</published>
     <updated>2019-05-22T14:09:56.000Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>@charset "utf-8";body{background:#CCC;}div{width:60px;height:60px;background:brown;position:absolute;/*属性允许向元素添加圆角*/border-radius:30px;}]]></content>
@@ -394,6 +373,27 @@
     <updated>2019-05-22T14:56:48.000Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>键盘控制图标</title><link rel="stylesheet" href="keyScrollball.css"><script src="keyScrollball.js"></script></head><body><div id="box"></div></body></html>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://kxjzxc.github.io/%E7%94%A8%E9%94%AE%E7%9B%98%E6%8E%A7%E5%88%B6%E5%9B%BE%E6%A0%87%E7%A7%BB%E5%8A%A8/keyScrollico.html"/>
+    <id>http://kxjzxc.github.io/用键盘控制图标移动/keyScrollico.html</id>
+    <published>2020-04-07T03:31:09.523Z</published>
+    <updated>2019-05-22T15:10:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>window.onload=function(){var box=document.getElementById("box");//网页可见区域宽，兼容各种浏览器var MapWidth=document.body.clientWidth||document.documentElement.clientWidth;//网页可见区域高，兼容各种浏览器var MapHeight=document.body.clientHeight||document.documentElement.clientHeight;var timer=null;document.onkeydown=function(ev){var ev=ev||window.event;clearInterval(timer);timer=setInterval(function(){switch(ev.keyCode){case 37: if(box.offsetLeft>0){box.style.left=box.offsetLeft-10+"px";}break;case 38:if(box.offsetTop>0){box.style.top=box.offsetTop-10+"px";}break;case 39:if(box.offsetLeft]]></content>
     
     <summary type="html">
     
@@ -475,9 +475,9 @@
     <link href="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8Ecanvas%E7%9A%84%E9%BC%A0%E6%A0%87%E7%94%BB%E5%9B%BE%E5%8A%9F%E8%83%BD/mouseDraw.html"/>
     <id>http://kxjzxc.github.io/基于canvas的鼠标画图功能/mouseDraw.html</id>
     <published>2020-04-07T03:31:09.423Z</published>
-    <updated>2019-04-08T16:06:12.000Z</updated>
+    <updated>2019-04-08T15:08:32.000Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"> <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> <title>鼠标画图</title> <script src="mouseDraw.js"></script> <link rel="stylesheet" href="mouseDraw.css"></head><body> <div id="button">  <input type="button" value="重画"> </div> <!--定义画布元素，宽高要写在标签里，css文件中会有不明错误--> <canvas id="can" width="500px" height="500px"></canvas></body></html>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>/*允许中文字符*/@charset "utf-8";body{ background: #CCC; text-align: center;}#button{ margin: 50px auto; width: 200px;}#can{ background: white; margin-top: -50px; display: inline-block;}]]></content>
     
     <summary type="html">
     
