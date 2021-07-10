@@ -123,8 +123,8 @@
         <category>RPGMaker</category>
       </categories>
       <tags>
-        <tag>RPGMaker</tag>
         <tag>游戏</tag>
+        <tag>RPGMaker</tag>
         <tag>教程</tag>
       </tags>
   </entry>
@@ -148,8 +148,8 @@
         <category>教程</category>
       </categories>
       <tags>
-        <tag>教程</tag>
         <tag>Linux</tag>
+        <tag>教程</tag>
       </tags>
   </entry>
   <entry>
@@ -163,46 +163,6 @@
       <tags>
         <tag>Hack</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F%E7%94%A8%E9%94%AE%E7%9B%98%E6%8E%A7%E5%88%B6%E5%9B%BE%E6%A0%87%E7%A7%BB%E5%8A%A8%2FkeyScrollico.html</url>
-    <content type="text"><![CDATA[@charset "utf-8"; body{ background:#CCC; } div{ width:60px; height:60px; background:brown; position:absolute; /*属性允许向元素添加圆角*/ border-radius:30px; }]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F%E7%94%A8%E9%94%AE%E7%9B%98%E6%8E%A7%E5%88%B6%E5%9B%BE%E6%A0%87%E7%A7%BB%E5%8A%A8%2FkeyScrollico.html</url>
-    <content type="text"><![CDATA[键盘控制图标]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F%E7%94%A8%E9%94%AE%E7%9B%98%E6%8E%A7%E5%88%B6%E5%9B%BE%E6%A0%87%E7%A7%BB%E5%8A%A8%2FkeyScrollico.html</url>
-    <content type="text"><![CDATA[window.onload=function(){ var box=document.getElementById("box"); //网页可见区域宽，兼容各种浏览器 var MapWidth=document.body.clientWidth||document.documentElement.clientWidth; //网页可见区域高，兼容各种浏览器 var MapHeight=document.body.clientHeight||document.documentElement.clientHeight; var timer=null; document.onkeydown=function(ev){ var ev=ev||window.event; clearInterval(timer); timer=setInterval(function(){ switch(ev.keyCode){ case 37: if(box.offsetLeft>0){ box.style.left=box.offsetLeft-10+"px"; } break; case 38: if(box.offsetTop>0){ box.style.top=box.offsetTop-10+"px"; } break; case 39: if(box.offsetLeft]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F%E5%9F%BA%E4%BA%8Ejs%E7%9A%84%E5%9B%BE%E6%A0%87%E7%A7%BB%E5%8A%A8%E4%BB%A3%E7%A0%81%2FmoveLoad.html</url>
-    <content type="text"><![CDATA[图标移动 *{ margin: 0; padding: 0; } div{ position: absolute; width: 30px; height: 45px; background: url("./images/V.ico") no-repeat center center; background-size: 76px 55px; top:100px; left:50px; } p,input{margin: 10px;} 请点击按钮激活功能！]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F%E5%9F%BA%E4%BA%8Ejs%E7%9A%84%E5%9B%BE%E6%A0%87%E7%A7%BB%E5%8A%A8%E4%BB%A3%E7%A0%81%2FmoveLoad.html</url>
-    <content type="text"><![CDATA[window.onload=function(){ //图标 var oDiv=document.getElementsByTagName("div")[0]; var aInput=document.getElementsByTagName("input"); var oP=document.getElementsByTagName("p")[0]; //移动到鼠标点击的位置 aInput[0].onclick=function(event){ //清空事件 clearEvent(); this.value +="(已激活)"; oP.innerHTML="鼠标点击页面，图标将移动至鼠标位置！" //鼠标点击 document.onclick=function(event){ var event=event||window.event; //开始移动 clearInterval(oDiv.timer); oDiv.timer=setInterval(function (){ var X=(event.clientX-oDiv.offsetLeft)/5; var Y=(event.clientY-oDiv.offsetTop)/5; //ceil()向上取整，floor()向下取整 X=X>0?Math.ceil(X):Math.floor(X); Y=Y>0?Math.ceil(Y):Math.floor(Y); if(event.clientX==oDiv.offsetLeft&&event.clientY==oDiv.offsetTop){ clearInterval(oDiv.timer); } else { oDiv.style.left=oDiv.offsetLeft+X+"px"; oDiv.style.top=oDiv.offsetTop+Y+"px"; } },30); return false; } }; //图标跟随鼠标移动轨迹移动 aInput[1].onclick=function(event){ clearEvent(); this.value+="(已激活)"; oP.innerHTML = "按住鼠标左键，在页面划动，图标将按照鼠标轨迹移动。" //鼠标的位置 var aPos=[{x:oDiv.offsetLeft,y:oDiv.offsetTop}]; //鼠标按下 document.onmousedown=function(event){ var event=event||window.event; //记录当前图标的位置 aPos.push({x:event.clientX,y:event.clientY}); document.onmousemove=function(event){ var event=event||window.event; //记录路上鼠标的位置 aPos.push({x:event.clientX,y:event.clientY}); return false; } return false; } document.onmouseup=function(event){ //初始化鼠标移动的事件 document.onmousemove=null; //setInterval(code,time)可按照指定的周期（以毫秒计）来调用函数或计算表达式。 var timer=setInterval( function(){ //如果没有坐标需要移动了，停止周期函数 if(aPos.length==0){ clearInterval(timer); return; } //设置图标位置 oDiv.style.left=aPos[0].x+"px"; oDiv.style.top=aPos[0].y+"px"; //弹出数组中的元素 aPos.shift(); },30); } } //清空事件 function clearEvent(){ document.onclick=null; document.onmousedown=null; document.onmousemove=null; document.onmouseup=null; for(var i=0;i]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F%E5%9F%BA%E4%BA%8Ecanvas%E7%9A%84%E9%BC%A0%E6%A0%87%E7%94%BB%E5%9B%BE%E5%8A%9F%E8%83%BD%2FmouseDraw.html</url>
-    <content type="text"><![CDATA[window.onload=function(){ //获取元素 var can=document.getElementById("can"); //创建画布对象 var con=can.getContext("2d"); //获取按键元素，此处是通过标签名得到的变量，是数组变量 var inp=document.getElementsByTagName("input"); //清空画布.canvas每当高度或宽度被重设时，画布内容就会被清空,（此方法仅限需要清除全部内容的情况） inp[0].onclick=function(){ can.width=can.width; } //当用户按下鼠标按钮执行Javascript代码 can.onmousedown=function(ev){ //兼容各个浏览器。 //在FireFox浏览器中，事件绑定的函数要获取到事件本身，需要从函数中传入，而IE等浏览器则可以直接使用event或者window.event得到事件本身。 var ev=ev||event; /* moveTo:定义一个起点 client系列:可视区域 clientX： 相对文档的水平坐标 clientY： 相对文档的垂直坐标 offsetLeft： 对象相对于版面或由 offsetParent 左侧位置 offsetTop：对象相对于版面或由 offsetTop 顶端位置 */ //document.write(ev.clientX-can.offsetLeft); con.moveTo(ev.clientX-can.offsetLeft,ev.clientY-can.offsetTop); //当鼠标指针移动到图像上时执行一段Javascript代码 document.onmousemove=function(ev){ var ev=ev||event; //lineTo() 方法添加一个新点，然后创建从该点到画布中最后指定点的线条（该方法并不会创建线条）。 con.lineTo(ev.clientX-can.offsetLeft,ev.clientY-can.offsetTop); //stroke() 方法会实际地绘制出通过 moveTo() 和 lineTo() 方法定义的路径。默认颜色是黑色。 con.stroke(); } //当鼠标释放时执行一段Javascript代码 document.onmouseup=function(){ //鼠标释放后这些事件不再触发函数 document.onmousedown=document.onmousemove=null; } } }]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F%E5%9F%BA%E4%BA%8Ecanvas%E7%9A%84%E9%BC%A0%E6%A0%87%E7%94%BB%E5%9B%BE%E5%8A%9F%E8%83%BD%2FmouseDraw.html</url>
-    <content type="text"><![CDATA[/*允许中文字符*/ @charset "utf-8"; body{ background: #CCC; text-align: center; } #button{ margin: 50px auto; width: 200px; } #can{ background: white; margin-top: -50px; display: inline-block; }]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>%2F%E5%9F%BA%E4%BA%8Ecanvas%E7%9A%84%E9%BC%A0%E6%A0%87%E7%94%BB%E5%9B%BE%E5%8A%9F%E8%83%BD%2FmouseDraw.html</url>
-    <content type="text"><![CDATA[鼠标画图]]></content>
   </entry>
   <entry>
     <title><![CDATA[最优停止理论——如何适“可”而止]]></title>
@@ -329,8 +289,8 @@
         <category>教程</category>
       </categories>
       <tags>
-        <tag>教程</tag>
         <tag>Linux</tag>
+        <tag>教程</tag>
       </tags>
   </entry>
   <entry>
