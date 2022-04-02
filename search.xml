@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[MIT6.S081之实用程序]]></title>
+    <url>%2FMIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F.html</url>
+    <content type="text"><![CDATA[前言第一个实验是在XV6系统上实现五个实用程序。虽然不难，但是我写了好久…… 实验sleepsleep本身不需要实现，只需要运行即可。 源代码12345678910111213#include "kernel/types.h"#include "user.h"int main(int argc,char* argv[])&#123; if(argc != 2)&#123; printf("Sleep needs one argument!\n"); //检查参数数量是否正确 exit(-1); &#125; int ticks = atoi(argv[1]); //将字符串参数转为整数 sleep(ticks); //使用系统调用sleep printf("(nothing happens for a little while)\n"); exit(0); //确保进程退出&#125; 编译运行 修改Makefile 123456789101112131415161718UPROGS=\ $U/_cat\ $U/_echo\ $U/_forktest\ $U/_grep\ $U/_init\ $U/_kill\ $U/_ln\ $U/_ls\ $U/_mkdir\ $U/_rm\ $U/_sh\ $U/_stressfs\ $U/_usertests\ $U/_grind\ $U/_wc\ $U/_zombie\ $U/_sleep\ # 添加sleep 运行 1sudo make qume pingpong要求实现两个进程在管道两侧来回通信。父进程将”ping”写入管道，子进程从管道将其读出并打印。子进程从父进程收到字符串后，将”pong“写入另一个管道，然后由父进程从该管道读取并打印。 原理通过定义两个管道fp和sp，实现父子进程传输消息 注意，进程通常只持有某个管道的读出端或者写入端，因此使用的时候需要将另一端关闭。 源代码12345678910111213141516171819202122232425262728293031323334353637383940#include "kernel/types.h"#include "user.h"int main(int argc,char* argv[])&#123; int fp[2],sp[2]; pipe(fp);//父进程写入，子进程读取 pipe(sp); printf("program start!\n"); int pid = fork(); if(pid&lt;0) &#123; printf("error!"); &#125; else if(pid == 0) &#123; /*子进程 */ char *buffer = " "; close(fp[1]); // 关闭写端 read(fp[0], buffer, 4);//阻塞等待 printf("%d: received %s\n",getpid(),buffer); close(fp[0]); // 读取完成，关闭读端 char *intput = "pong"; close(sp[0]); // 关闭读端 write(sp[1], intput, 4); close(sp[1]); // 写入完成，关闭写端 &#125; else&#123; /*父进程*/ char *buffer = "ping"; close(fp[0]); // 关闭读端 write(fp[1], buffer, 4); close(fp[1]); // 写入完成，关闭写端 close(sp[1]); // 关闭写端 read(sp[0], buffer, 4); printf("%d: received %s\n",getpid(),buffer); close(sp[0]); // 读取完成，关闭读端 &#125; exit(0);&#125; 运行结果 primes要求使用管道实现“质数筛选”, 输出2~35之间的而所有质数。 原理筛选思路： 主进程将所有数据输入到管道的左侧 子进程从管道读出并筛选出第一个数字x，排除掉x的倍数，其他数字再写入下一管道； 重复步骤二，直到管道中没有数字源代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162#include "kernel/types.h"#include "user.h"#include &lt;stddef.h&gt;void mapping(int n, int fd[])&#123; close(n);//关闭文件描述符n，令n映射到fd[n] dup(fd[n]); close(fd[0]); close(fd[1]);&#125;void primes()&#123; int fd[2]; pipe(fd); int prime;//当前的质数 int ref = read(0, &amp;prime, sizeof(int)); if(ref == 0)return;//没有质数了 printf("prime %d\n", prime); int pid = fork(); if(pid == 0) &#123; int num; mapping(1, fd);//将管道映射到1上 while(read(0,&amp;num, sizeof(int))) &#123; if(num%prime == 0)continue; write(1, &amp;num, sizeof(int)); &#125; &#125; else &#123; wait(NULL); mapping(0, fd);//将管道映射到0上 primes(); &#125;&#125;int main(int argc,char* argv[])&#123; int fd[2]; pipe(fd);//父进程写入，子进程读取 printf("program start!\n"); int pid = fork(); if(pid&lt;0) &#123; printf("error!"); &#125; else if(pid == 0) &#123; /*子进程 */ mapping(1,fd); for(int i = 2;i &lt;= 35; i++)//将所有数字塞入管道 write(1, &amp;i, sizeof(int)); &#125; else&#123; /*父进程*/ wait(NULL);//等待子进程结束 mapping(0, fd); primes(); &#125; exit(0);&#125; 运行结果 find要求在目录树中查找名称与字符串匹配的所有文件，输出文件的相对路径。 原理借鉴ls指令的写法，读取路径下的文件名，如果是文件，就与寻找的文件名比较，如果是文件夹，就递归继续寻找该文件夹。 源代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788#include "kernel/types.h"#include "kernel/stat.h"#include "user/user.h"#include "kernel/fs.h"char* fmtname(char *path)&#123; char *p; // Find first character after last slash. for(p=path+strlen(path); p &gt;= path &amp;&amp; *p != '/'; p--) ; p++; return p;&#125;void find(char *path, char *file_name)&#123; char buf[512], *p; int fd; struct dirent de; struct stat st; if((fd = open(path, 0)) &lt; 0)&#123; fprintf(2, "find: cannot open %s\n", path); return; &#125; if(fstat(fd, &amp;st) &lt; 0)&#123; fprintf(2, "find: cannot stat %s\n", path); close(fd); return; &#125; if(st.type != T_DIR) &#123; fprintf(2, "find: cannot find in %s\n", path); close(fd); return; &#125; if(strlen(path) + 1 + DIRSIZ + 1 &gt; sizeof buf)&#123;//路径太长了 return; &#125; strcpy(buf, path); p = buf+strlen(buf); *p++ = '/'; while(read(fd, &amp;de, sizeof(de)) == sizeof(de))&#123; if(de.inum == 0) continue; memmove(p, de.name, DIRSIZ); p[DIRSIZ] = 0; if(stat(buf, &amp;st) &lt; 0)&#123; printf("find: cannot stat %s\n", buf); continue; &#125; char *name = fmtname(buf); switch (st.type) &#123; case T_FILE: if(strcmp(name, file_name) == 0) &#123; printf("%s\n", buf); &#125; break; case T_DIR: if(strcmp(name, ".") == 0 || strcmp(name, "..") == 0) continue;//不能是本层或者上层 find(buf, file_name); break; default: break; &#125; &#125; close(fd);&#125;int main(int argc, char *argv[])&#123; if(argc &lt; 3)&#123; printf("please input find [path] [file_name]\n"); exit(0); &#125; find(argv[1], argv[2]); exit(0);&#125; 运行结果 xargs要求从标准输入中读取行并 为每行运行一次 指定的命令，且将该行作为命令的参数提供。 原理这个小实验主要是对于实现效果的理解。 |命令行中的|会将左边的命令的输出通过管道传递到右侧，可以直接从标准输入中读取字符串。 exec函数exec接收的二维参数数组argv，argv[0]必须是该命令本身，最后一个参数argv[size-1]必须为0，否则将执行失败。12char *argv[]=&#123;"echo","hello",0&#125;;exec(argv[0],argv); 源代码12345678910111213141516171819202122232425262728293031323334353637#include "kernel/types.h"#include "user/user.h"#include "kernel/param.h"int main(int argc, char* argv[]) &#123; if(argc &lt; 2)&#123; printf("error inputs"); exit(0); &#125;//参数不够 char *cmd = argv[1]; char *argvs[MAXARG]; for(int i=1;i&lt;argc;i++) &#123; argvs[i-1]=argv[i]; &#125; char buff[1024]; while(read(0,&amp;buff,sizeof(buff)))//读取|右边的命令输出或者等待输出 &#123; int len = strlen(buff); argvs[argc-1]=&amp;buff[0]; for(int i=0;i&lt;len;i++) &#123; if(buff[i]=='\n')// 默认 -n1 &#123; if(fork()==0) &#123; buff[i]=0; argvs[argc]=0;//命令的最后一个参数为0 exec(cmd,argvs);//执行每一行命令 &#125; wait(0);//等待子进程结束 argvs[argc-1]=&amp;buff[i+1];//下一行命令的首地址 &#125; &#125; &#125; exit(0);&#125; 运行结果运行命令 xargstest.sh123456mkdir aecho hello &gt; a/bmkdir cecho hello &gt; c/becho hello &gt; bfind . b | xargs grep hello 结语第一个实验就耗费了大量的时间，有几个实验还借鉴了别人的写法。考虑到我不是科班出身，之后的实验不如趁早观看别人的写法，能学到东西就好。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MIT6-S081之环境配置]]></title>
+    <url>%2FMIT6-S081%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html</url>
+    <content type="text"><![CDATA[前言本人虽然不是计科的学生，但是想做一做操作系统的实验，权当作学习操作系统的知识。 我校的操作系统实验是基于MIT6.S081实验，在XV6上进行教学： XV6是由麻省理工学院(MIT)开发的一个教学目的的操作系统，它是在x86处理器上用ANSI标准C重新实现的Unix第六版(即v6)，课程编号为6.828。2019年被移植到RISC-V之上，并设置了6.S081。XV6的主要特征：1) 开源，精简，代码仅两万行左右；2) 功能完善，可全面理解操作系统的原理及实现；3) 基于RISC-V、X86等架构，有利于深入理解体系结构；4) 类Unix系统，可延伸学习其他常见操作系统，例如Linux、MacOS等。 本课程将从开源操作系统 xv6-labs-2020 的实验课程中选取4个实验，根据我们学校的操作系统课程要求进行修改， 请大家从以下网站下载代码，在这套代码上完成实验。 环境配置操作系统Ubuntu20.04 工具以下内容照搬学校实验指导书： RISC-V工具链 下载安装包并解压 12$ git clone --recursive https://github.com/riscv/riscv-gnu-toolchain$ tar zxvf riscv-gnu-toolchain.tar.gz 安装 1234$ cd riscv-gnu-toolchain$ sudo ./configure --prefix=/usr/local$ sudo make$ cd .. 检测是否安装成功 12$ riscv64-unknown-elf-gcc --versionriscv64-unknown-elf-gcc (GCC) 10.2.0 QEMU模拟器 下载QEMU并解压 12$ wget https://download.qemu.org/qemu-5.1.0.tar.xz$ tar xf qemu-5.1.0.tar.xz 安装 12345$ cd qemu-5.1.0$ sudo ./configure --disable-kvm --disable-werror --prefix=/usr/local --target-list="riscv64-softmmu"$ sudo make$ sudo make install$ cd .. 检测是否安装成功 12$ qemu-system-riscv64 --versionQEMU emulator version 5.1.0 XV6源码 下载XV6源码我是从学校实验中心的gitee上下载的,各凭渠道 运行12$ cd xv6-labs-2020$ sudo make qemu 当可以看到“init: starting sh”的字样表示xv6已经正常启动。 qemu退出方法：先按Ctrl+a组合键，接着全部松开，再按下x键 至此，XV6已经能够正常运行了。 结语由于写这篇博文的时候，环境已经搭建好了，而且也没有什么记录，所以就直接照搬实验指导书了。本文仅当作记录。]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于CMAKE项目生成多个可执行文件以及调用第三方库这件事]]></title>
     <url>%2F%E5%85%B3%E4%BA%8ECMAKE%E9%A1%B9%E7%9B%AE%E7%94%9F%E6%88%90%E5%A4%9A%E4%B8%AA%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8A%E8%B0%83%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E8%BF%99%E4%BB%B6%E4%BA%8B.html</url>
     <content type="text"><![CDATA[需求 CMake工程中多个cpp文件分别生成exe可执行文件 调用第三方静态和动态库 方法先上CMakeLists.txt吧 123456789101112131415161718192021222324252627282930313233343536373839404142cmake_minimum_required (VERSION 3.10)project(Mosquitto)# specify the C++ standardset(CMAKE_CXX_STANDARD 11)set(CMAKE_CXX_STANDARD_REQUIRED True)set(CMAKE_CXX_FLAGS &quot;$&#123;CMAKE_CXX_FLAGS&#125; -g&quot;)# 设置变量set(Mosquitto_DLL_DIR D:\\Program_Files\\Mosquitto)set(Mosquitto_DIR D:\\Program_Files\\Mosquitto\\devel)set(CMAKE_RUNTIME_OUTPUT_DIRECTORY $&#123;CMAKE_BINARY_DIR&#125;) # 生成时拷贝dll到Bin中file(GLOB dll_src &quot;$&#123;Mosquitto_DLL_DIR&#125;/*.dll&quot; )file(COPY $&#123;dll_src&#125; DESTINATION $&#123;CMAKE_RUNTIME_OUTPUT_DIRECTORY&#125;)# find_package(OpenCV REQUIRED) 如果第三方库里有.cmake文件可以直接调用find_package找路径# 头文件目录include_directories($&#123;Mosquitto_DIR&#125;)# 库目录link_directories( $&#123;Mosquitto_DIR&#125;)# 找到所有含有mian函数的cpp文件，保存在mians里file( GLOB_RECURSE mains RELATIVE &quot;$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;&quot; &quot;$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/subscribe.cpp&quot; &quot;$&#123;CMAKE_CURRENT_SOURCE_DIR&#125;/publish.cpp&quot;)# 循环遍历每个含main的文件，分别编译生成exe文件foreach(mainfile IN LISTS mains) # Get file name without directory get_filename_component(mainname $&#123;mainfile&#125; NAME_WE) add_executable($&#123;mainname&#125; $&#123;mainfile&#125;) # 添加库文件目录 target_link_libraries($&#123;mainname&#125; mosquitto mosquittopp)# 链接库文件endforeach() 关于生成多个可执行文件主要就是对于每个cpp分别进行操作，链接库之类的我Cmake里使用了file和foreach，可以减少行数。 关于调用第三方库代码中注释也说了，如果第三方库里有.cmake文件可以直接调用find_package找路径，具体可以打开.cmake文件看看如果没有的话就需要自己也用set设置路径变量一般来说用link_directories、target_link_libraries就能够链接库文件了。但我出现了以下问题通过网上查询资料，猜测是没找到dll文件的位置。此时需要将dll添加到build文件夹里，详情见cmakelists文件。理论上添加环境变量也是可以的，但是我并没有成功，原因未知。 结语说实话，到最后CMakeLists还是一头雾水，莫名其妙地成功了，很多东西都是囫囵吞枣，能用就不深究，这样属实不行，将来必然吃亏。有时间还是得多多了解多多写。]]></content>
@@ -123,8 +147,8 @@
         <category>RPGMaker</category>
       </categories>
       <tags>
-        <tag>游戏</tag>
         <tag>RPGMaker</tag>
+        <tag>游戏</tag>
         <tag>教程</tag>
       </tags>
   </entry>
@@ -148,8 +172,8 @@
         <category>教程</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>教程</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -289,8 +313,8 @@
         <category>教程</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
         <tag>教程</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
