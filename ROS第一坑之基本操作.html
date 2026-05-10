@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico">
+  <link rel="mask-icon" href="/images/V.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS第一坑之基本操作">
+<meta property="og:url" content="http://kxjzxc.github.io/ROS%E7%AC%AC%E4%B8%80%E5%9D%91%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html">
+<meta property="og:site_name" content="Kerke&#39;s Eden">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-08-01T08:50:36.000Z">
+<meta property="article:modified_time" content="2019-08-02T03:58:20.000Z">
+<meta property="article:author" content="Kermit">
+<meta property="article:tag" content="ROS">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://kxjzxc.github.io/ROS%E7%AC%AC%E4%B8%80%E5%9D%91%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kxjzxc.github.io/ROS%E7%AC%AC%E4%B8%80%E5%9D%91%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html","path":"ROS第一坑之基本操作.html","title":"ROS第一坑之基本操作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ROS第一坑之基本操作 | Kerke's Eden</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kerke's Eden" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kerke's Eden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories" rel="section">分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section">关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives" rel="section">归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags" rel="section">标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ROS-INFO%E4%B8%8D%E8%BE%93%E5%87%BA"><span class="nav-number">2.</span> <span class="nav-text">ROS_INFO不输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%B8%8E%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.</span> <span class="nav-text">消息与服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">回调函数传递多个参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%80%E5%87%BA%E8%8A%82%E7%82%B9"><span class="nav-number">5.</span> <span class="nav-text">退出节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kermit"
+      src="/images/V.jpg">
+  <p class="site-author-name" itemprop="name">Kermit</p>
+  <div class="site-description" itemprop="description">人间无笑，我亦长歌</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://leefir.github.io/" title="http:&#x2F;&#x2F;leefir.github.io&#x2F;" rel="noopener" target="_blank">Leefir</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yummyjay.github.io/" title="https:&#x2F;&#x2F;yummyjay.github.io&#x2F;" rel="noopener" target="_blank">YummyJay</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bblss123.github.io/" title="https:&#x2F;&#x2F;bblss123.github.io&#x2F;" rel="noopener" target="_blank">bblss123</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kyleyoung-ymj.github.io/" title="https:&#x2F;&#x2F;kyleyoung-ymj.github.io&#x2F;" rel="noopener" target="_blank">KyleYoung</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://unicornt.github.io/" title="https:&#x2F;&#x2F;unicornt.github.io&#x2F;" rel="noopener" target="_blank">unicornt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://shinfeb.github.io/" title="https:&#x2F;&#x2F;shinfeb.github.io&#x2F;" rel="noopener" target="_blank">ShinFeb</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/ROS%E7%AC%AC%E4%B8%80%E5%9D%91%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/V.jpg">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kerke's Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ROS第一坑之基本操作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-01 16:50:36" itemprop="dateCreated datePublished" datetime="2019-08-01T16:50:36+08:00">2019-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2019-08-02 11:58:20" itemprop="dateModified" datetime="2019-08-02T11:58:20+08:00">2019-08-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ROS/" itemprop="url" rel="index"><span itemprop="name">ROS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>作为自动化专业的学生，机器人操作系统ROS的大名如雷贯耳。</p>
+<blockquote>
+<p>ROS 是一个适用于机器人的开源的元操作系统。它提供了操作系统应有的服务，包括硬件抽象，底层设备控制，常用函数的实现，进程间消息传递，以及包管理。它也提供用于获取、编译、编写、和跨计算机运行代码所需的工具和库函数。在某些方面ROS相当于一种“机器人框架（robot frameworks）”——ROS Wiki</p>
+</blockquote>
+<p>早在今年年初，我与同学一起参观华强北的优艾智合公司的时候，为我们介绍公司的人（似乎是我们的师兄）就向刚结束大一上学期，尚不明所以的我们介绍了机器人学习之路，其中就提到了非常重要的ROS。虽然当时ROS在我心目中留下了深刻的印象，但是我并没有时间也没有机会去学习。</p>
+<p>直到小学期，我深感自己在本专业的自我学习上完全不够，所以一时心血来潮安装了ROS，可惜知道小学期结束，我连打开都未曾打开过。<br>所幸暑期在越疆实习的时候，可以使用ROS操纵他们的机械臂。因而我便趁此机会借用公司的机械臂和其官网上的demo开始真正接触ROS。</p>
+<p>然而我并不想写关于ROS的教程，该方面的书籍资料已经够多了，即使那些资料并非十分完美，但至少会比我自己写的要有用的多。所以在这篇文章中我也只想谈一谈我在学习ROS初级教程中所遇到的坑。</p>
+<p><a href="http://wiki.ros.org/cn">ROS Wiki中文 从安装到入门</a></p>
+<h4 id="ROS-INFO不输出"><a href="#ROS-INFO不输出" class="headerlink" title="ROS_INFO不输出"></a>ROS_INFO不输出</h4><p>我从越疆官网上下载下来的demo是将所有的程序都写在一个main函数中，这使得稍微有点强迫症的我手动将main函数里的程序封装在不同的函数中。然而作为一个懵懂无知的新手，我的“莽撞”行为导致我在后期调试的时候,在跳出第一个调用的函数后，ROS_INFO都输出不了。我上网搜索原因，可似乎没有人遇到与我相同的问题，所以就暂且搁置。后来我一句一句的测试，发现我将第一个句柄的创建写在main函数中的这个函数调用前问题就解决了。<br>原因目前暂且不明，但是当我后来知道ROS节点是在第一个句柄被创建后才开始的，我就怀疑应该是这个原因了。<br>无论如何以后的ROS程序，句柄一定要写在初始化语句的后面。<br>当然，如果我们也可以选择使用ros::start()和ros::shutdown来启动和关闭节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char **argv)</span><br><span class="line">&#123;</span><br><span class="line">	ros::init(argc, argv, &quot;Quit&quot;);//初始化节点</span><br><span class="line">	ros::NodeHandle n;//创建句柄,节点开始</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="消息与服务"><a href="#消息与服务" class="headerlink" title="消息与服务"></a>消息与服务</h4><p>关于消息与服务的理解，srv文件与msg文件的创建，订阅器与发布器的编写，服务端和客户端的编写在官网上都写得非常清楚，这里我也就不再赘述。<br>服务端和客户端的编写我倒是没遇到什么大的问题，毕竟demo中有此两者的源代码。遇到问题也不过是我没有按照流程一步一步来。<br>但对于消息的订阅器与发布器编写我倒是经常遇到的坑，虽然大多由于我理解有误。</p>
+<ol>
+<li>订阅器与发布器的注册<br>编写订阅器和发布器的时候首先要向节点管理器（ros Master）进行注册，这是毋庸置疑的。但是要值得注意的是，要在main函数中启动节点后就注册，尤其是发布器，不能够在单独的函数中进行注册，要不然会无法发布消息。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ros::Publisher pub=n.<span class="built_in">advertise</span>&lt;dobot::GetCtrl_msg&gt;(<span class="string">&quot;GetCtrl_msg&quot;</span>,<span class="number">1000</span>);<span class="comment">//注册发布器</span></span><br><span class="line">ros::Subscriber sub = n.<span class="built_in">subscribe</span>&lt;dobot::GetCtrl_msg&gt;(<span class="string">&quot;GetCtrl_msg&quot;</span>, <span class="number">1000</span>,messageCallback);<span class="comment">//注册订阅器</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>ros::spin()与ros::spinOnce()<br>对于这两个函数的详解，网上资料也有很多，像是<a href="https://www.cnblogs.com/liu-fa/p/5925381.html">这个博客</a><br>简而言之，就是在你订阅消息的时候，只有遇到这两条语句的时候才会调用回调函数。<br>使用ros::spin()会进入自循环，也就是不断的调用自己，以使一接收到消息就进入回调函数。使用此语句，该语句下面的程序都不会再被执行。<br>而ros::spinOnce()只会调用一次回调函数，可以实现接下来的程序。</p>
+</li>
+<li><p>消息的发布订阅机制<br>消息会发布到注册的话题上，然后订阅器实时的订阅话题上的消息。这就等同于一个节点实时接受另一个节点的指令，而并非信息的传递，订阅器是无法接受之前发布的消息的。<br>举个例子：<br>我之前想让一个节点记录我机械臂末端的坐标，并发布到话题上。然后我开启另一个节点，先接受话题上的坐标信息，在执行操作。<br>然而实际上这么做是不可行的，当我开启另一个节点的时候，之前发布到话题上的消息已经过期了，新节点是无法订阅到坐标消息的。<br>所以后来我转变了思路，由第一个节点发布指令消息，第二个节点根据接受到的指令消息作出相应的操作，这样一来第二个节点就可以一接收到第一个节点发布的消息就执行操作或者记录节点。执行完后继续等待指令消息。</p>
+</li>
+</ol>
+<h4 id="回调函数传递多个参数"><a href="#回调函数传递多个参数" class="headerlink" title="回调函数传递多个参数"></a>回调函数传递多个参数</h4><p>在ROS的节点程序中，经常会使用到许多回调函数，像是订阅到消息	的时候会自己调用回调函数。但这种时候传递到回调函数里的参数是固定的，所以我们需要使用boost::bind函数来使我们可以自由的传递参数。</p>
+<blockquote>
+<p>boost::bind是标准库函数std::bind1st和std::bind2nd的一种泛化形式。其可以支持函数对象、函数、函数指针、成员函数指针，并且绑定任意参数到某个指定值上或者将输入参数传入任意位置。</p>
+</blockquote>
+<p>boost::bind(f,1,2) –&gt; f(1,2)<br>boost::bind(f,_1,1) –&gt; f(x,1)<br><a href="https://www.cnblogs.com/benxintuzi/p/4862129.html">具体用法参见此博客</a></p>
+<p>此处举两个例子</p>
+<ol>
+<li>订阅消息</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ros::Subscriber sub = n.<span class="built_in">subscribe</span>&lt;dobot::GetCtrl_msg&gt;(<span class="string">&quot;GetCtrl_msg&quot;</span>, <span class="number">1000</span>,messageCallback);<span class="comment">//单参数</span></span><br><span class="line">ros::Subscriber sub = n.<span class="built_in">subscribe</span>&lt;dobot::GetCtrl_msg&gt;(<span class="string">&quot;GetCtrl_msg&quot;</span>, <span class="number">1000</span>,boost::<span class="built_in">bind</span>(&amp;messageCallback,\_1,point);多参数</span><br></pre></td></tr></table></figure>
+<p>其中_1是占位符，代表回调函数中原先的参数<code>const dobot::GetCtrl_msg::ConstPtr &amp;msg</code>。</p>
+<ol start="2">
+<li>多线程</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">boost::thread <span class="title">t</span><span class="params">(keboard)</span></span>;<span class="comment">//单参数</span></span><br><span class="line"><span class="function">boost::thread <span class="title">t1</span><span class="params">(boost::bind(&amp;keyboard,boost::ref(pub)))</span></span>;<span class="comment">//多参数</span></span><br></pre></td></tr></table></figure>
+<p>其中boost::ref(x)是向回调函数传递一个变量</p>
+<h4 id="退出节点"><a href="#退出节点" class="headerlink" title="退出节点"></a>退出节点</h4><p>在未使用launch文件启动的情况下，每一个节点都是一个终端，所以通常只要按Ctrl+C即可取消命令，程序会调用ros::shutdown()来关闭节点。<br>但是有时候我们会需要在退出节点的时候进行一些处理，例如需要清空指令队列使机器人停下或者传递消息之类的。这时候我们就需要signal函数来覆盖原先的Ctrl+C，使得当用户按下Ctrl+C的时候，会调用相应的回调函数，作最后的处理。<br><a href="https://www.jianshu.com/p/7fb777e588a9">这里是对信号处理函数的比较好的介绍</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ros/ros.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;signal.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">MySigintHandler</span><span class="params">(<span class="type">int</span> sig)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//这里主要进行退出前的数据保存、内存清理、告知其他节点等工作</span></span><br><span class="line">	<span class="built_in">ROS_INFO</span>(<span class="string">&quot;shutting down!&quot;</span>);</span><br><span class="line">    <span class="comment">/*自己封装的函数</span></span><br><span class="line"><span class="comment">    StopQueueCmd();</span></span><br><span class="line"><span class="comment">	ClearQueueCmd();</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	ros::<span class="built_in">shutdown</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ros::<span class="built_in">init</span>(argc, argv, <span class="string">&quot;Quit&quot;</span>);<span class="comment">//初始化</span></span><br><span class="line">	ros::NodeHandle n;<span class="comment">//创建句柄</span></span><br><span class="line">	<span class="built_in">signal</span>(SIGINT, MySigintHandler);<span class="comment">//第一个参数是指Ctrl+C的指令，第二个参数是调用的函数</span></span><br><span class="line">	ros::<span class="built_in">spinOnce</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>其实还有好多的东西没有写，像是我封装函数到服务端，launch文件启动，用键盘键入字符，多线程等，只是这些大多是基础教程或是与ros关系不大的知识，所以也就没写出来。<br>这几天用ros实现我所想要的功能时，也的的确确学到了不少东西，至少ros的初级用法都已明晰。虽然还有许多有待提升的地方，像是暂停功能、紧急停止功能、用栈优化指令队列之类的，不过意义不大，也就没有继续写下去了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ROS/" rel="tag"># ROS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E5%9F%BA%E4%BA%8EC%E8%AF%AD%E8%A8%80%E4%B8%8EEGE%E5%9B%BE%E5%BD%A2%E5%BA%93%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%9C%B0%E9%93%81%E8%87%AA%E5%8A%A8%E5%94%AE%E7%A5%A8%E7%B3%BB%E7%BB%9F.html" rel="prev" title="基于C语言与EGE图形库的模拟地铁自动售票系统">
+                  <i class="fa fa-chevron-left"></i> 基于C语言与EGE图形库的模拟地铁自动售票系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E5%85%B3%E4%BA%8E%E6%88%91%E9%87%8D%E8%A3%85ubuntu%E7%B3%BB%E7%BB%9F%E5%90%8E%E6%89%80%E5%81%9A%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B.html" rel="next" title="关于我重装ubuntu系统后所做的那些事">
+                  关于我重装ubuntu系统后所做的那些事 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">216k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2d/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d/","pluginJsPath":"lib/","pluginModelPath":"assert/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

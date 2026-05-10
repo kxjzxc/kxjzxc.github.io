@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico">
+  <link rel="mask-icon" href="/images/V.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于C++的vector类的编写">
+<meta property="og:url" content="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EC++%E7%9A%84vector%E7%B1%BB%E7%9A%84%E7%BC%96%E5%86%99.html">
+<meta property="og:site_name" content="Kerke&#39;s Eden">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EC++%E7%9A%84vector%E7%B1%BB%E7%9A%84%E7%BC%96%E5%86%99/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png">
+<meta property="article:published_time" content="2020-01-17T09:46:36.000Z">
+<meta property="article:modified_time" content="2020-01-17T14:30:24.000Z">
+<meta property="article:author" content="Kermit">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EC++%E7%9A%84vector%E7%B1%BB%E7%9A%84%E7%BC%96%E5%86%99/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png">
+
+
+<link rel="canonical" href="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EC++%E7%9A%84vector%E7%B1%BB%E7%9A%84%E7%BC%96%E5%86%99.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EC++%E7%9A%84vector%E7%B1%BB%E7%9A%84%E7%BC%96%E5%86%99.html","path":"基于C++的vector类的编写.html","title":"基于C++的vector类的编写"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基于C++的vector类的编写 | Kerke's Eden</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kerke's Eden" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kerke's Eden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories" rel="section">分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section">关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives" rel="section">归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags" rel="section">标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A6%81%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">知识点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">3.2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">3.2.1.</span> <span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="nav-number">3.2.2.</span> <span class="nav-text">测试代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">3.3.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-A"><span class="nav-number">4.</span> <span class="nav-text">Q&amp;A</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kermit"
+      src="/images/V.jpg">
+  <p class="site-author-name" itemprop="name">Kermit</p>
+  <div class="site-description" itemprop="description">人间无笑，我亦长歌</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://leefir.github.io/" title="http:&#x2F;&#x2F;leefir.github.io&#x2F;" rel="noopener" target="_blank">Leefir</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yummyjay.github.io/" title="https:&#x2F;&#x2F;yummyjay.github.io&#x2F;" rel="noopener" target="_blank">YummyJay</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bblss123.github.io/" title="https:&#x2F;&#x2F;bblss123.github.io&#x2F;" rel="noopener" target="_blank">bblss123</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kyleyoung-ymj.github.io/" title="https:&#x2F;&#x2F;kyleyoung-ymj.github.io&#x2F;" rel="noopener" target="_blank">KyleYoung</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://unicornt.github.io/" title="https:&#x2F;&#x2F;unicornt.github.io&#x2F;" rel="noopener" target="_blank">unicornt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://shinfeb.github.io/" title="https:&#x2F;&#x2F;shinfeb.github.io&#x2F;" rel="noopener" target="_blank">ShinFeb</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EC++%E7%9A%84vector%E7%B1%BB%E7%9A%84%E7%BC%96%E5%86%99.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/V.jpg">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kerke's Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于C++的vector类的编写
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-01-17 17:46:36 / 修改时间：22:30:24" itemprop="dateCreated datePublished" datetime="2020-01-17T17:46:36+08:00">2020-01-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E7%A8%8B%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">程序</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E7%A8%8B%E5%BA%8F/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h1><p>编写vector类，实现动态的建立，插入，删除等功能。</p>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol>
+<li><p>构造函数<br> 定义对象时调用该函数，可以定义许多个不同的构造函数</p>
+</li>
+<li><p>析构函数<br> 释放对象时调用该函数，只有一个</p>
+</li>
+<li><p>类模板</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重载运算符</p>
+</li>
+<li><p>const修饰词的运用</p>
+</li>
+<li><p>头文件的编写</p>
+</li>
+</ol>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>在实验过程中，如何实现动态分配空间是最重要的点。为了使得分配的内存空间连续，我首先给对象分配一个固定长度的连续空间，一旦插入元素的个数大于容量，需要对数组进行扩容，即重新分配空间，都会将当前容量扩充至原先的两倍，实现动态数组的功能。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> VECTOR_SS_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> VECTOR_SS_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">vector_ss</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> v_size;<span class="comment">//元素个数</span></span><br><span class="line">    <span class="type">int</span> capacity;<span class="comment">//容量</span></span><br><span class="line">    T* buf;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector_ss</span>()&#123;</span><br><span class="line">        v_size=<span class="number">0</span>;</span><br><span class="line">        capacity=<span class="number">1</span>;</span><br><span class="line">        buf=<span class="keyword">new</span> T;</span><br><span class="line">    &#125;;<span class="comment">//默认构造函数</span></span><br><span class="line">    <span class="built_in">vector_ss</span>(<span class="type">int</span> n)&#123;</span><br><span class="line">        v_size=n;</span><br><span class="line">        capacity=n;</span><br><span class="line">        buf=<span class="keyword">new</span> T[n];</span><br><span class="line">    &#125;;<span class="comment">//构造函数，数组初始大小为n</span></span><br><span class="line">    <span class="built_in">vector_ss</span>(<span class="type">int</span> n,T t)&#123;</span><br><span class="line">        v_size=n;</span><br><span class="line">        capacity=n;</span><br><span class="line">        buf=<span class="keyword">new</span> T[n];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)buf[i]=t;</span><br><span class="line">    &#125;;<span class="comment">//构造函数，数组初始大小为n，且元素均为t</span></span><br><span class="line">    <span class="built_in">vector_ss</span>(<span class="type">const</span> vector_ss &amp;v)&#123;</span><br><span class="line">        v_size=v.<span class="built_in">size</span>();</span><br><span class="line">        capacity=v.capacity;</span><br><span class="line">        buf=<span class="keyword">new</span> T[capacity];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;v_size;i++)</span><br><span class="line">            buf[i]=v.buf[i];</span><br><span class="line">    &#125;;<span class="comment">//拷贝构造函数</span></span><br><span class="line">    <span class="built_in">vector_ss</span>(<span class="type">const</span> vector_ss &amp;v,<span class="type">int</span> start,<span class="type">int</span> end)&#123;</span><br><span class="line">        capacity=v.capacity;</span><br><span class="line">        v_size=end-start<span class="number">+1</span>;</span><br><span class="line">        buf=<span class="keyword">new</span> T[capacity];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;v_size;i++)</span><br><span class="line">            buf[i]=v.buf[start+i];</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">//拷贝构造函数，数组元素为v的start位置到end位置</span></span><br><span class="line"></span><br><span class="line">    ~<span class="built_in">vector_ss</span>()&#123;</span><br><span class="line">        <span class="keyword">if</span>(buf)&#123;</span><br><span class="line">            <span class="keyword">delete</span>[] buf;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;<span class="comment">//析构函数</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">resize</span><span class="params">(<span class="type">int</span> newCapacity)</span></span>&#123;</span><br><span class="line">        T* buftmp=<span class="keyword">new</span> T[newCapacity];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;v_size;i++)buftmp[i]=buf[i];</span><br><span class="line">        <span class="keyword">delete</span>[] buf;</span><br><span class="line">        buf=buftmp;</span><br><span class="line">        capacity=newCapacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">push_back</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(v_size&gt;=capacity)</span><br><span class="line">            <span class="built_in">resize</span>(capacity*<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        buf[v_size++]=t;</span><br><span class="line">    &#125;;<span class="comment">//数组末尾插入元素</span></span><br><span class="line">    <span class="function">T <span class="title">pop_back</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(v_size)&#123;</span><br><span class="line">            <span class="keyword">return</span> buf[v_size--];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;<span class="comment">//删除并返回末尾元素</span></span><br><span class="line">    <span class="function">T <span class="title">front</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(v_size)&#123;</span><br><span class="line">            <span class="keyword">return</span> buf[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;<span class="comment">//返回数组首元素</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">delete</span>[] buf;</span><br><span class="line">        buf=<span class="keyword">new</span> T;</span><br><span class="line">        capacity=<span class="number">1</span>;</span><br><span class="line">        v_size=<span class="number">0</span>;</span><br><span class="line">    &#125;;<span class="comment">//清空数组</span></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">empty</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> v_size?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">    &#125;;<span class="comment">//判断数组是否为空</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> pos,T data)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(pos&gt;=v_size||pos&lt;<span class="number">0</span>)&#123;<span class="comment">//报错</span></span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;Wrong parameter!&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(v_size&gt;=capacity)</span><br><span class="line">            <span class="built_in">resize</span>(capacity*<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=v_size<span class="number">-1</span>;i&gt;pos;i--)</span><br><span class="line">            buf[i]=buf[i<span class="number">-1</span>];</span><br><span class="line">        buf[pos]=data;</span><br><span class="line">        v_size++;</span><br><span class="line">    &#125;;<span class="comment">//在数组的第pos个位置插入数据data</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">erase</span><span class="params">(<span class="type">int</span> pos)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(pos&gt;=v_size||pos&lt;<span class="number">0</span>)&#123;<span class="comment">//报错</span></span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;Wrong parameter!&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=pos;i&lt;v_size<span class="number">-1</span>;i++)</span><br><span class="line">            buf[i]=buf[i<span class="number">+1</span>];</span><br><span class="line">        v_size--;</span><br><span class="line">    &#125;;<span class="comment">//删除pos位置的数据</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">erase</span><span class="params">(<span class="type">int</span> begin,<span class="type">int</span> end)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(begin&gt;=v_size||end&lt;<span class="number">0</span>||begin&gt;end)&#123;<span class="comment">//报错</span></span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;Wrong parameter!&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i+end&lt;v_size;i++)</span><br><span class="line">            buf[begin+i]=buf[end+i];</span><br><span class="line">        v_size-=end-begin<span class="number">+1</span>;</span><br><span class="line">    &#125;;<span class="comment">//删除从begin位置到end位置的数据</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">const</span> <span class="type">int</span> &amp;<span class="title">size</span><span class="params">()</span> <span class="type">const</span> </span>&#123;<span class="keyword">return</span> v_size;&#125;;<span class="comment">//返回当前数组元素个数</span></span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> vector_ss&amp; <span class="keyword">operator</span>=(<span class="type">const</span> vector_ss &amp;v)&#123;</span><br><span class="line">        T* buftmp=<span class="keyword">new</span> T[v.capacity];</span><br><span class="line">        v_size=v.<span class="built_in">size</span>();</span><br><span class="line">        capacity=v.capacity;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;v_size;i++)buftmp[i]=v.buf[i];</span><br><span class="line">        <span class="keyword">delete</span>[] buf;</span><br><span class="line">        buf=buftmp;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;;<span class="comment">//重载=运算符</span></span><br><span class="line"></span><br><span class="line">    T&amp; <span class="keyword">operator</span>[](<span class="type">int</span> n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;v_size&amp;&amp;n&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> buf[n];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;Wrong parameter!&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;;<span class="comment">//重载下标运算符</span></span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> T&amp; <span class="keyword">operator</span>[](<span class="type">int</span> n) <span class="type">const</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;v_size&amp;&amp;n&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> buf[n];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;Wrong parameter!&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">display</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;v_size;i++)</span><br><span class="line">            cout&lt;&lt;buf[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">        cout&lt;&lt;endl;</span><br><span class="line">    &#125;;<span class="comment">//打印数组元素</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// VECTOR_SS_H</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;vector_ss.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vector_ss&lt;<span class="type">char</span>&gt; v1;</span><br><span class="line">    cout&lt;&lt;v<span class="number">1.</span><span class="built_in">size</span>()&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">        v<span class="number">1.</span><span class="built_in">push_back</span>(<span class="string">&#x27;a&#x27;</span>+i);</span><br><span class="line">    v<span class="number">1.</span><span class="built_in">display</span>();</span><br><span class="line"></span><br><span class="line">    <span class="function">vector_ss&lt;<span class="type">char</span>&gt; <span class="title">v2</span><span class="params">(v1,<span class="number">2</span>,<span class="number">5</span>)</span></span>;</span><br><span class="line">    v<span class="number">2.</span><span class="built_in">display</span>();</span><br><span class="line"></span><br><span class="line">    v<span class="number">1.</span><span class="built_in">erase</span>(<span class="number">2</span>,<span class="number">4</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;v<span class="number">1.</span><span class="built_in">size</span>();i++)</span><br><span class="line">        cout&lt;&lt;v1[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    v<span class="number">1.</span><span class="built_in">insert</span>(<span class="number">2</span>,<span class="string">&#x27;c&#x27;</span>);</span><br><span class="line">    v<span class="number">1.</span><span class="built_in">display</span>();</span><br><span class="line"></span><br><span class="line">    v<span class="number">1.</span><span class="built_in">clear</span>();</span><br><span class="line">    v<span class="number">1.</span><span class="built_in">display</span>();</span><br><span class="line">    cout&lt;&lt;v<span class="number">1.</span><span class="built_in">size</span>()&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    vector_ss&lt;<span class="type">char</span>&gt;v3;</span><br><span class="line">    v3=v2;</span><br><span class="line">    v<span class="number">3.</span><span class="built_in">display</span>();</span><br><span class="line"></span><br><span class="line">    vector_ss&lt;<span class="type">double</span>&gt;<span class="built_in">v4</span>(<span class="number">5</span>,<span class="number">5</span>);</span><br><span class="line">    v<span class="number">4.</span><span class="built_in">display</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p><img src="/%E5%9F%BA%E4%BA%8EC++%E7%9A%84vector%E7%B1%BB%E7%9A%84%E7%BC%96%E5%86%99/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png" alt="运行结果"></p>
+<h1 id="Q-A"><a href="#Q-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><ol>
+<li><p><strong>为什么要重载赋值运算符？</strong><br> 答：不重载赋值运算符直接赋值的话，要赋值的对象将简单拷贝原对象中的所有成员值。如果类成员中有指针变量，那么仅仅拷贝的是指针地址值，而非指针指向值。这样的做容易造成内存的二次释放，造成严重的错误。因此需要重载赋值运算符</p>
+</li>
+<li><p><strong>重载时需要注意哪些问题？</strong><br> 答：返回值的时候要返回引用，可以避免不必要的内存开销。</p>
+</li>
+<li><p><strong>为什么要有返回值？</strong><br> 答：可以允许连续赋值。</p>
+</li>
+<li><p><strong>如果出现类似于执行a&#x3D;a的情况，代码应如何处理保证操作正确。</strong><br> 答：首先开辟一个新的动态空间，容量capacity与原对象相同，且将原对象中的数组值拷贝到新的动态空间中。然后释放当前对象的动态空间，并将数组指针指向刚刚开辟的新的动态空间首地址。</p>
+</li>
+<li><p><strong>说明重载下标操作[ ]的两个函数的异同，以及应用场景？</strong><br> 答：T&amp; operator[](int n)返回第n个数组元素，允许通过返回的函数值修改所访问的数据。<br> const T&amp; operator[](int n) const以常引用的方式返回第n个数组元素，返回的成员只读，不允许通过返回的函数值修改所访问的数据。一般不希望元素被修改的时候使用。</p>
+</li>
+<li><p><strong>针对自己的代码，考察插入和删除元素时的运行效率问题，动态分配空间的频率，以及可以如何提升效率？</strong><br> 答：插入元素时，需要n-pos+1次赋值，故时间复杂度为O(n)，其中在末尾插入时间复杂度是O(1)。但是一旦插入元素的个数大于容量，需要对数组进行扩容，即重新分配空间，该操作是O(n)的。<br> 删除元素时，需要n-pos次赋值，故时间复杂度也为O(n)，其中在末尾删除的时间复杂度为O(1)。删除元素的函数中没有释放多余空间，仅仅在清空函数中有释放所有空间的函数。<br> 所以由于每次当动态数组容量满了，都会将当前容量扩充至原先的两倍，所以动态分配空间的频率大约为logn。<br> 如果在删除时加上释放空间的代码，可以将节省空间利用率。也可以通过链表的方式提高插入删除元素时的效率。</p>
+</li>
+<li><p><strong>说明不同的构造函数中，初始化操作的方式以及意义。</strong><br> 答：vector_ss()是默认构造函数，开辟一个内存空间，v_size赋值为0，capacity赋值为1。<br> vector_ss(int n)是构造一个初始大小为n的数组的函数。分配n个连续的内存空间，v_size和capacity都赋值为n。<br> vector_ss(int n,T t)是构造一个初始大小为n的数组，且元素均为t的函数。分配n个连续的内存空间，且将每个变量赋值为t。v_size和capacity都赋值为n。<br> vector_ss(const vector_ss &amp;v)是拷贝对象v的构造函数。分配与对象v相同容量的连续内存，并拷贝v中数组的元素值。v_size和capacity分别赋值为v.size()与v.capacity。<br> vector_ss(const vector_ss &amp;v,int start,int end)是拷贝对象v中start位置到end位置的元素的构造函数。分配与对象v相同容量的连续内存，并拷贝v中数组的元素值。v_size和capacity分别赋值为end-start+1与v.capacity。</p>
+</li>
+</ol>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>类可以说是C++区别于C语言最重要的一个部分，也是我想要学习的重点。类和C语言中的结构体很相似，可以看作是在结构体的基础上改进的新东西。<br>这个实验本身并不要求算法或者什么需要理解的数据结构，仅仅是通过完成这样一个拥有多个功能的类的实验，来让我们更好的掌握C++这门语言。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%A0%86%E6%8E%92%E5%BA%8F%E5%AE%9E%E7%8E%B0.html" rel="prev" title="基于C++的堆排序实现">
+                  <i class="fa fa-chevron-left"></i> 基于C++的堆排序实现
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E7%9F%A9%E9%98%B5%E7%B1%BB%E7%9A%84%E7%BC%96%E5%86%99.html" rel="next" title="基于C++的矩阵类的编写 ">
+                  基于C++的矩阵类的编写  <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">216k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2d/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d/","pluginJsPath":"lib/","pluginModelPath":"assert/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

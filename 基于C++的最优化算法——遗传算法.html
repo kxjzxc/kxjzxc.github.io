@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico">
+  <link rel="mask-icon" href="/images/V.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于C++的最优化算法——遗传算法">
+<meta property="og:url" content="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E6%9C%80%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95.html">
+<meta property="og:site_name" content="Kerke&#39;s Eden">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E6%9C%80%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E6%9C%80%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png">
+<meta property="article:published_time" content="2020-01-17T14:44:07.000Z">
+<meta property="article:modified_time" content="2020-01-17T15:16:06.000Z">
+<meta property="article:author" content="Kermit">
+<meta property="article:tag" content="最优化算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E6%9C%80%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95.png">
+
+
+<link rel="canonical" href="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E6%9C%80%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E6%9C%80%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95.html","path":"基于C++的最优化算法——遗传算法.html","title":"基于C++的最优化算法——遗传算法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基于C++的最优化算法——遗传算法 | Kerke's Eden</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kerke's Eden" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kerke's Eden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories" rel="section">分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section">关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives" rel="section">归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags" rel="section">标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A6%81%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">算法原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">2.3.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kermit"
+      src="/images/V.jpg">
+  <p class="site-author-name" itemprop="name">Kermit</p>
+  <div class="site-description" itemprop="description">人间无笑，我亦长歌</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://leefir.github.io/" title="http:&#x2F;&#x2F;leefir.github.io&#x2F;" rel="noopener" target="_blank">Leefir</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yummyjay.github.io/" title="https:&#x2F;&#x2F;yummyjay.github.io&#x2F;" rel="noopener" target="_blank">YummyJay</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bblss123.github.io/" title="https:&#x2F;&#x2F;bblss123.github.io&#x2F;" rel="noopener" target="_blank">bblss123</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kyleyoung-ymj.github.io/" title="https:&#x2F;&#x2F;kyleyoung-ymj.github.io&#x2F;" rel="noopener" target="_blank">KyleYoung</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://unicornt.github.io/" title="https:&#x2F;&#x2F;unicornt.github.io&#x2F;" rel="noopener" target="_blank">unicornt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://shinfeb.github.io/" title="https:&#x2F;&#x2F;shinfeb.github.io&#x2F;" rel="noopener" target="_blank">ShinFeb</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E6%9C%80%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/V.jpg">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kerke's Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于C++的最优化算法——遗传算法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-01-17 22:44:07 / 修改时间：23:16:06" itemprop="dateCreated datePublished" datetime="2020-01-17T22:44:07+08:00">2020-01-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E7%A8%8B%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">程序</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E7%A8%8B%E5%BA%8F/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h1><p>基于抽象优化类 optimizer，编写自己的派生优化类，实现多元方程未知数计算</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>最优化算法有许多，像是模拟退火、遗传算法、粒子群算法等等，而我使用的是最优化算法中的遗传算法。</p>
+<h2 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h2><p>遗传算法是一类借鉴生物界的进化规律演化而来的随机化搜索方法。其主要特点是直接对结构对象进行操作，不存在求导和函数连续性的限定；具有内在的隐并行性和更好的全局寻优能力；采用概率化的寻优方法，能自动获取和指导优化的搜索空间，自适应地调整搜索方向，不需要确定的规则。</p>
+<p>在理解遗传算法的基本原理之前，先了解一下几个概念：</p>
+<ol>
+<li>个体：一个个体就是一组可能解。将可能解通过编码产生一组数组，即个体的染色体。</li>
+<li>种群：个体的集合。</li>
+<li>适应度：度量某个物种对于生存环境的适应程度。</li>
+<li>选择：产生一代新的子种群后，基于个体的适应度对种群里的个体进行优胜劣汰。</li>
+<li>交叉：以一定的概率将一对染色体的某一段基因进行交换。</li>
+<li>变异：以一定的概率使染色体的某一基因发生改变。</li>
+</ol>
+<p>于是我们对每一代父种群的染色体进行筛选、交叉和变异操作，产生下一代子种群。通过种群的不断遗传与淘汰，最终能够进化出最优解。在算法初始阶段，我们首先随机创建一个包含多个个体的种群，然后对于这个种群，循环进行以下操作，直到完成设置的进化次数：</p>
+<ol>
+<li>评估每条染色体所对应个体的适应度。</li>
+<li>遵照适应度越高，选择概率越大的原则，从种群中选择两个个体作为<br>父方和母方。</li>
+<li>抽取父母双方的染色体，进行交叉，产生子代。</li>
+<li>对子代的染色体进行变异。</li>
+</ol>
+<p><img src="/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E6%9C%80%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95.png" alt="遗传算法"><br>我讲的还是比较简略的，详情请见<a href="https://www.jianshu.com/p/ae5157c26af9">这篇博客</a></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>编码：这份代码中以一组x解为一个个体。</p>
+<p>选择函数：轮盘度选择</p>
+<blockquote>
+<p>轮盘赌选择（Roulette Wheel Selection）：是一种回放式随机采样方法。每个个体进入下一代的概率等于它的适应度值与整个种群中个体适应度值和的比例。选择误差较大。</p>
+</blockquote>
+<p>交叉方式：单点交叉</p>
+<blockquote>
+<p>单点交叉（One-point Crossover）：指在个体编码串中只随机设置一个交叉点，然后再该点相互交换两个配对个体的部分染色体。</p>
+</blockquote>
+<p>变异方式：基因以一定概率在±Xrn的领域内浮动，Xrn以类似退火的方式减小。</p>
+<p><strong>个体类头文件</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _SI_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _SI_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;string&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opt1.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdlib.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;time.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Xr 3.0f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Xl -3.0f<span class="comment">//答案范围</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 个体类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="comment">//模板函数，用于生成各种区间上的数据类型</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function">T <span class="title">randT</span><span class="params">(T Lower, T Upper)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">rand</span>() / (<span class="type">double</span>)RAND_MAX *(Upper - Lower) + Lower;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SpeciesIndividual</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="type">double</span> *genes;<span class="comment">//基因序列</span></span><br><span class="line">	<span class="type">double</span> error;<span class="comment">//误差</span></span><br><span class="line">	<span class="type">double</span> fitness;<span class="comment">//适应度</span></span><br><span class="line">	<span class="type">double</span> rate;</span><br><span class="line">	<span class="type">int</span> xnum;</span><br><span class="line">	<span class="comment">//构造函数</span></span><br><span class="line">	<span class="built_in">SpeciesIndividual</span>()&#123;&#125;</span><br><span class="line">	<span class="built_in">SpeciesIndividual</span>(<span class="type">int</span> xd)&#123;</span><br><span class="line">		xnum=xd;</span><br><span class="line">		genes=<span class="keyword">new</span> <span class="type">double</span>[xnum];</span><br><span class="line">		fitness=<span class="number">0.0f</span>;</span><br><span class="line">		error=<span class="number">0.0f</span>;</span><br><span class="line">		rate=<span class="number">0.0f</span>;</span><br><span class="line">		<span class="built_in">createByRandomGenes</span>();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	~<span class="built_in">SpeciesIndividual</span>()&#123;</span><br><span class="line">        <span class="keyword">delete</span>[] genes;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//初始物种基因（随机） 基因直接用x序列编码</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">createByRandomGenes</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;xnum;i++)&#123;</span><br><span class="line">			genes[i]=<span class="built_in">randT</span>(Xl,Xr);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//void createByGreedyGenes();//初始物种基因（贪心）</span></span><br><span class="line"></span><br><span class="line">	SpeciesIndividual &amp;<span class="keyword">operator</span> = (SpeciesIndividual <span class="type">const</span> &amp;species)&#123;</span><br><span class="line">		xnum=species.xnum;</span><br><span class="line">	    <span class="type">double</span> *genestmp=<span class="keyword">new</span> <span class="type">double</span>[species.xnum];</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;xnum;i++)&#123;</span><br><span class="line">			genestmp[i]=species.genes[i];</span><br><span class="line">        &#125;</span><br><span class="line">		error=species.error;</span><br><span class="line">		fitness=species.fitness;</span><br><span class="line">		rate=species.rate;</span><br><span class="line">		<span class="keyword">delete</span>[] genes;</span><br><span class="line">		genes=genestmp;</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="type">bool</span> <span class="keyword">operator</span> == (SpeciesIndividual <span class="type">const</span> &amp;species)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;xnum;i++)</span><br><span class="line">			<span class="keyword">if</span>(genes[i]!=species.genes[i])<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>优化程序</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _OPT_1_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _OPT_1_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;optimizer.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;SpeciesIndividual.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stdlib.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;time.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;math.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;iostream&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;algorithm&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEVELOP_NUM 3000<span class="comment">//进化次数</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pcl 0.6f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pch 0.95f<span class="comment">//交叉概率</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pm 0.1f<span class="comment">//变异概率</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> oo 1e9+7</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> delta 0.98</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SPECIES_MAXNUM 500<span class="comment">//种群最大数量</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SPECIES_NUM 80 <span class="comment">//种群数量</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">SpeciesIndividual population[SPECIES_MAXNUM];<span class="comment">//父种群</span></span><br><span class="line">SpeciesIndividual subPopulation[SPECIES_MAXNUM];<span class="comment">//子种群</span></span><br><span class="line"><span class="type">int</span> speciesNum=<span class="number">0</span>;<span class="comment">//父种群个体数量</span></span><br><span class="line"><span class="type">int</span> subSpeciesNum=<span class="number">0</span>;<span class="comment">//子种群个体数量</span></span><br><span class="line"><span class="type">double</span> Temp=<span class="number">1</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 遗传算法</span></span><br><span class="line"><span class="comment"> * 包含：</span></span><br><span class="line"><span class="comment"> * 		1.run 开始跑算法</span></span><br><span class="line"><span class="comment"> * 		2.createBeginningSpecies 创建种群</span></span><br><span class="line"><span class="comment"> * 		3.calRate 计算每一种物种被选中的概率</span></span><br><span class="line"><span class="comment"> *      4.select  轮盘策略 选择适应度高的物种</span></span><br><span class="line"><span class="comment"> *      5.crossover 染色体交叉</span></span><br><span class="line"><span class="comment"> *      6.mutate 染色体变异</span></span><br><span class="line"><span class="comment"> *      7.getBest 获得适应度最大的物种</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">opt1</span>: <span class="keyword">public</span> optimizer</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function">	<span class="type">void</span> <span class="title">Swap</span><span class="params">(T &amp;a,T &amp;b)</span></span>&#123;</span><br><span class="line">		T tmp=a;</span><br><span class="line">		a=b;</span><br><span class="line">		b=tmp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">SpeciesIndividual <span class="title">getBest</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="type">double</span> error=oo;</span><br><span class="line">		<span class="function">SpeciesIndividual <span class="title">bestSpecies</span><span class="params">(xd)</span></span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;speciesNum;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(error&gt;population[i].error)&#123;</span><br><span class="line">				bestSpecies=population[i];</span><br><span class="line">				error=bestSpecies.error;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> bestSpecies;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//创建初始种群</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">createBeginningSpecies</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="type">int</span> randNum=SPECIES_NUM;</span><br><span class="line">		speciesNum=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;randNum;i++)&#123;</span><br><span class="line">			<span class="function">SpeciesIndividual <span class="title">species</span><span class="params">(xd)</span></span>;</span><br><span class="line">			population[speciesNum++]=species;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//计算每一物种被选中的概率</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">calcRate</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="comment">//计算总误差</span></span><br><span class="line">		<span class="type">double</span> totalERR=<span class="number">0.0f</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;speciesNum;i++)&#123;</span><br><span class="line">			population[i].error=<span class="built_in">fun</span>(population[i].genes,y);<span class="comment">//计算误差</span></span><br><span class="line">			totalERR+=population[i].error;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//计算总适应度</span></span><br><span class="line">		<span class="type">double</span> totalfitness=<span class="number">0.0f</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;speciesNum;i++)&#123;</span><br><span class="line">			population[i].fitness=totalERR/population[i].error;<span class="comment">//计算适应度</span></span><br><span class="line">			totalfitness+=population[i].fitness;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//计算选中概率</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;speciesNum;i++)&#123;</span><br><span class="line">			population[i].rate=population[i].fitness/totalfitness;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//选择优秀物种（轮盘赌）</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">select</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//找出最大适应度物种</span></span><br><span class="line">		SpeciesIndividual talentSpecies=<span class="built_in">getBest</span>();</span><br><span class="line">		<span class="comment">//将最大适应度物种复制talentNum个</span></span><br><span class="line">		<span class="type">int</span> talentNum=(<span class="type">int</span>)(speciesNum/<span class="number">4</span>)<span class="number">+1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;talentNum;i++)&#123;</span><br><span class="line">			<span class="comment">//复制物种至子种群中</span></span><br><span class="line">			subPopulation[subSpeciesNum++]=talentSpecies;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//轮盘赌list.speciesNum-talentNum次</span></span><br><span class="line">		<span class="type">int</span> randNum=speciesNum-talentNum;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;randNum;i++)&#123;</span><br><span class="line">			<span class="type">double</span> rate=<span class="built_in">randT</span>(<span class="number">0.0</span>,<span class="number">1.0</span>);</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;speciesNum;j++)&#123;</span><br><span class="line">                <span class="comment">//如果不是最后一个，那么遇到最优个体或者指针没在该区域停下</span></span><br><span class="line">				<span class="keyword">if</span>((rate-population[j].rate&gt;<span class="number">0</span>||population[j]==talentSpecies)&amp;&amp;j!=speciesNum<span class="number">-1</span>)&#123;</span><br><span class="line">					rate=rate-population[j].rate;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span>&#123;</span><br><span class="line">					subPopulation[subSpeciesNum++]=population[j];</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//子代成长为父种群</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;subSpeciesNum;i++)&#123;</span><br><span class="line">			population[i]=subPopulation[i];</span><br><span class="line">		&#125;</span><br><span class="line">		speciesNum=subSpeciesNum;</span><br><span class="line">		subSpeciesNum=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">crossover</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//两两配对</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;speciesNum;i+=<span class="number">2</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(i<span class="number">+1</span>==speciesNum)<span class="keyword">break</span>;<span class="comment">//若个体数量为奇数，则最后一个个体为单身</span></span><br><span class="line">			<span class="comment">//以概率pcl~pch进行</span></span><br><span class="line">			<span class="type">double</span> rate=<span class="built_in">randT</span>(<span class="number">0.0</span>,<span class="number">1.0</span>);</span><br><span class="line">			<span class="keyword">if</span>(rate&gt;pcl&amp;&amp;rate&lt;pch)&#123;</span><br><span class="line">				<span class="comment">//单点交叉</span></span><br><span class="line">				<span class="type">int</span> begin=<span class="built_in">rand</span>()%xd;</span><br><span class="line">				<span class="comment">//取第i个个体和第i+1个个体进行交叉，形成新的两个染色体</span></span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> j=begin;j&lt;xd;j++)&#123;</span><br><span class="line">					<span class="built_in">Swap</span>(population[i].genes[j],population[i<span class="number">+1</span>].genes[j]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">mutate</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="comment">//每一物种都有变异的机会，以概率pm进行</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;speciesNum;i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;xd;j++)&#123;</span><br><span class="line">				<span class="type">double</span> rate=<span class="built_in">randT</span>(<span class="number">0.0</span>,<span class="number">1.0</span>);</span><br><span class="line">				<span class="keyword">if</span>(rate&lt;pm)&#123;</span><br><span class="line">                    <span class="comment">//基因变异在±Xrn的领域内浮动。</span></span><br><span class="line">                    <span class="type">double</span> x=population[i].genes[j];</span><br><span class="line">                    population[i].genes[j]+=<span class="built_in">randT</span>(Xl/<span class="built_in">exp</span>(Temp),Xr/<span class="built_in">exp</span>(Temp));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">double</span> <span class="title">setOptimizer</span><span class="params">(<span class="type">double</span> (*foo)(<span class="type">double</span> *,<span class="type">double</span> *),<span class="type">double</span> *x1,<span class="type">double</span> *y1,<span class="type">int</span> xd1,<span class="type">int</span> yd1)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		fun=foo;</span><br><span class="line">		x=x1;</span><br><span class="line">		y=y1;</span><br><span class="line">		xd=xd1;</span><br><span class="line">		yd=yd1;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//随机种子</span></span><br><span class="line">		<span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="literal">NULL</span>));</span><br><span class="line"></span><br><span class="line">		<span class="comment">//开始遗传算法（选择算子、交叉算子、变异算子）</span></span><br><span class="line">		<span class="comment">//创建初始种群</span></span><br><span class="line">		<span class="built_in">createBeginningSpecies</span>();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;DEVELOP_NUM;i++)&#123;</span><br><span class="line">			<span class="comment">//计算适应度</span></span><br><span class="line">			<span class="built_in">calcRate</span>();</span><br><span class="line"></span><br><span class="line">			<span class="comment">//目前最优解</span></span><br><span class="line">            SpeciesIndividual bestAns=<span class="built_in">getBest</span>();</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">fun</span>(x1,y)&gt;<span class="built_in">fun</span>(bestAns.genes,y))&#123;</span><br><span class="line">                 <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;xd;i++)&#123;</span><br><span class="line">                    x1[i]=bestAns.genes[i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">			<span class="comment">//选择</span></span><br><span class="line">			<span class="built_in">select</span>();</span><br><span class="line">			<span class="comment">//交叉</span></span><br><span class="line">			<span class="built_in">crossover</span>();</span><br><span class="line">			<span class="comment">//变异</span></span><br><span class="line">			<span class="built_in">mutate</span>();</span><br><span class="line"></span><br><span class="line">			<span class="comment">//缩小基因变异的范围</span></span><br><span class="line">			Temp+=<span class="number">0.01</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">calcRate</span>();</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">fun</span>(x1,y);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>测试代码</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;opt1.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Matrix_4x4</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="type">int</span> **mat;</span><br><span class="line">	<span class="built_in">Matrix_4x4</span>()&#123;&#125;;</span><br><span class="line">	<span class="built_in">Matrix_4x4</span>(<span class="built_in">int</span> (&amp;a)[<span class="number">4</span>][<span class="number">4</span>])&#123;</span><br><span class="line">		mat=<span class="keyword">new</span> <span class="type">int</span> *[<span class="number">4</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">			mat[i]= <span class="keyword">new</span> <span class="type">int</span>[<span class="number">4</span>];</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">4</span>;j++)&#123;</span><br><span class="line">				mat[i][j]=a[i][j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	~<span class="built_in">Matrix_4x4</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">delete</span>[] mat[i];</span><br><span class="line">			mat[i]=<span class="literal">NULL</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">delete</span>[] mat;</span><br><span class="line">	 &#125;</span><br><span class="line">	 <span class="type">int</span>* <span class="keyword">operator</span>[](<span class="type">int</span> idx)</span><br><span class="line">	 &#123;</span><br><span class="line">		<span class="keyword">return</span> mat[idx];</span><br><span class="line">	 &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">f1</span><span class="params">(<span class="type">double</span> *x,<span class="type">double</span> *y)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> index=<span class="number">4</span>;</span><br><span class="line">    <span class="type">int</span> m[<span class="number">4</span>][<span class="number">4</span>]=&#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">5</span>&#125;,&#123;<span class="number">6</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">2</span>&#125;,&#123;<span class="number">1</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">2</span>&#125;&#125;;</span><br><span class="line">	<span class="function">Matrix_4x4 <span class="title">A</span><span class="params">(m)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//计算误差</span></span><br><span class="line">	<span class="type">double</span> temp[<span class="number">4</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="type">double</span> err=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;index;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;index;j++)&#123;</span><br><span class="line">			temp[i]+=<span class="number">1.0</span>*A[i][j]*x[j];</span><br><span class="line">		&#125;</span><br><span class="line">		err+=(y[i]-temp[i])*(y[i]-temp[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//for(int i=0;i&lt;4;i++)cout&lt;&lt;x[i]&lt;&lt;&quot; &quot;;</span></span><br><span class="line">	<span class="comment">//cout&lt;&lt;endl;</span></span><br><span class="line">	<span class="comment">//cout&lt;&lt;err&lt;&lt;endl;</span></span><br><span class="line">	<span class="keyword">return</span> err;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">double</span> x[<span class="number">4</span>]=&#123;&#125;;</span><br><span class="line">	<span class="type">double</span> y[<span class="number">4</span>]=&#123;<span class="number">6</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">8</span>&#125;;</span><br><span class="line"></span><br><span class="line">	opt1 opti;</span><br><span class="line">	optimizer *opt=&amp;opti;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The error is : &quot;</span>&lt;&lt;opt-&gt;<span class="built_in">setOptimizer</span>(f1,x,y,<span class="number">4</span>,<span class="number">4</span>)&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;endl&lt;&lt;<span class="string">&quot;The result is : &quot;</span>&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)cout&lt;&lt;x[i]&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p><img src="/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E6%9C%80%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E2%80%94%E2%80%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png" alt="运行结果"></p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>通过本次实验，让我很好地了解了几种最优化算法，并且深入了解了其中的遗传算法。<br>实验过程中，我在如何提升结果精度上花费一些功夫，并且最终借鉴模拟退火中的一些思路，将结果优化至满意的结果。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%80%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" rel="tag"># 最优化算法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E8%AE%A1%E7%AE%97%E4%B8%8D%E5%90%8C%E5%9B%BE%E5%BD%A2%E9%9D%A2%E7%A7%AF.html" rel="prev" title="基于C++的计算不同图形面积">
+                  <i class="fa fa-chevron-left"></i> 基于C++的计算不同图形面积
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E6%9C%80%E4%BC%98%E5%81%9C%E6%AD%A2%E7%90%86%E8%AE%BA%E2%80%94%E2%80%94%E5%A6%82%E4%BD%95%E9%80%82%E2%80%9C%E5%8F%AF%E2%80%9D%E8%80%8C%E6%AD%A2.html" rel="next" title="最优停止理论——如何适“可”而止">
+                  最优停止理论——如何适“可”而止 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">216k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2d/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d/","pluginJsPath":"lib/","pluginModelPath":"assert/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

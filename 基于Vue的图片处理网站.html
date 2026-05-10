@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico">
+  <link rel="mask-icon" href="/images/V.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Vue的图片处理网站">
+<meta property="og:url" content="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EVue%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E7%BD%91%E7%AB%99.html">
+<meta property="og:site_name" content="Kerke&#39;s Eden">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EVue%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E7%BD%91%E7%AB%99/%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2.png">
+<meta property="article:published_time" content="2021-07-05T15:17:26.000Z">
+<meta property="article:modified_time" content="2021-07-09T15:58:47.939Z">
+<meta property="article:author" content="Kermit">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EVue%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E7%BD%91%E7%AB%99/%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2.png">
+
+
+<link rel="canonical" href="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EVue%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E7%BD%91%E7%AB%99.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EVue%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E7%BD%91%E7%AB%99.html","path":"基于Vue的图片处理网站.html","title":"基于Vue的图片处理网站"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基于Vue的图片处理网站 | Kerke's Eden</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kerke's Eden" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kerke's Eden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories" rel="section">分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section">关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives" rel="section">归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags" rel="section">标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9B%86%E5%90%88"><span class="nav-number">2.</span> <span class="nav-text">Vue知识点集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-Cli%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E7%94%9F%E6%88%90"><span class="nav-number">2.1.</span> <span class="nav-text">Vue-Cli环境搭建以及项目生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-Cli%E6%89%8B%E8%84%9A%E6%9E%B6%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.</span> <span class="nav-text">Vue-Cli手脚架结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E5%A4%96%E9%83%A8js%E5%8F%98%E9%87%8F%E6%88%96%E6%96%B9%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">导入外部js变量或方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87"><span class="nav-number">2.4.</span> <span class="nav-text">读取本地图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E8%B5%84%E6%BA%90"><span class="nav-number">2.5.</span> <span class="nav-text">加载图片资源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD"><span class="nav-number">2.5.1.</span> <span class="nav-text">动态加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%8A%A0%E8%BD%BD"><span class="nav-number">2.5.2.</span> <span class="nav-text">静态加载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1"><span class="nav-number">2.6.</span> <span class="nav-text">父子组件通信</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="nav-number">3.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kermit"
+      src="/images/V.jpg">
+  <p class="site-author-name" itemprop="name">Kermit</p>
+  <div class="site-description" itemprop="description">人间无笑，我亦长歌</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://leefir.github.io/" title="http:&#x2F;&#x2F;leefir.github.io&#x2F;" rel="noopener" target="_blank">Leefir</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yummyjay.github.io/" title="https:&#x2F;&#x2F;yummyjay.github.io&#x2F;" rel="noopener" target="_blank">YummyJay</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bblss123.github.io/" title="https:&#x2F;&#x2F;bblss123.github.io&#x2F;" rel="noopener" target="_blank">bblss123</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kyleyoung-ymj.github.io/" title="https:&#x2F;&#x2F;kyleyoung-ymj.github.io&#x2F;" rel="noopener" target="_blank">KyleYoung</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://unicornt.github.io/" title="https:&#x2F;&#x2F;unicornt.github.io&#x2F;" rel="noopener" target="_blank">unicornt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://shinfeb.github.io/" title="https:&#x2F;&#x2F;shinfeb.github.io&#x2F;" rel="noopener" target="_blank">ShinFeb</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8EVue%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E7%BD%91%E7%AB%99.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/V.jpg">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kerke's Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于Vue的图片处理网站
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-05 23:17:26" itemprop="dateCreated datePublished" datetime="2021-07-05T23:17:26+08:00">2021-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-07-09 23:58:47" itemprop="dateModified" datetime="2021-07-09T23:58:47+08:00">2021-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>很早之前看过某位大佬制作的<a href="https://lab.magiconch.com/vaporwave/">蒸汽波图片生成网站</a>，无论是网站的功能还是风格都深得我意，于是就Ctrl+S保存了这个网站的代码（后来发现作者在<a href="https://github.com/itorr/vaporwave">GitHub</a>上开源了）。由于时间原因，我一直没怎么去看这份代码。正好最近前段时间刚考完期末，公司实习又恰好顺延，再加上我一直想学习学习Vue-Cli手脚架的使用，所以就打算套用Vue-Cli实现一遍这份代码。<br>代码本身这篇博客就不讲解了，毕竟不是我的代码。所以在这里我主要想谈谈在复刻网站的过程中我觉得有必要记录下来的知识点。</p>
+<h1 id="Vue知识点集合"><a href="#Vue知识点集合" class="headerlink" title="Vue知识点集合"></a>Vue知识点集合</h1><h2 id="Vue-Cli环境搭建以及项目生成"><a href="#Vue-Cli环境搭建以及项目生成" class="headerlink" title="Vue-Cli环境搭建以及项目生成"></a>Vue-Cli环境搭建以及项目生成</h2><p>在使用Vue-Cli之前需要先安装node.js以及npm等环境或者工具，此处不赘述，从Cli手脚架讲起。<del>好吧，我之前就装过环境了，所以不想讲</del><br><a href="https://cli.vuejs.org/zh/guide/installation.html">官方教程</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
+<p>然后用以下指令创建项目</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create hello-world</span><br></pre></td></tr></table></figure>
+
+<p>官方还提供了图形化界面来调试管理</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue ui</span><br></pre></td></tr></table></figure>
+<p>在图像化界面中可以对项目进行编译、热更新、压缩等操作<br><img src="/%E5%9F%BA%E4%BA%8EVue%E7%9A%84%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E7%BD%91%E7%AB%99/%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2.png" alt="图形界面"></p>
+<h2 id="Vue-Cli手脚架结构"><a href="#Vue-Cli手脚架结构" class="headerlink" title="Vue-Cli手脚架结构"></a>Vue-Cli手脚架结构</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">├─dist                输出文件夹：build之后生成的文件夹</span><br><span class="line">│  ├─css </span><br><span class="line">│  ├─img</span><br><span class="line">│  └─js</span><br><span class="line">├─ node_modules       node.js中的一些包</span><br><span class="line">├─public              静态文件夹</span><br><span class="line">│  └─img              图片文件夹</span><br><span class="line">└─src                 源码文件夹</span><br><span class="line">    ├─assets          动态资源文件夹</span><br><span class="line">    │  └─css	        样式文件夹：用于存放网页的样式文件</span><br><span class="line">    ├─components      组件文件夹：用于存放一些可重复利用的组件</span><br><span class="line">    ├─script          	js脚本文件夹：用于存放网站的js脚本</span><br><span class="line">    ├─views           	页面文件夹：用于存放单个网页页面的组件 </span><br><span class="line">    ├─App.vue         	入口组件</span><br><span class="line">    └─main.js         	入口脚本：代码从此处开始</span><br></pre></td></tr></table></figure>
+<h2 id="导入外部js变量或方法"><a href="#导入外部js变量或方法" class="headerlink" title="导入外部js变量或方法"></a>导入外部js变量或方法</h2><p>在外部的extra.js文件最下方导出</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">	variable,</span><br><span class="line">	method</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>然后在需要导入的组件vue中</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">javascript</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> &#123;variable&#125; <span class="keyword">from</span> <span class="string">&#x27;../script/extra.js&#x27;</span><span class="comment">//导入外部js变量</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> &#123;method&#125; <span class="keyword">from</span> <span class="string">&#x27;../script/extra.js&#x27;</span><span class="comment">//导入外部函数</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> <span class="title class_">Components</span> <span class="keyword">from</span> <span class="string">&#x27;../components/components.vue&#x27;</span><span class="comment">//导入外部组件</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> </span></span><br><span class="line"><span class="language-javascript">&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">name</span>: <span class="string">&#x27;thisVue&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">data</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">		    <span class="attr">localVar</span>:<span class="string">&#x27;&#x27;</span>,<span class="comment">//本地变量</span></span></span><br><span class="line"><span class="language-javascript">		    variable<span class="comment">//外部变量</span></span></span><br><span class="line"><span class="language-javascript">		&#125;;</span></span><br><span class="line"><span class="language-javascript">    &#125;,</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">components</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="title class_">Components</span>,</span></span><br><span class="line"><span class="language-javascript">    &#125;,</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">        method</span></span><br><span class="line"><span class="language-javascript">    &#125;,</span></span><br><span class="line"><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="读取本地图片"><a href="#读取本地图片" class="headerlink" title="读取本地图片"></a>读取本地图片</h2><p>在需要的组件中调用以下js脚本中的chooseImage函数，其中参数callback是用于在需要的组件中赋值读取的图片，因为vue不像原生js那样不同文件中的变量共用。这部分代码，说实话我不太想讲，虽然很有意思，但是js的语法实在……不适合用文字来分析（大概）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">readFileToURL</span> = (<span class="params">file,onOver</span>)=&gt;&#123;</span><br><span class="line">	<span class="keyword">var</span> reader = <span class="keyword">new</span> <span class="title class_">FileReader</span>();</span><br><span class="line">	reader.<span class="property">onload</span> = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">		<span class="keyword">const</span> src = reader.<span class="property">result</span>;</span><br><span class="line">		<span class="title function_">onOver</span>(src);</span><br><span class="line">	&#125;;</span><br><span class="line">	reader.<span class="title function_">readAsDataURL</span>(file);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">readFileAndSetIMGSrc</span> = (<span class="params">file,callback</span>)=&gt;&#123;</span><br><span class="line">	<span class="title function_">readFileToURL</span>(file,<span class="function"><span class="params">src</span>=&gt;</span>&#123;</span><br><span class="line">		<span class="keyword">const</span> img = <span class="keyword">new</span> <span class="title class_">Image</span>();</span><br><span class="line">		img.<span class="property">src</span> = src;</span><br><span class="line">		img.<span class="property">onload</span> = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">			<span class="title function_">callback</span>(img);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">chooseFile</span> = (<span class="params">callback</span>)=&gt;&#123;</span><br><span class="line">	chooseFile.<span class="property">form</span>.<span class="title function_">reset</span>();</span><br><span class="line">	chooseFile.<span class="property">input</span>.<span class="property">onchange</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!<span class="variable language_">this</span>.<span class="property">files</span>||!<span class="variable language_">this</span>.<span class="property">files</span>[<span class="number">0</span>])<span class="keyword">return</span>;</span><br><span class="line">		<span class="title function_">callback</span>(<span class="variable language_">this</span>.<span class="property">files</span>[<span class="number">0</span>]);</span><br><span class="line">	&#125;;</span><br><span class="line">	chooseFile.<span class="property">input</span>.<span class="title function_">click</span>();</span><br><span class="line">&#125;;</span><br><span class="line">chooseFile.<span class="property">form</span> = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;form&#x27;</span>);</span><br><span class="line">chooseFile.<span class="property">input</span> = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;input&#x27;</span>);</span><br><span class="line">chooseFile.<span class="property">input</span>.<span class="property">type</span> = <span class="string">&#x27;file&#x27;</span>;</span><br><span class="line">chooseFile.<span class="property">form</span>.<span class="title function_">appendChild</span>(chooseFile.<span class="property">input</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">chooseImage</span> = (<span class="params">callback</span>)=&gt; &#123;</span><br><span class="line">	<span class="title function_">chooseFile</span>(<span class="function"><span class="params">file</span>=&gt;</span>&#123;</span><br><span class="line">		<span class="title function_">readFileAndSetIMGSrc</span>(file,callback);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">    chooseImage</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="加载图片资源"><a href="#加载图片资源" class="headerlink" title="加载图片资源"></a>加载图片资源</h2><p>加载本地图片资源有两种方法，第一种动态加载，第二种是静态加载</p>
+<h3 id="动态加载"><a href="#动态加载" class="headerlink" title="动态加载"></a>动态加载</h3><p>动态加载就是将图片资源放在src&#x2F;assets文件夹中。由于vue在编译的时候会用webpack将src下的所有东西转换成base64，所以不能直接通过路径来导入图片，需要使用<code>require</code>来以模块的形式导入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&quot;@/&quot;</span>+path);</span><br></pre></td></tr></table></figure>
+<p><code>@/</code>是src根目录，path就是剩下的路径</p>
+<h3 id="静态加载"><a href="#静态加载" class="headerlink" title="静态加载"></a>静态加载</h3><p>静态加载则是将图片资源放在public静态文件夹中，由于打包时静态目录下的东西是原封不动地移到输出目录中，所以直接用public文件夹下的路径，比如<code>/public/img/*.jpg</code>，导入时路径为<code>/img/*jpg</code>。在打包时，比起动态加载我更倾向于用这个方法来导入图片，因为打包后src下的东西都乱作一团，难以导入图片（可能是我写得不对），而静态目录不受影响。但显而易见的是，调试的时候用动态加载会方便很多。</p>
+<h2 id="父子组件通信"><a href="#父子组件通信" class="headerlink" title="父子组件通信"></a>父子组件通信</h2><p>父子间通信网络上有很多很多的教程，而且大同小异，我也不赘述了。<br>不过网上的方法基本上都是从父组件传值到子组件，子组件里修改了的话需要再传到父组件，这时候父组件需要写一个函数来更新这个值，而我一开始想要的并不是这种方法，而是类似于C&#x2F;C++那种引用或者原生js里的变量通用，即在子组件里修改了某个值，父组件里的那个值也改变，但很可惜能力有限，并没有找到解决方案，最后还是放弃了这个想法。</p>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>最终做出来的成品与原网站不能说很像，只能说一模一样。好吧，其实我还是修改了样式<del>改得更丑了</del>，以及换了图片（不如原先）。<br>其实我是想要在此基础上制作一个拥有更多功能得图像处理网站，不过短暂的假期（就当是假期吧）结束了，我得去实习了<del>其实还有考研</del>，所以就留给下个假期了吧。<br>顺带一提，虽然我之前说这不是我的代码，但图像处理的部分也着实有趣，有时间还是想写一写这一部分的解析。</p>
+<p>最后是我的成品，如有bug欢迎提出。<br><a href="https://kxjzxc.github.io/Vue-Image-tool/">图片处理网站</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E5%9F%BA%E4%BA%8EOpenCV%E5%92%8C%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%8C%B9%E9%85%8D%E2%80%94%E2%80%94%E7%81%AB%E8%8A%B1%E5%A1%9E%E9%97%B4%E9%9A%99%E5%B0%BA%E5%AF%B8%E6%B5%8B%E9%87%8F.html" rel="prev" title="基于OpenCV和图像金字塔的模板匹配——火花塞间隙尺寸测量">
+                  <i class="fa fa-chevron-left"></i> 基于OpenCV和图像金字塔的模板匹配——火花塞间隙尺寸测量
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E5%85%B3%E4%BA%8E%E4%B8%8D%E5%90%8C%E4%BB%93%E5%BA%93%E9%83%A8%E7%BD%B2%E5%88%B0%E5%90%8C%E4%B8%80%E4%B8%AAGithub%E8%BF%99%E4%BB%B6%E4%BA%8B.html" rel="next" title="关于不同仓库部署到同一个Github这件事">
+                  关于不同仓库部署到同一个Github这件事 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">216k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2d/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d/","pluginJsPath":"lib/","pluginModelPath":"assert/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

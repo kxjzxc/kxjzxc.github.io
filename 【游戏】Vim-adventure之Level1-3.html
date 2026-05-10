@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico">
+  <link rel="mask-icon" href="/images/V.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="【游戏】Vim adventure之Level1-3">
+<meta property="og:url" content="http://kxjzxc.github.io/%E3%80%90%E6%B8%B8%E6%88%8F%E3%80%91Vim-adventure%E4%B9%8BLevel1-3.html">
+<meta property="og:site_name" content="Kerke&#39;s Eden">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-08T09:08:41.000Z">
+<meta property="article:modified_time" content="2021-06-29T04:58:35.358Z">
+<meta property="article:author" content="Kermit">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="游戏">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://kxjzxc.github.io/%E3%80%90%E6%B8%B8%E6%88%8F%E3%80%91Vim-adventure%E4%B9%8BLevel1-3.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kxjzxc.github.io/%E3%80%90%E6%B8%B8%E6%88%8F%E3%80%91Vim-adventure%E4%B9%8BLevel1-3.html","path":"【游戏】Vim-adventure之Level1-3.html","title":"【游戏】Vim adventure之Level1-3"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【游戏】Vim adventure之Level1-3 | Kerke's Eden</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kerke's Eden" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kerke's Eden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories" rel="section">分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section">关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives" rel="section">归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags" rel="section">标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EVim-adventure"><span class="nav-number">1.</span> <span class="nav-text">关于Vim adventure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E6%94%BB%E7%95%A5"><span class="nav-number">2.</span> <span class="nav-text">游戏攻略</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Level-1"><span class="nav-number">2.1.</span> <span class="nav-text">Level 1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Level-2"><span class="nav-number">2.2.</span> <span class="nav-text">Level 2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Level3"><span class="nav-number">2.3.</span> <span class="nav-text">Level3</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD"><span class="nav-number">2.4.</span> <span class="nav-text">后续</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kermit"
+      src="/images/V.jpg">
+  <p class="site-author-name" itemprop="name">Kermit</p>
+  <div class="site-description" itemprop="description">人间无笑，我亦长歌</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://leefir.github.io/" title="http:&#x2F;&#x2F;leefir.github.io&#x2F;" rel="noopener" target="_blank">Leefir</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yummyjay.github.io/" title="https:&#x2F;&#x2F;yummyjay.github.io&#x2F;" rel="noopener" target="_blank">YummyJay</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bblss123.github.io/" title="https:&#x2F;&#x2F;bblss123.github.io&#x2F;" rel="noopener" target="_blank">bblss123</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kyleyoung-ymj.github.io/" title="https:&#x2F;&#x2F;kyleyoung-ymj.github.io&#x2F;" rel="noopener" target="_blank">KyleYoung</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://unicornt.github.io/" title="https:&#x2F;&#x2F;unicornt.github.io&#x2F;" rel="noopener" target="_blank">unicornt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://shinfeb.github.io/" title="https:&#x2F;&#x2F;shinfeb.github.io&#x2F;" rel="noopener" target="_blank">ShinFeb</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/%E3%80%90%E6%B8%B8%E6%88%8F%E3%80%91Vim-adventure%E4%B9%8BLevel1-3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/V.jpg">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kerke's Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【游戏】Vim adventure之Level1-3
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-08 17:08:41" itemprop="dateCreated datePublished" datetime="2019-05-08T17:08:41+08:00">2019-05-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-06-29 12:58:35" itemprop="dateModified" datetime="2021-06-29T12:58:35+08:00">2021-06-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F/" itemprop="url" rel="index"><span itemprop="name">游戏</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="关于Vim-adventure"><a href="#关于Vim-adventure" class="headerlink" title="关于Vim adventure"></a>关于Vim adventure</h4><p>Vim adventure是一款用于学习Vim的网页游戏，你也可以直接把它当作一个Vim教程。<br>至于Vim，以下是百度百科中的介绍：</p>
+<blockquote>
+<p>Vim是从 vi 发展出来的一个文本编辑器。代码补全、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用，和Emacs并列成为类Unix系统用户最喜欢的文本编辑器。</p>
+</blockquote>
+<p>当我在知乎上看到这款游戏时，便萌生出了极大的兴趣。毕竟在我不断接触Linux的过程中，Vim的大名可是常常出现在各类文章中。如今有这么一款寓教于乐的游戏，自然让我有些兴奋。<br>所以在一个稍微有些空闲的下午，我在浏览器上打开了这款游戏:<a href="https://vim-adventures.com/">Vim adventure</a></p>
+<h4 id="游戏攻略"><a href="#游戏攻略" class="headerlink" title="游戏攻略"></a>游戏攻略</h4><h5 id="Level-1"><a href="#Level-1" class="headerlink" title="Level 1"></a>Level 1</h5><p>刚进入游戏，你是一个阴影光标，正处在四个字符<code>h</code>,<code>j</code>,<code>k</code>,<code>l</code>中间。<br><code>h</code>,<code>j</code>,<code>k</code>,<code>l</code>代表着控制光标移动的四个方向键，其中<code>h</code>为左,<code>j</code>为下,<code>k</code>为上,<code>l</code>为右。当然你也可以直接使用键盘上的方向键，Vim中也是支持的。只不过这需要将你的手从字母键盘上移开，会降低流畅感。所以选择用哪个还需要玩家自己斟酌。<br>![](&#x2F;【游戏】Vim adventure之Level1-3&#x2F;Level 1-1.png)<br>现在，我们学会了移动自己的光标。当我们将光标移到人物的位置的时候，屏幕上便会出现人物的提示。第一个人物并没有给出什么重要的信息，只是表示欢迎而已。</p>
+<p>那么接下来就让我们进入迷宫当中。<br>![](&#x2F;【游戏】Vim adventure之Level1-3&#x2F;Level 1-2.png)<br>迷宫的作用我想是为了让玩家更好地熟练关于方向键的使用。迷宫中有两个人物，一个是告诉我们关于help的使用，即<code>:help</code>加上想要查询的按键，即可得到信息。另一个人物则是告诉玩家需要去找<code>w</code>,<code>e</code>,<code>b</code>，三个按键。这个游戏中的按键不是一开始都能用的，除了<code>h</code>,<code>j</code>,<code>k</code>,<code>l</code>,<code>:</code>这五个字符之外的其他按键都是需要玩家自己去寻找。迷宫里右上角的宝箱暂时无法碰到，此时暂且忽略不计。另一个宝箱其实就是相当于障碍物，玩家必须获得钥匙才能通过。</p>
+<p>走出了迷宫，在接下来的地图中玩家会发现自己被单向地图块所阻挡。<br>此时根据人物的提示，我们可以知道，当下一行的长度小于所在行时，直接向下会到下一行的最后一格，一直到大于等于最初那行长度的一行时，才会回到原先那一列。根据这个性质，我们在以下三个位置按上下键即可通过。<br>![](&#x2F;【游戏】Vim adventure之Level1-3&#x2F;Level 1-3.png)</p>
+<p>当我们移到最后一个人物处，按下ESC键后即可迎来第二关。</p>
+<h5 id="Level-2"><a href="#Level-2" class="headerlink" title="Level 2"></a>Level 2</h5><p>Level2中，我们可以获取<code>w</code>,<code>e</code>,<code>b</code>三个按键。<br><code>w</code>:到下一个单词的第一个字母。<br><code>e</code>:到下一个单词的最后一个字母<br><code>b</code>:到上一个单词的第一个字母<br>注意以上三个热键中标点也算是单独一个单词。<br>通过这三个热键，我们就可以轻松到达被石头阻挡的地方。不过这时还是无法解决前面那个难题的，因为石头下面也压着一个感叹号。<br>当我们通过这三个新技能拿到钥匙，就可以来到第三关了。<br>![](&#x2F;【游戏】Vim adventure之Level1-3&#x2F;Level 2.png)</p>
+<h5 id="Level3"><a href="#Level3" class="headerlink" title="Level3"></a>Level3</h5><p>第三关的第一个谜题是名为Bugs的邪恶势力在预言上添加了一些字符，即红框框起来的部分，需要玩家删掉这些字符。<br>这个时候我们是没办法解决这个谜题的，所以先跳过去。<br>不过谜题上的<code>B</code>按键我们可以先领取过来。<br><code>B</code>:到上一个单词的第一个字母，此处的单词是指被空格分开的字符串。<br>有了这个案件前面的难题就可以解决了。不过别急，我们还没有拿到宝箱的钥匙。<br>第三关的第二个谜题考验的是对于<code>w</code>与<code>e</code>的理解，玩家需要通过这两个按键到达最终点拿到按键<code>x</code>。不过这个谜题是限时30秒完成目标，否则会被传送回谜题外。玩家其实可以通过来回按<code>w</code>与<code>e</code>键以达到快速通关的目的。<br>![](&#x2F;【游戏】Vim adventure之Level1-3&#x2F;level 3-2.png)<br><code>x</code>:删除光标所在位置的字符。<br>有了<code>x</code>我们就可以完成第一个谜题，并且获得宝箱钥匙。<br>最后回到第一关打开宝箱，完成前三关。</p>
+<h5 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h5><p>不幸的是，这个游戏只有前三关是免费玩的。若还想玩后续关卡，则需花25美金（折合人民币大约200元），可以玩六个月。作为没钱的学生狗，这个游戏的教程恐怕就到此为止了。<br>不过说实话，这款游戏对于Vim热键的掌握还是非常有帮助的，若是不缺这钱又苦于Vim热键不习惯的人不妨买来玩玩。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag"># 游戏</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E8%AF%BB%E4%B9%A6%E3%80%81%E6%A1%8C%E6%B8%B8%E4%B8%8E%E4%BA%94%E6%9C%88%E7%9A%84%E9%9B%A8.html" rel="prev" title="读书、桌游与五月的雨">
+                  <i class="fa fa-chevron-left"></i> 读书、桌游与五月的雨
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Codewars%E4%B9%8BJS%E9%A2%98%E8%A7%A3.html" rel="next" title="Codewars之JS题解">
+                  Codewars之JS题解 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">216k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2d/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d/","pluginJsPath":"lib/","pluginModelPath":"assert/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

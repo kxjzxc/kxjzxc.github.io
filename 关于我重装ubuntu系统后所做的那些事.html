@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico">
+  <link rel="mask-icon" href="/images/V.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于我重装ubuntu系统后所做的那些事">
+<meta property="og:url" content="http://kxjzxc.github.io/%E5%85%B3%E4%BA%8E%E6%88%91%E9%87%8D%E8%A3%85ubuntu%E7%B3%BB%E7%BB%9F%E5%90%8E%E6%89%80%E5%81%9A%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B.html">
+<meta property="og:site_name" content="Kerke&#39;s Eden">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-08-07T03:52:18.000Z">
+<meta property="article:modified_time" content="2020-07-30T09:09:38.901Z">
+<meta property="article:author" content="Kermit">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="教程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://kxjzxc.github.io/%E5%85%B3%E4%BA%8E%E6%88%91%E9%87%8D%E8%A3%85ubuntu%E7%B3%BB%E7%BB%9F%E5%90%8E%E6%89%80%E5%81%9A%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kxjzxc.github.io/%E5%85%B3%E4%BA%8E%E6%88%91%E9%87%8D%E8%A3%85ubuntu%E7%B3%BB%E7%BB%9F%E5%90%8E%E6%89%80%E5%81%9A%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B.html","path":"关于我重装ubuntu系统后所做的那些事.html","title":"关于我重装ubuntu系统后所做的那些事"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>关于我重装ubuntu系统后所做的那些事 | Kerke's Eden</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kerke's Eden" type="application/atom+xml">
+<link rel="stylesheet" href="/assets/css/APlayer.min.css" class="aplayer-style-marker">
+<script src="/assets/js/APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="/assets/js/Meting.min.js" class="meting-script-marker"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kerke's Eden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories" rel="section">分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section">关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives" rel="section">归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags" rel="section">标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E4%B8%8B%E8%BD%BD%E6%BA%90"><span class="nav-number">2.1.</span> <span class="nav-text">更换下载源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">语言设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-git%EF%BC%882019-8%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">hexo+git（2019.8）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%EF%BC%882019-8%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">百度网盘（2019.8）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WPS-Office"><span class="nav-number">2.5.</span> <span class="nav-text">WPS-Office</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS"><span class="nav-number">2.6.</span> <span class="nav-text">ROS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8"><span class="nav-number">2.7.</span> <span class="nav-text">音乐播放器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grub%E7%95%8C%E9%9D%A2"><span class="nav-number">2.8.</span> <span class="nav-text">grub界面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">2.8.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8%E9%A1%B9"><span class="nav-number">2.8.2.</span> <span class="nav-text">修改默认启动项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%88%86%E8%BE%A8%E7%8E%87"><span class="nav-number">2.8.3.</span> <span class="nav-text">修改分辨率</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91"><span class="nav-number">3.</span> <span class="nav-text">遇到的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%9D%91-%E7%A9%BA%E9%97%B4%EF%BC%882019-8%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">第一坑-空间（2019.8）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%9D%91-wifi%E9%80%82%E9%85%8D%E5%99%A8"><span class="nav-number">3.2.</span> <span class="nav-text">第二坑-wifi适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%9D%91-%E6%AF%94%E4%BE%8B%E9%97%AE%E9%A2%98"><span class="nav-number">3.3.</span> <span class="nav-text">第三坑-比例问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Log"><span class="nav-number">4.</span> <span class="nav-text">Log</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2019-08-07"><span class="nav-number">4.1.</span> <span class="nav-text">2019-08-07</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-7-30"><span class="nav-number">4.2.</span> <span class="nav-text">2020-7-30</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kermit"
+      src="/images/V.jpg">
+  <p class="site-author-name" itemprop="name">Kermit</p>
+  <div class="site-description" itemprop="description">人间无笑，我亦长歌</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://leefir.github.io/" title="http:&#x2F;&#x2F;leefir.github.io&#x2F;" rel="noopener" target="_blank">Leefir</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yummyjay.github.io/" title="https:&#x2F;&#x2F;yummyjay.github.io&#x2F;" rel="noopener" target="_blank">YummyJay</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bblss123.github.io/" title="https:&#x2F;&#x2F;bblss123.github.io&#x2F;" rel="noopener" target="_blank">bblss123</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kyleyoung-ymj.github.io/" title="https:&#x2F;&#x2F;kyleyoung-ymj.github.io&#x2F;" rel="noopener" target="_blank">KyleYoung</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://unicornt.github.io/" title="https:&#x2F;&#x2F;unicornt.github.io&#x2F;" rel="noopener" target="_blank">unicornt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://shinfeb.github.io/" title="https:&#x2F;&#x2F;shinfeb.github.io&#x2F;" rel="noopener" target="_blank">ShinFeb</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/%E5%85%B3%E4%BA%8E%E6%88%91%E9%87%8D%E8%A3%85ubuntu%E7%B3%BB%E7%BB%9F%E5%90%8E%E6%89%80%E5%81%9A%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/V.jpg">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kerke's Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于我重装ubuntu系统后所做的那些事
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-07 11:52:18" itemprop="dateCreated datePublished" datetime="2019-08-07T11:52:18+08:00">2019-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-07-30 17:09:38" itemprop="dateModified" datetime="2020-07-30T17:09:38+08:00">2020-07-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        
+    <div id="aplayer-WqPOVVKL" class="aplayer aplayer-tag-marker meting-tag-marker"
+         data-id="503619284" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
+    ></div>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>关于安装系统的具体过程，网络上有很多博客，私以为<a href="https://www.cnblogs.com/masbay/p/11627727.html">这篇博客</a>讲得最为详细，基本上按顺序照做即可。<br>其中有几个注意点：</p>
+<ul>
+<li>硬盘方面用DiskGenuis处理一下即可。</li>
+<li>UEFI模式电脑，U盘启动盘要制作成UEFI模式，否则很可能无法识别U盘。</li>
+<li>重启电脑前，要注意关闭win10电源计划中的快速启动这个选项，否则可能无法进入启动盘。具体方法自行百度。</li>
+<li>修改BIOS启动U盘时，除了常规操作外，要使Secure Boot不使能，而且Boot Mode必须选择Uefi模式。</li>
+<li>关于分区设置，我设置了三个分区<ul>
+<li>引导分区 efi 主分区 200MB</li>
+<li>交换区域 swaparea 逻辑分区 4096MB（4G）</li>
+<li>主目录 ext4 逻辑分区 挂载到&#x2F; 剩下空间（有些人会将&#x2F;home从根目录里单独分出来，相当于文档盘。但是我觉得没必要）</li>
+</ul>
+</li>
+</ul>
+<p>我通常选择的是最小化安装，所以系统里最初就只有firefox，gedit，Teriminal以及一些系统工具等基本配置。<br>重新安装了Ubuntu，那么一切都得重新配置，接下来就让我谈谈我都在Ubuntu上做了什么吧。</p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="更换下载源"><a href="#更换下载源" class="headerlink" title="更换下载源"></a>更换下载源</h2><p>到软件与更新中选择更换合适的下载源，默认下载源太慢了。</p>
+<p>更新完后来一波操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-update</span><br><span class="line">sudo apt-upgrade</span><br></pre></td></tr></table></figure>
+<h2 id="语言设置"><a href="#语言设置" class="headerlink" title="语言设置"></a>语言设置</h2><p>由于上次将系统设置成中文后，tty模式经常会乱码。这着实让我感到非常不爽，所以这次我索性将系统设置成英文，等习惯了说不定还能学好英文呢（笑）。<br>至于输入法，拼音绝对是必不可少的。无论是写博客，还是查资料，我都必须用中文。<br>这次我依旧选择的是ibus输入法。<br>首先安装拼音输入。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ibus-pinyin</span><br></pre></td></tr></table></figure>
+<p>然后打开设置选择Region&amp;Language，点击‘Manage Installed Languages’，在Install&#x2F;Remove Languages中选择Chinese(simplified)，选择apply。<br>回到Region&amp;Language，在Input Source中点击加号，单击Chinese，选择Chinese(Pinyin)，设置完成。</p>
+<h2 id="hexo-git（2019-8）"><a href="#hexo-git（2019-8）" class="headerlink" title="hexo+git（2019.8）"></a>hexo+git（2019.8）</h2><p>我用ubuntu的一大功能就是写blog，所以博客的环境必不可少。<br>由于之前写过<a href="https://kxjzxc.github.io/关于在linux环境下搭建博客这件事.html">教程</a>，所以这里就不再赘述了。</p>
+<h2 id="百度网盘（2019-8）"><a href="#百度网盘（2019-8）" class="headerlink" title="百度网盘（2019.8）"></a>百度网盘（2019.8）</h2><p>重装系统前，我都是使用Aria2来下载百度网盘文件的。后来终端不能用了，又要下载win7镜像文件，所以就下载了百度网盘linux版本，却意外发现也许大概应该可能没有限速？所以索性这次就直接下载百度网盘的linux版，反正aria2也不快，而且还麻烦。<br>方法嘛，直接去官网下载压缩包喽。</p>
+<h2 id="WPS-Office"><a href="#WPS-Office" class="headerlink" title="WPS-Office"></a>WPS-Office</h2><p>为了看word文档和ppt，就必须要有Office。这次因为是最小化安装，所以系统也就没装LibreOffice，而且我也不太喜欢用这玩意，打开个文件都要半天。<br>所以我去下载了WPS。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://kdl.cc.ksosoft.com/wps-community/download/6634/wps-office_10.1.0.6634_amd64.deb</span><br><span class="line">sudo dpkg -i wps-office_10.1.0.6634_amd64.deb</span><br></pre></td></tr></table></figure>
+<p>第二条命令需要进入安装包所在目录</p>
+<h2 id="ROS"><a href="#ROS" class="headerlink" title="ROS"></a>ROS</h2><p>ROS有需要就装，方法也不在这里赘述了，自己去官网找呗。</p>
+<h2 id="音乐播放器"><a href="#音乐播放器" class="headerlink" title="音乐播放器"></a>音乐播放器</h2><p>到写这篇博文前，我才惊觉自己没有安装音乐播放器。Gnome桌面套件自带的Rhythmbox我是不打算用了，倒也不是有什么地方不好，只是想换换。虽然网易云也有Linux版，但最终我还是选择比较符合Ubuntu气质的播放器（其实我也不知道啥是Ubuntu气质）。于是在一众神奇的播放器中，我相中了被称为Ubuntu界的千千静音的Audacious。至于用法，我暂且不会，将来用习惯了，用会了，或许会提一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install audacious</span><br><span class="line">sudo apt-get install audacious-plugins</span><br></pre></td></tr></table></figure>
+<p>第二条命令是安装解码器。</p>
+<h2 id="grub界面"><a href="#grub界面" class="headerlink" title="grub界面"></a>grub界面</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>选择一张背景，移动到&#x2F;boot&#x2F;grub里即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp -v grub_background.jpg /boot/grub</span><br></pre></td></tr></table></figure>
+<p>grub_background.jpg是你选择的背景图片</p>
+<h3 id="修改默认启动项"><a href="#修改默认启动项" class="headerlink" title="修改默认启动项"></a>修改默认启动项</h3><p>打开并编辑&#x2F;etc&#x2F;default&#x2F;grub，修改<code>GRUB_DEFAULT= 0</code>,修改的数字就是你想要默认启动的项的位置。例如Windows项在第三位，那我就改成2（0为第一位）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/default/grub</span><br></pre></td></tr></table></figure>
+<h3 id="修改分辨率"><a href="#修改分辨率" class="headerlink" title="修改分辨率"></a>修改分辨率</h3><p>编辑&#x2F;etc&#x2F;default&#x2F;grub文件，修改<code>GRUB_GFXMODE=800x640</code><br>把分辨率改为适合你的屏幕的大小,且支持的值。<br>可以在grub界面按<code>c</code>，然后输入<code>videoinfo</code>查看。</p>
+<p>进行上述操作后，需要使用以下指令更新</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-grub</span><br></pre></td></tr></table></figure>
+<h1 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h1><h2 id="第一坑-空间（2019-8）"><a href="#第一坑-空间（2019-8）" class="headerlink" title="第一坑-空间（2019.8）"></a>第一坑-空间（2019.8）</h2><p>前文讲分区的时候说了，感觉给根目录的分区太小，因为软件基本上是装在这上面的。我后来装了个ROS后，就只剩下几百MB了<br>这时摆在我面前的有两种做法<br>第一，压缩&#x2F;home分区，划给根目录，也就是直接切割磁盘。为此我下载了Gparted，然而那似乎只能操作非当前系统。所以我得去win7上操作。但是这终究只是我的猜想，而且这几天的经历也给我留下心理阴影，不敢再对磁盘动手。<br>第二，将&#x2F;usr目录和&#x2F;opt目录移到&#x2F;home目录下。<br>这是我上网找到的方法，还不错。</p>
+<ol>
+<li>尽量的关掉不用的程序</li>
+<li>复制 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd / ; sudo tar cf - usr opt | (cd /home ; sudo tar xfv - )</span><br></pre></td></tr></table></figure></li>
+<li>编辑fstab <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/fstab</span><br></pre></td></tr></table></figure>
+ 没有vim用gedit。<br> 在带&#x2F;usr 和&#x2F;opt的行(如果有的话)最前面加上#号<br> 然后在紧接着 &#x2F;home 的那行加上。 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/home/usr  /usr   none    bind    0       0</span><br><span class="line">/home/opt  /opt   none    bind    0       0</span><br></pre></td></tr></table></figure></li>
+<li>保存并重启</li>
+</ol>
+<p>方法有效。<br>但是我后来想删掉根目录下的&#x2F;usr时，系统又双叒叕崩溃了。<br>原因不明，方法无效，准备重装。<br>好吧，实际上这次我用启动盘启动后，没有选择install ubuntu，而是try ubuntu<br>于是我进入了在ubuntu系统后，检查了两个目录下的&#x2F;usr目录，发现主目录下有缺失，于是用<code>sudo cp -r 源文件路径 要复制到的文件夹路径</code>将&#x2F;usr有复制了一遍后，成功重启。<br>但是我不打算再碰根目录了。</p>
+<h2 id="第二坑-wifi适配器"><a href="#第二坑-wifi适配器" class="headerlink" title="第二坑-wifi适配器"></a>第二坑-wifi适配器</h2><p>安装完之后发现无法连接无线网络，打开设置里的wifi，才发现显示未发现wifi适配器。</p>
+<p>解决方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe -r ideapad_laptop</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三坑-比例问题"><a href="#第三坑-比例问题" class="headerlink" title="第三坑-比例问题"></a>第三坑-比例问题</h2><p>由于电脑分辨率比较高，系统显示的字体与界面都比较小。<br>可以到设置-&gt;设备-&gt;显示中修改比例</p>
+<h1 id="Log"><a href="#Log" class="headerlink" title="Log"></a>Log</h1><h2 id="2019-08-07"><a href="#2019-08-07" class="headerlink" title="2019-08-07"></a>2019-08-07</h2><p>上周五，我搞完基础的ros，准备进军OpenCv了解了解图像处理。然而没意识到装ROS全桌面版时OpenCv早已跑到我电脑里的我傻乎乎地打算再装一个OpenCv。于是在漫长且无趣的安装途中，我一时心血来潮，查看了自己的python版本——2.7，于是果断打算升级一波。且不说我不知道系统本来就自带两个版本的python，等我心满意足地升级完后，意外地发现自家终端打不开了。这就是此次事故的万恶之源。<br>根据网上提供的方法，我进入tty3，输入<code>gnome-terminal</code>，回车，发现是什么<code>no module named &#39;gi&#39;</code>。我百度几下，再各种死马当活马医的折腾，却完全不见效果。最终恼羞成怒的我，决定莽过去，极其无脑地删掉了整个python3文件夹，于是乎，系统崩溃。而后随抢救回来，但是也不过是回到原点，而且输入法也消失了。</p>
+<p>无计可施的我打算重装了。<br>但是完全没有经验的我打算先卸载移动硬盘里的ubuntu（我装在移动硬盘里），先搞grub引导。于是下载FreeBSD就是一通乱搞。<br>好了，我把win7也搞炸了。<br>win7上不去？那就只能暴力重装喽。但现在只有ubuntu是可以制作启动盘喽，于是又回到ubuntu制作win7的启动盘。结果最后有败在了引导上，连ubuntu都装不上去了。<br>好的，那么现在两个系统都白给了。浪费了整整一天的我求助了同学，最终意外的用PE修复了win7的引导，可喜可贺。（PE真是个好东西）</p>
+<p>事到如今，我也改变了想法，将两个系统都装在电脑硬盘上，文件数据都放在移动硬盘上。如此一来我也不必费劲去卸载原先的ubuntu了。<br>怀着这等策略，我迎来了安装ubuntu的第二天，然而很快就迎来了第一个坑——启动盘无法启动我的电脑。<br>我的启动盘是用sd卡+读卡器制成的，理论上和U盘没什么区别，而我的电脑就是无法在开机时识别到此启动盘。确定一遍bios，没错。在别人电脑上试试，识别成功。用UltraISO制作，还是不行。就这样荒废了整个白天，我也没查出个所以然来。最终将原因归结为电脑型号太旧无法识别读卡器后，向同学借了个U盘，制成启动盘，成功启动。</p>
+<p>接下来的安装ubuntu的过程倒是简单到令人感动。</p>
+<p>经过这三天看似毫无意义的折腾后，我对系统修复和安装以及ubuntu的结构都上升了一个台阶，也算是不幸中的万幸。<br>这篇博文我打算时时更新，将我认为必要的软件和操作写到此处，以便以后重装系统时，能知道做什么。</p>
+<h2 id="2020-7-30"><a href="#2020-7-30" class="headerlink" title="2020-7-30"></a>2020-7-30</h2><p>今年换了新电脑，我也从win7党变成了win10党。不过刚买来发现并没有安装ubuntu的必要，所以也就没有急着装双系统，博客什么的也都迁移到了windows上。然而下学期选了需要用ros的课程，所以最近把Ubuntu装了起来。</p>
+<p>由于电脑比原先的高级一些，而系统也不再是win10，所以我这次安装系统也花费了不少时间，虽然最后发现都是启动盘制作工具的锅，我还是老老实实的用USBWriter吧。</p>
+<p>至于grub，我原先只是想要改个启动顺序，毕竟主要还是使用windows，不想每次都手动选择。搜索的过程中发现了还可以更改背景这一操作，甚是惊喜。不过分辨率最终还是没有修改。倒不是没有用，而是其他分辨率比例不对，让人头痛。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ROS%E7%AC%AC%E4%B8%80%E5%9D%91%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html" rel="prev" title="ROS第一坑之基本操作">
+                  <i class="fa fa-chevron-left"></i> ROS第一坑之基本操作
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E5%9F%BA%E4%BA%8EOpenCV%E5%92%8CZbar%E7%9A%84%E8%AF%86%E5%88%AB%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%8E%A7%E5%88%B6%E6%9C%BA%E6%A2%B0%E8%87%82.html" rel="next" title="基于OpenCV和Zbar的识别二维码控制机械臂">
+                  基于OpenCV和Zbar的识别二维码控制机械臂 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">216k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2d/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d/","pluginJsPath":"lib/","pluginModelPath":"assert/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

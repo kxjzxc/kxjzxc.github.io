@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico">
+  <link rel="mask-icon" href="/images/V.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于canvas的鼠标画图功能">
+<meta property="og:url" content="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8Ecanvas%E7%9A%84%E9%BC%A0%E6%A0%87%E7%94%BB%E5%9B%BE%E5%8A%9F%E8%83%BD.html">
+<meta property="og:site_name" content="Kerke&#39;s Eden">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-08T15:37:47.000Z">
+<meta property="article:modified_time" content="2021-07-02T09:17:14.941Z">
+<meta property="article:author" content="Kermit">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8Ecanvas%E7%9A%84%E9%BC%A0%E6%A0%87%E7%94%BB%E5%9B%BE%E5%8A%9F%E8%83%BD.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8Ecanvas%E7%9A%84%E9%BC%A0%E6%A0%87%E7%94%BB%E5%9B%BE%E5%8A%9F%E8%83%BD.html","path":"基于canvas的鼠标画图功能.html","title":"基于canvas的鼠标画图功能"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基于canvas的鼠标画图功能 | Kerke's Eden</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kerke's Eden" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kerke's Eden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories" rel="section">分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section">关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives" rel="section">归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags" rel="section">标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#html"><span class="nav-number">1.</span> <span class="nav-text">html</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#css"><span class="nav-number">2.</span> <span class="nav-text">css</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#javascript"><span class="nav-number">3.</span> <span class="nav-text">javascript</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%9A%E9%9C%80%E6%94%B9%E8%BF%9B%E4%B9%8B%E5%A4%84"><span class="nav-number">4.</span> <span class="nav-text">尚需改进之处</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kermit"
+      src="/images/V.jpg">
+  <p class="site-author-name" itemprop="name">Kermit</p>
+  <div class="site-description" itemprop="description">人间无笑，我亦长歌</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://leefir.github.io/" title="http:&#x2F;&#x2F;leefir.github.io&#x2F;" rel="noopener" target="_blank">Leefir</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yummyjay.github.io/" title="https:&#x2F;&#x2F;yummyjay.github.io&#x2F;" rel="noopener" target="_blank">YummyJay</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bblss123.github.io/" title="https:&#x2F;&#x2F;bblss123.github.io&#x2F;" rel="noopener" target="_blank">bblss123</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kyleyoung-ymj.github.io/" title="https:&#x2F;&#x2F;kyleyoung-ymj.github.io&#x2F;" rel="noopener" target="_blank">KyleYoung</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://unicornt.github.io/" title="https:&#x2F;&#x2F;unicornt.github.io&#x2F;" rel="noopener" target="_blank">unicornt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://shinfeb.github.io/" title="https:&#x2F;&#x2F;shinfeb.github.io&#x2F;" rel="noopener" target="_blank">ShinFeb</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/%E5%9F%BA%E4%BA%8Ecanvas%E7%9A%84%E9%BC%A0%E6%A0%87%E7%94%BB%E5%9B%BE%E5%8A%9F%E8%83%BD.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/V.jpg">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kerke's Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于canvas的鼠标画图功能
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-08 23:37:47" itemprop="dateCreated datePublished" datetime="2019-04-08T23:37:47+08:00">2019-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-07-02 17:17:14" itemprop="dateModified" datetime="2021-07-02T17:17:14+08:00">2021-07-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E7%A8%8B%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">程序</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E7%A8%8B%E5%BA%8F/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在别人的前端demo中看到了鼠标画图这一项目，略感兴趣，于是读其代码，实现其功能。</p>
+<!--![点此体验](/2019/04/08/基于canvas的鼠标画图功能/mouseDraw.html)-->
+<p><a href="/基于canvas的鼠标画图功能/mouseDraw.html">点此体验</a></p>
+<p>用鼠标画图的功能不是很难，原代码将html、css、javascript全部放在一份文档里都不算长。为了更好的阅读，我将其分成了三份。</p>
+<h4 id="html"><a href="#html" class="headerlink" title="html"></a>html</h4><p>在<code>&lt;head&gt;</code>标签中引用css和javascript代码<br>在<code>&lt;body&gt;</code>标签中构造按钮区域以及canvas画布</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=utf-8&quot;</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">title</span>&gt;</span>鼠标画图<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;mouseDraw.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;mouseDraw.css&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;button&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;重画&quot;</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!--定义画布元素，宽高要写在标签里。</span></span><br><span class="line"><span class="comment">     若在css文件设置，虽然canvas标签的大小会正常显示，绘制的图形则会按照缺省宽高比例放大缩小，缺省的高度是300px，宽度是150px--&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;can&quot;</span> <span class="attr">width</span>=<span class="string">&quot;500px&quot;</span> <span class="attr">height</span>=<span class="string">&quot;500px&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="css"><a href="#css" class="headerlink" title="css"></a>css</h4><p>无解说</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*允许中文字符*/</span></span><br><span class="line"><span class="keyword">@charset</span> <span class="string">&quot;utf-8&quot;</span>;</span><br><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line"> <span class="attribute">background</span>: <span class="number">#CCC</span>;</span><br><span class="line"> <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#button</span>&#123;</span><br><span class="line"> <span class="attribute">margin</span>: <span class="number">50px</span> auto;</span><br><span class="line"> <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#can</span>&#123;</span><br><span class="line"> <span class="attribute">background</span>: white;</span><br><span class="line"> <span class="attribute">margin-top</span>: -<span class="number">50px</span>;</span><br><span class="line"> <span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h4><p>1.创建画布<br>2.获取按键元素，并赋予清除功能<br>3.画布中实现画图功能</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"> <span class="comment">//获取&lt;canvas&gt;元素</span></span><br><span class="line"> <span class="keyword">var</span> can=<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;can&quot;</span>);</span><br><span class="line"> <span class="comment">//创建画布对象</span></span><br><span class="line"> <span class="keyword">var</span> con=can.<span class="title function_">getContext</span>(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line"> <span class="comment">//获取按键元素，此处是通过标签名得到的变量，是数组变量</span></span><br><span class="line"> <span class="keyword">var</span> inp=<span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&quot;input&quot;</span>);</span><br><span class="line"> <span class="comment">//清空画布.canvas每当高度或宽度被重设时，画布内容就会被清空,（此方法仅限需要清除全部内容的情况）</span></span><br><span class="line"> inp[<span class="number">0</span>].<span class="property">onclick</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  can.<span class="property">width</span>=can.<span class="property">width</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//当用户按下鼠标按钮执行Javascript代码</span></span><br><span class="line"> can.<span class="property">onmousedown</span>=<span class="keyword">function</span>(<span class="params">ev</span>)&#123;</span><br><span class="line">  <span class="comment">//兼容各个浏览器。</span></span><br><span class="line">  <span class="comment">//在FireFox浏览器中，事件绑定的函数要获取到事件本身，需要从函数中传入，而IE等浏览器则可以直接使用event或者window.event得到事件本身。</span></span><br><span class="line">  <span class="keyword">var</span> ev=ev||event;</span><br><span class="line">  <span class="comment">/* moveTo:定义一个起点</span></span><br><span class="line"><span class="comment">    client系列:可视区域</span></span><br><span class="line"><span class="comment">    clientX： 相对文档的水平坐标</span></span><br><span class="line"><span class="comment">    clientY： 相对文档的垂直坐标</span></span><br><span class="line"><span class="comment">    offsetLeft： 对象相对于版面或由 offsetParent 左侧位置</span></span><br><span class="line"><span class="comment">    offsetTop：对象相对于版面或由 offsetTop 顶端位置</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="comment">//document.write(ev.clientX-can.offsetLeft);</span></span><br><span class="line">  con.<span class="title function_">moveTo</span>(ev.<span class="property">clientX</span>-can.<span class="property">offsetLeft</span>,ev.<span class="property">clientY</span>-can.<span class="property">offsetTop</span>);</span><br><span class="line">  <span class="comment">//当鼠标指针移动到图像上时执行一段Javascript代码</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">onmousemove</span>=<span class="keyword">function</span>(<span class="params">ev</span>)&#123;</span><br><span class="line">   <span class="keyword">var</span> ev=ev||event;</span><br><span class="line">   <span class="comment">//lineTo() 方法添加一个新点，然后创建从该点到画布中最后指定点的线条（该方法并不会创建线条）。</span></span><br><span class="line">   con.<span class="title function_">lineTo</span>(ev.<span class="property">clientX</span>-can.<span class="property">offsetLeft</span>,ev.<span class="property">clientY</span>-can.<span class="property">offsetTop</span>);</span><br><span class="line">   <span class="comment">//stroke() 方法会实际地绘制出通过 moveTo() 和 lineTo() 方法定义的路径。默认颜色是黑色。</span></span><br><span class="line">   con.<span class="title function_">stroke</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//当鼠标释放时执行一段Javascript代码</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">onmouseup</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="comment">//鼠标释放后这些事件不再触发函数</span></span><br><span class="line">   <span class="variable language_">document</span>.<span class="property">onmousedown</span>=<span class="variable language_">document</span>.<span class="property">onmousemove</span>=<span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="尚需改进之处"><a href="#尚需改进之处" class="headerlink" title="尚需改进之处"></a>尚需改进之处</h4><p>1.该清除为擦除<br>2.改变画笔颜色大小等属性<br>3.改变画布大小<br>4.待定</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E3%80%90%E5%B0%8F%E8%AF%B4%E3%80%91%E6%B7%B1%E5%A4%9C%E6%B4%BE%E5%AF%B9.html" rel="prev" title="【小说】深夜派对">
+                  <i class="fa fa-chevron-left"></i> 【小说】深夜派对
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%80%94%E2%80%94%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6%E3%80%81%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8%E3%80%81%E7%9B%B8%E5%AF%B9%E8%AE%BA.html" rel="next" title="【基础学习】大学物理——牛顿力学、刚体转动、相对论">
+                  【基础学习】大学物理——牛顿力学、刚体转动、相对论 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">216k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2d/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d/","pluginJsPath":"lib/","pluginModelPath":"assert/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

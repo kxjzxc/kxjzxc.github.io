@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico">
+  <link rel="mask-icon" href="/images/V.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="noip 2016 炸坑记&amp;&amp;OI总结">
+<meta property="og:url" content="http://kxjzxc.github.io/noip%202016%20%E7%82%B8%E5%9D%91%E8%AE%B0&&OI%E6%80%BB%E7%BB%93.html">
+<meta property="og:site_name" content="Kerke&#39;s Eden">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-12-02T11:37:42.000Z">
+<meta property="article:modified_time" content="2019-03-08T15:43:10.000Z">
+<meta property="article:author" content="Kermit">
+<meta property="article:tag" content="杂">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://kxjzxc.github.io/noip%202016%20%E7%82%B8%E5%9D%91%E8%AE%B0&&OI%E6%80%BB%E7%BB%93.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kxjzxc.github.io/noip%202016%20%E7%82%B8%E5%9D%91%E8%AE%B0&&OI%E6%80%BB%E7%BB%93.html","path":"noip 2016 炸坑记&&OI总结.html","title":"noip 2016 炸坑记&&OI总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>noip 2016 炸坑记&&OI总结 | Kerke's Eden</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kerke's Eden" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kerke's Eden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories" rel="section">分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section">关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives" rel="section">归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags" rel="section">标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kermit"
+      src="/images/V.jpg">
+  <p class="site-author-name" itemprop="name">Kermit</p>
+  <div class="site-description" itemprop="description">人间无笑，我亦长歌</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://leefir.github.io/" title="http:&#x2F;&#x2F;leefir.github.io&#x2F;" rel="noopener" target="_blank">Leefir</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yummyjay.github.io/" title="https:&#x2F;&#x2F;yummyjay.github.io&#x2F;" rel="noopener" target="_blank">YummyJay</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bblss123.github.io/" title="https:&#x2F;&#x2F;bblss123.github.io&#x2F;" rel="noopener" target="_blank">bblss123</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kyleyoung-ymj.github.io/" title="https:&#x2F;&#x2F;kyleyoung-ymj.github.io&#x2F;" rel="noopener" target="_blank">KyleYoung</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://unicornt.github.io/" title="https:&#x2F;&#x2F;unicornt.github.io&#x2F;" rel="noopener" target="_blank">unicornt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://shinfeb.github.io/" title="https:&#x2F;&#x2F;shinfeb.github.io&#x2F;" rel="noopener" target="_blank">ShinFeb</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/noip%202016%20%E7%82%B8%E5%9D%91%E8%AE%B0&&OI%E6%80%BB%E7%BB%93.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/V.jpg">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kerke's Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          noip 2016 炸坑记&&OI总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-12-02 19:37:42" itemprop="dateCreated datePublished" datetime="2016-12-02T19:37:42+08:00">2016-12-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2019-03-08 23:43:10" itemprop="dateModified" datetime="2019-03-08T23:43:10+08:00">2019-03-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9D%82/" itemprop="url" rel="index"><span itemprop="name">杂</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=32823307&auto=1&height=66"></iframe>
+知道成绩的那一天，我其实也不是非常难过，可能是从考完到出成绩的这一个星期内，我已经有爆炸的预感了，只不过没有想到竟然会炸的那么惨。说完全没有影响心情是假的，应该是非常的遗憾和担忧，遗憾的是我的OI生活竟然会以这么一个惨烈的成绩结尾，担忧的是感觉完全不知道该怎么面对别人的询问，尤其是对我抱有期望的那些人。
+
+<p>总结这次比赛，虽然题目比往年难了很多，但是这个因素并没有很大的影响，因为难度并没有超过联赛的范围，平常的题目也不必这次简单。所以我感觉爆炸的原因极大部分都出现在个人的身上。</p>
+<p>虽然所在的学校对于考试是家常便饭，但是这并没有令我养成考试不紧张的好习惯，该慌的依旧是慌，大概是我的文化课成绩一直都不太好的原因吧，太过担心自己掉链子，使得考试的时候总是非常的紧张。尽管有些比赛只是最为炮灰的而参加的，但是内心深处还是非常渴望奇迹。<br>而对于这次联赛，这个紧张状态在初赛是就已经出现，所幸初赛并没有掉链子。<br>然而在复赛的时候，不，是在联赛之前，就已经开始了，到比赛的时候达到的顶端，以至于这次比赛day1由于两个低级错误失掉了125分，而day2由于没有考虑精度而导致85分的丢失，总共就有210分了，这210让我在接下来的几天里都误以为自己考了500分，但是旋即惊醒，内心失落无比。幻想很丰满，而现实很残酷，蒟蒻始终是蒟蒻，心理上的劣势终究会影响实际结果。<br>这样的结果大概时联赛的最坏情况了吧，考场和平时的训练果然不同。</p>
+<p>算一算，我从2015年7月20号开始的OI生活，当2016年11月20号截至，共16个月的时间里，我从刚开始的什么都是一脸懵逼，到可以掌握点分治，Dinic等算法，感觉十分不可思议，有时候看着一个个本来什么都不懂的字符从我的指尖流淌而出，都变成一篇篇可以阅读，可以运行的程序，就好像自己亲自抚养的宠物，心中充满了成就感。机房里的诸位也是每天活力满满地敲题，翻译，看题解，互相膜拜，随意扯皮，时间就在听着纯音敲着代码的日子中逝去。但是失落症发作的我总会担心这样大家一起打CF，TC的日子一去不复返，结果这样的日子就真的来了。</p>
+<p>其实我的学习历程也不是很令人满意，像去年noip的时候，我连什么dp状态都不知道是什么，更不要提什么转移了，只能凭感觉写，接下来也只不过是浑浑噩噩地写着题目，翻译，写题解，有时候写出来的题解就是错误的。看别人题解的时候，遇到像什么扫描线，期望什么当时完全不懂的东西，就会大惊小怪，仿佛是什么不得了的东西，但是实际上也不是不能够学习的，所以说心态就没有摆正，以至于前期我学习算法的速度极慢，知道暑假后的一段时间，我开始自己主动去学习算法后，这种状况在有所好转。可以说几个月前的我还是一个连蒟蒻都算不上的渣渣，最近才进化成蒟蒻的。</p>
+<p>即使我的竞赛历程有很多遗憾，但是我却从来没有后悔过学这门竞赛。我学这门竞赛的缘由并非是为了升学，一开始是为了另一个兴趣才开始学习的，但是却也逐渐成为了我的一个新兴趣。也许如果不是当初的一个念头，我也不会接触到这个世界，并不会知道有CF，TC这种调节生活的网站，更不会知道世界上还会有程序猿这种悲剧的物种。这一切充满了巧合，却也是必然。因为这门竞赛，我的高中生活的确变得非常的充实而有趣。可能文化课方面会落下很多，但是时间还早，我补得起，而且我想，即使我没有学竞赛，我的文化课成绩也不会比现在好多少，因为我了解自己，没有压力，就没有动力，曾经如此，现在依然。</p>
+<p>如今，我遗憾地离开，也许明年会来一雪前耻，但是至少现阶段我不得不专心与高考。起码无论如何，冬令营省队这种神奇的东西对我来说相当于痴人说梦，无形之中这对我也算是一种安慰了。之后的日子，我也没有时间在去敲代码了，但是CF能比还是会比的，TC就算了，Div1太难了，BC偶尔会比一下。希望在之后的日子里，我可以上紫吧。（上黄等奇迹……）</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9D%82/" rel="tag"># 杂</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Tarjan.html" rel="prev" title="Tarjan-图的连通性">
+                  <i class="fa fa-chevron-left"></i> Tarjan-图的连通性
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E5%9D%A0%E5%85%A5%E5%AD%A6%E8%80%83%E7%9A%84%E6%B7%B1%E6%B8%8A.html" rel="next" title="坠入学考的深渊">
+                  坠入学考的深渊 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">216k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2d/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d/","pluginJsPath":"lib/","pluginModelPath":"assert/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

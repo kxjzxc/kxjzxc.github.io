@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico">
+  <link rel="mask-icon" href="/images/V.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字图像处理之图像获取与直方图均衡化">
+<meta property="og:url" content="http://kxjzxc.github.io/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96.html">
+<meta property="og:site_name" content="Kerke&#39;s Eden">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kxjzxc.github.io/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/%E5%8E%9F%E5%9B%BE.png">
+<meta property="og:image" content="http://kxjzxc.github.io/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/%E5%9D%87%E8%A1%A1%E5%8C%96%E5%89%8D%E7%9A%84%E5%9B%BE%E5%83%8F.png">
+<meta property="og:image" content="http://kxjzxc.github.io/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/%E5%9D%87%E8%A1%A1%E5%8C%96%E5%89%8D%E7%9A%84%E7%9B%B4%E6%96%B9%E5%9B%BE.png">
+<meta property="og:image" content="http://kxjzxc.github.io/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/%E5%9D%87%E8%A1%A1%E5%8C%96%E5%90%8E%E7%9A%84%E5%9B%BE%E5%83%8F.png">
+<meta property="og:image" content="http://kxjzxc.github.io/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/%E5%9D%87%E8%A1%A1%E5%8C%96%E5%90%8E%E7%9A%84%E7%9B%B4%E6%96%B9%E5%9B%BE.png">
+<meta property="article:published_time" content="2021-01-13T07:56:58.000Z">
+<meta property="article:modified_time" content="2021-06-25T03:48:03.006Z">
+<meta property="article:author" content="Kermit">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="OpenCV">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kxjzxc.github.io/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/%E5%8E%9F%E5%9B%BE.png">
+
+
+<link rel="canonical" href="http://kxjzxc.github.io/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kxjzxc.github.io/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96.html","path":"数字图像处理之图像获取与直方图均衡化.html","title":"数字图像处理之图像获取与直方图均衡化"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数字图像处理之图像获取与直方图均衡化 | Kerke's Eden</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kerke's Eden" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kerke's Eden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories" rel="section">分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section">关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives" rel="section">归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags" rel="section">标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82"><span class="nav-number">2.</span> <span class="nav-text">实验要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">直方图均衡化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">运行结果</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kermit"
+      src="/images/V.jpg">
+  <p class="site-author-name" itemprop="name">Kermit</p>
+  <div class="site-description" itemprop="description">人间无笑，我亦长歌</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://leefir.github.io/" title="http:&#x2F;&#x2F;leefir.github.io&#x2F;" rel="noopener" target="_blank">Leefir</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yummyjay.github.io/" title="https:&#x2F;&#x2F;yummyjay.github.io&#x2F;" rel="noopener" target="_blank">YummyJay</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bblss123.github.io/" title="https:&#x2F;&#x2F;bblss123.github.io&#x2F;" rel="noopener" target="_blank">bblss123</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kyleyoung-ymj.github.io/" title="https:&#x2F;&#x2F;kyleyoung-ymj.github.io&#x2F;" rel="noopener" target="_blank">KyleYoung</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://unicornt.github.io/" title="https:&#x2F;&#x2F;unicornt.github.io&#x2F;" rel="noopener" target="_blank">unicornt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://shinfeb.github.io/" title="https:&#x2F;&#x2F;shinfeb.github.io&#x2F;" rel="noopener" target="_blank">ShinFeb</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/V.jpg">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kerke's Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数字图像处理之图像获取与直方图均衡化
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-13 15:56:58" itemprop="dateCreated datePublished" datetime="2021-01-13T15:56:58+08:00">2021-01-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-06-25 11:48:03" itemprop="dateModified" datetime="2021-06-25T11:48:03+08:00">2021-06-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">数字图像处理</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>咕了一个学期，终于有时间也有东西可写了，虽然只是大三上修的数字图像处理的实验而已。</p>
+<h1 id="实验要求"><a href="#实验要求" class="headerlink" title="实验要求"></a>实验要求</h1><ol>
+<li>统计每个灰度下的像素个数</li>
+<li>绘制出直方图</li>
+<li>计算累计密度</li>
+<li>重新计算均衡化后的灰度值，四舍五入</li>
+<li>直方图均衡化，更新原图每个点的像素值</li>
+</ol>
+<h1 id="直方图均衡化"><a href="#直方图均衡化" class="headerlink" title="直方图均衡化"></a>直方图均衡化</h1><p>直方图均衡化是常用的图像增强处理技术，其原理为：<br>r：原图像灰度级<br>s：均衡化后的图像灰度级<br>$ P_r(w)$：图像灰度概率分布<br>$ P_s(w)$：均衡化后的图像灰度概率分布<br>设直方图均衡化变换函数为$$s&#x3D;T(r)$$，有$$\int_{rmin}^r{P_r(w)dw}&#x3D;\int_{smin}^s{P_s(w)dw}&#x3D;C(r)$$<br>其中C(r)为累计分布函数<br>若期望变换后输出图像的灰度概率密度均匀分布，即$$P_s(s)&#x3D;\frac{1}{smax-smin}$$，则$$C(r)&#x3D;\int_{smin}^s{\frac{1}{smax-smin}dw}&#x3D;\frac{s-smin}{smax-smin}$$<br>所以可得$$s&#x3D;[smax-smin]C(r)+smin$$</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> p_cnt[<span class="number">256</span>];</span><br><span class="line"><span class="type">float</span> p_sum[<span class="number">256</span>];</span><br><span class="line"><span class="type">int</span> s[<span class="number">256</span>];</span><br><span class="line"><span class="type">int</span> rows,cols;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">DrawHistogram</span><span class="params">(string name,Mat src)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">256</span>;i++)p_cnt[i]=<span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> maxvalue = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;rows;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;cols;j++)</span><br><span class="line">		&#123;	</span><br><span class="line">			<span class="type">int</span> p = src.<span class="built_in">at</span>&lt;uchar&gt;(i,j);</span><br><span class="line">			p_cnt[p]+=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(p_cnt[p]&gt;maxvalue)&#123;</span><br><span class="line">				maxvalue=p_cnt[p];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">cv::Mat <span class="title">histogram</span><span class="params">(Size(<span class="number">256</span>,<span class="number">256</span>),CV_8U,Scalar(<span class="number">0</span>))</span></span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">256</span>;i++)&#123;</span><br><span class="line">		<span class="type">int</span> h=p_cnt[i]*<span class="number">255</span>/maxvalue;<span class="comment">//归一化</span></span><br><span class="line">		<span class="built_in">line</span>(histogram,<span class="built_in">Point</span>(i,<span class="number">255</span>),<span class="built_in">Point</span>(i,<span class="number">255</span>-h),<span class="built_in">Scalar</span>(<span class="number">255</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">imshow</span>(name,histogram);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> **argv)</span></span>&#123;</span><br><span class="line">	Mat img_in,img_out;</span><br><span class="line">	<span class="comment">//读取原始图像</span></span><br><span class="line">	img_in=<span class="built_in">imread</span>(argv[<span class="number">1</span>],IMREAD_UNCHANGED);</span><br><span class="line">	<span class="comment">//检查是否读取图像</span></span><br><span class="line">	<span class="keyword">if</span>(img_in.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;Error! Input image cannot be read...\n&quot;</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;src&quot;</span>,img_in);</span><br><span class="line">	<span class="comment">//转化为灰度图  </span></span><br><span class="line">	<span class="comment">//code	</span></span><br><span class="line">	cv::Mat grayimg;</span><br><span class="line">	cv::<span class="built_in">cvtColor</span>(img_in,grayimg,CV_BGR2GRAY);	</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;均衡化前的图像&quot;</span>,grayimg);</span><br><span class="line">	rows = grayimg.rows;</span><br><span class="line">	cols = grayimg.cols;</span><br><span class="line">	<span class="type">int</span> N = cols*rows;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">DrawHistogram</span>(<span class="string">&quot;均衡化前的直方图&quot;</span>,grayimg);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//直方图均衡化</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">256</span>;i++)&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(i==<span class="number">0</span>)&#123;</span><br><span class="line">			p_sum[i]=<span class="number">1.0</span>*p_cnt[i]/N;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> p_sum[i]=p_sum[i<span class="number">-1</span>]<span class="number">+1.0</span>*p_cnt[i]/N;</span><br><span class="line">		s[i] = p_sum[i]*<span class="number">255</span><span class="number">+0.5</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//更新像素灰度值</span></span><br><span class="line">	<span class="function">cv::Mat <span class="title">finaimg</span><span class="params">(grayimg)</span></span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;rows;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;cols;j++)</span><br><span class="line">		&#123;	</span><br><span class="line">			<span class="type">int</span> p = grayimg.<span class="built_in">at</span>&lt;uchar&gt;(i,j);</span><br><span class="line">			finaimg.<span class="built_in">at</span>&lt;uchar&gt;(i,j) = s[p];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">imshow</span>(<span class="string">&quot;均衡化后的图像&quot;</span>,finaimg);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">DrawHistogram</span>(<span class="string">&quot;均衡化后的直方图&quot;</span>,finaimg);</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;Press any key to exit...\n&quot;</span>;</span><br><span class="line">    <span class="built_in">waitKey</span>(); <span class="comment">// Wait for key press</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p><img src="/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/%E5%8E%9F%E5%9B%BE.png" alt="原图"><br><img src="/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/%E5%9D%87%E8%A1%A1%E5%8C%96%E5%89%8D%E7%9A%84%E5%9B%BE%E5%83%8F.png" alt="原图"><br><img src="/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/%E5%9D%87%E8%A1%A1%E5%8C%96%E5%89%8D%E7%9A%84%E7%9B%B4%E6%96%B9%E5%9B%BE.png" alt="原图"><br><img src="/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/%E5%9D%87%E8%A1%A1%E5%8C%96%E5%90%8E%E7%9A%84%E5%9B%BE%E5%83%8F.png" alt="原图"><br><img src="/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E8%8E%B7%E5%8F%96%E4%B8%8E%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96/%E5%9D%87%E8%A1%A1%E5%8C%96%E5%90%8E%E7%9A%84%E7%9B%B4%E6%96%B9%E5%9B%BE.png" alt="原图"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+              <a href="/tags/OpenCV/" rel="tag"># OpenCV</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E3%80%90RPGMakerMV%E3%80%91%E6%BB%91%E5%86%B0%E8%B0%9C%E9%A2%98.html" rel="prev" title="【RPGMakerMV】滑冰谜题">
+                  <i class="fa fa-chevron-left"></i> 【RPGMakerMV】滑冰谜题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E5%9B%BE%E5%83%8F%E6%BB%A4%E6%B3%A2%E4%B8%8E%E5%BD%A2%E6%80%81%E5%AD%A6.html" rel="next" title="数字图像处理之图像滤波与形态学">
+                  数字图像处理之图像滤波与形态学 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">216k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2d/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d/","pluginJsPath":"lib/","pluginModelPath":"assert/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

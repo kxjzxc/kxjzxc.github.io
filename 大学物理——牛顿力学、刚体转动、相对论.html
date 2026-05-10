@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico">
+  <link rel="mask-icon" href="/images/V.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="【基础学习】大学物理——牛顿力学、刚体转动、相对论">
+<meta property="og:url" content="http://kxjzxc.github.io/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%80%94%E2%80%94%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6%E3%80%81%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8%E3%80%81%E7%9B%B8%E5%AF%B9%E8%AE%BA.html">
+<meta property="og:site_name" content="Kerke&#39;s Eden">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kxjzxc.github.io/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%80%94%E2%80%94%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6%E3%80%81%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8%E3%80%81%E7%9B%B8%E5%AF%B9%E8%AE%BA/%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6.png">
+<meta property="og:image" content="http://kxjzxc.github.io/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%80%94%E2%80%94%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6%E3%80%81%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8%E3%80%81%E7%9B%B8%E5%AF%B9%E8%AE%BA/%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8.png">
+<meta property="og:image" content="http://kxjzxc.github.io/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%80%94%E2%80%94%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6%E3%80%81%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8%E3%80%81%E7%9B%B8%E5%AF%B9%E8%AE%BA/%E7%9B%B8%E5%AF%B9%E8%AE%BA.png">
+<meta property="article:published_time" content="2019-04-14T09:02:50.000Z">
+<meta property="article:modified_time" content="2019-06-24T12:35:12.000Z">
+<meta property="article:author" content="Kermit">
+<meta property="article:tag" content="杂">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kxjzxc.github.io/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%80%94%E2%80%94%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6%E3%80%81%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8%E3%80%81%E7%9B%B8%E5%AF%B9%E8%AE%BA/%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6.png">
+
+
+<link rel="canonical" href="http://kxjzxc.github.io/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%80%94%E2%80%94%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6%E3%80%81%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8%E3%80%81%E7%9B%B8%E5%AF%B9%E8%AE%BA.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kxjzxc.github.io/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%80%94%E2%80%94%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6%E3%80%81%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8%E3%80%81%E7%9B%B8%E5%AF%B9%E8%AE%BA.html","path":"大学物理——牛顿力学、刚体转动、相对论.html","title":"【基础学习】大学物理——牛顿力学、刚体转动、相对论"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【基础学习】大学物理——牛顿力学、刚体转动、相对论 | Kerke's Eden</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kerke's Eden" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kerke's Eden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories" rel="section">分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section">关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives" rel="section">归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags" rel="section">标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kermit"
+      src="/images/V.jpg">
+  <p class="site-author-name" itemprop="name">Kermit</p>
+  <div class="site-description" itemprop="description">人间无笑，我亦长歌</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://leefir.github.io/" title="http:&#x2F;&#x2F;leefir.github.io&#x2F;" rel="noopener" target="_blank">Leefir</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yummyjay.github.io/" title="https:&#x2F;&#x2F;yummyjay.github.io&#x2F;" rel="noopener" target="_blank">YummyJay</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bblss123.github.io/" title="https:&#x2F;&#x2F;bblss123.github.io&#x2F;" rel="noopener" target="_blank">bblss123</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kyleyoung-ymj.github.io/" title="https:&#x2F;&#x2F;kyleyoung-ymj.github.io&#x2F;" rel="noopener" target="_blank">KyleYoung</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://unicornt.github.io/" title="https:&#x2F;&#x2F;unicornt.github.io&#x2F;" rel="noopener" target="_blank">unicornt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://shinfeb.github.io/" title="https:&#x2F;&#x2F;shinfeb.github.io&#x2F;" rel="noopener" target="_blank">ShinFeb</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%80%94%E2%80%94%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6%E3%80%81%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8%E3%80%81%E7%9B%B8%E5%AF%B9%E8%AE%BA.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/V.jpg">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kerke's Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【基础学习】大学物理——牛顿力学、刚体转动、相对论
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-14 17:02:50" itemprop="dateCreated datePublished" datetime="2019-04-14T17:02:50+08:00">2019-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2019-06-24 20:35:12" itemprop="dateModified" datetime="2019-06-24T20:35:12+08:00">2019-06-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9D%82/" itemprop="url" rel="index"><span itemprop="name">杂</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>490</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>昨天晚上考完了大物的期中考试，试卷意外地很简单，导致我莫名地有些担心期末考会难到爆炸，毕竟像这类先给颗糖让人尝尝甜头，再冷不防来一头闷棍的事情屡见不鲜，更不要说曾闻上届有很多人挂科……其实考试结果如何真的无所谓，只要及格我就心满意足了，毕竟我也不是靠这个混饭吃的。</p>
+<p>近日迷上了思维导图，本身就不太喜欢听课的我就开始不负责任地自个儿搞自个儿的，边浪边学，最终也完成了几张不怎么靠谱的思维导图。其实原本是想通过写故事来总结的，但是发现自己实在是狂妄至极，知识还没有学透就想着用这样的需要极高熟练度及想象力的方法，于是便不了了之。</p>
+<p>思维导图本身有没有用处我倒是不知道，但是做思维导图的过程倒是有用，至少让我的对这些知识有了个大致的了解。从前我的学习状态大多处于那种学到某一个地方明白了，换到另一个地方就忘记了。思维导图的精炼描述倒是容易让我想起来曾经学过的东西。</p>
+<p>以下便是我做的三份思维导图了，只有由于是期中考试，所以只有牛顿力学、刚体转动、相对论三张。运动学没有，因为时间不够。</p>
+<img src="/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%80%94%E2%80%94%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6%E3%80%81%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8%E3%80%81%E7%9B%B8%E5%AF%B9%E8%AE%BA/%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6.png" class="">
+<img src="/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%80%94%E2%80%94%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6%E3%80%81%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8%E3%80%81%E7%9B%B8%E5%AF%B9%E8%AE%BA/%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8.png" class="">
+<img src="/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%80%94%E2%80%94%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6%E3%80%81%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8%E3%80%81%E7%9B%B8%E5%AF%B9%E8%AE%BA/%E7%9B%B8%E5%AF%B9%E8%AE%BA.png" class="">
+
+<p>由于是图片格式，所以备注不可见，若有好奇的、或是想要更好体验的不妨下载文末的文件，于Xmind8中一览。<br> <a href="/2019/04/14/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E2%80%94%E2%80%94%E7%89%9B%E9%A1%BF%E5%8A%9B%E5%AD%A6%E3%80%81%E5%88%9A%E4%BD%93%E8%BD%AC%E5%8A%A8%E3%80%81%E7%9B%B8%E5%AF%B9%E8%AE%BA/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89.zip">点击下载</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9D%82/" rel="tag"># 杂</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E5%9F%BA%E4%BA%8Ecanvas%E7%9A%84%E9%BC%A0%E6%A0%87%E7%94%BB%E5%9B%BE%E5%8A%9F%E8%83%BD.html" rel="prev" title="基于canvas的鼠标画图功能">
+                  <i class="fa fa-chevron-left"></i> 基于canvas的鼠标画图功能
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%88%9B%E6%84%8F%E5%86%99%E4%BD%9C%E8%AF%BE.html" rel="next" title="我的第一次创意写作课">
+                  我的第一次创意写作课 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">216k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2d/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d/","pluginJsPath":"lib/","pluginModelPath":"assert/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

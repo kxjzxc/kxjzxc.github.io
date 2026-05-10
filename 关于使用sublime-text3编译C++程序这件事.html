@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico">
+  <link rel="mask-icon" href="/images/V.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于使用sublime-text3编译C++程序这件事">
+<meta property="og:url" content="http://kxjzxc.github.io/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8sublime-text3%E7%BC%96%E8%AF%91C++%E7%A8%8B%E5%BA%8F%E8%BF%99%E4%BB%B6%E4%BA%8B.html">
+<meta property="og:site_name" content="Kerke&#39;s Eden">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kxjzxc.github.io/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8sublime-text3%E7%BC%96%E8%AF%91C++%E7%A8%8B%E5%BA%8F%E8%BF%99%E4%BB%B6%E4%BA%8B/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE.png">
+<meta property="article:published_time" content="2019-07-05T14:24:27.000Z">
+<meta property="article:modified_time" content="2021-06-29T04:50:46.402Z">
+<meta property="article:author" content="Kermit">
+<meta property="article:tag" content="教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kxjzxc.github.io/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8sublime-text3%E7%BC%96%E8%AF%91C++%E7%A8%8B%E5%BA%8F%E8%BF%99%E4%BB%B6%E4%BA%8B/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE.png">
+
+
+<link rel="canonical" href="http://kxjzxc.github.io/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8sublime-text3%E7%BC%96%E8%AF%91C++%E7%A8%8B%E5%BA%8F%E8%BF%99%E4%BB%B6%E4%BA%8B.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kxjzxc.github.io/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8sublime-text3%E7%BC%96%E8%AF%91C++%E7%A8%8B%E5%BA%8F%E8%BF%99%E4%BB%B6%E4%BA%8B.html","path":"关于使用sublime-text3编译C++程序这件事.html","title":"关于使用sublime-text3编译C++程序这件事"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>关于使用sublime-text3编译C++程序这件事 | Kerke's Eden</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kerke's Eden" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kerke's Eden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories" rel="section">分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section">关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives" rel="section">归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags" rel="section">标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%99%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">教程</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kermit"
+      src="/images/V.jpg">
+  <p class="site-author-name" itemprop="name">Kermit</p>
+  <div class="site-description" itemprop="description">人间无笑，我亦长歌</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://leefir.github.io/" title="http:&#x2F;&#x2F;leefir.github.io&#x2F;" rel="noopener" target="_blank">Leefir</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yummyjay.github.io/" title="https:&#x2F;&#x2F;yummyjay.github.io&#x2F;" rel="noopener" target="_blank">YummyJay</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bblss123.github.io/" title="https:&#x2F;&#x2F;bblss123.github.io&#x2F;" rel="noopener" target="_blank">bblss123</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kyleyoung-ymj.github.io/" title="https:&#x2F;&#x2F;kyleyoung-ymj.github.io&#x2F;" rel="noopener" target="_blank">KyleYoung</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://unicornt.github.io/" title="https:&#x2F;&#x2F;unicornt.github.io&#x2F;" rel="noopener" target="_blank">unicornt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://shinfeb.github.io/" title="https:&#x2F;&#x2F;shinfeb.github.io&#x2F;" rel="noopener" target="_blank">ShinFeb</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8sublime-text3%E7%BC%96%E8%AF%91C++%E7%A8%8B%E5%BA%8F%E8%BF%99%E4%BB%B6%E4%BA%8B.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/V.jpg">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kerke's Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于使用sublime-text3编译C++程序这件事
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-07-05 22:24:27" itemprop="dateCreated datePublished" datetime="2019-07-05T22:24:27+08:00">2019-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-06-29 12:50:46" itemprop="dateModified" datetime="2021-06-29T12:50:46+08:00">2021-06-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>在Windows环境下，我比较喜欢使用sublime-text3作为代码编辑器。界面简洁舒适，敲代码的体验也非常好。<br>不过平时用sublime写写js还好，想要编译C++的话，就需要自己手动配置。配置的教程其实网上很多，也说的很明白。不过网上大部分的方法都有一点小问题，那就是无法用<code>scanf</code>或者<code>cin</code>输入，只能显示输出结果。因为它并没有调用终端，直接在底栏输出。<br>好在上周写作业的时候，偶然在网上找到了一份有效的教程，或者说有效的代码，能够调用系统终端运行程序。教程如下。</p>
+<h5 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h5><ol>
+<li>想要编译C++程序，必须要有<strong>编译器</strong>，像是gcc和g++。如果你的电脑上有可以编译C++的软件，像是C-free、dev-c、codeblocks、vs之类的，那么软件的文件中肯定有编译器。如果你的电脑上没有这些，那要么从网上下载一种C++编译软件，要么直接去下载MinGW。</li>
+<li>右键<strong>我的电脑</strong>-&gt;属性-&gt;高级系统设置-&gt;高级-&gt;环境变量，在用户变量或者系统变量（两者都行，具体区别自行百度）中找到path，点击编辑，将你编译器所在的文件夹路径添加上去，然后点击确定。<br><img src="/%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8sublime-text3%E7%BC%96%E8%AF%91C++%E7%A8%8B%E5%BA%8F%E8%BF%99%E4%BB%B6%E4%BA%8B/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE.png"></li>
+<li>环境变量设置完成后，打开sublime，新建编译系统。由于我的sublime是汉化过的，所以选项是工具-&gt;编译系统-&gt;新建编译系统。</li>
+<li>将下面的代码复制粘贴到配置文件后保存，保存到的文件夹不要改动。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;cmd&quot;: [&quot;g++&quot;, &quot;$&#123;file&#125;&quot;, &quot;-fexec-charset=gbk&quot;, &quot;-o&quot;, &quot;$&#123;file_path&#125;/$&#123;file_base_name&#125;&quot;],</span><br><span class="line">    &quot;file_regex&quot;: &quot;^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$&quot;,</span><br><span class="line">    &quot;working_dir&quot;: &quot;$&#123;file_path&#125;&quot;,</span><br><span class="line">    &quot;selector&quot;: &quot;source.c, source.c++&quot;,</span><br><span class="line">    &quot;variants&quot;:</span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Run&quot;,</span><br><span class="line">            &quot;cmd&quot;: [&quot;cmd&quot;, &quot;/c&quot;, &quot;g++&quot;, &quot;$&#123;file&#125;&quot;, &quot;-o&quot;, &quot;$&#123;file_path&#125;/$&#123;file_base_name&#125;&quot;, &quot;&amp;&amp;&quot;, &quot;cmd&quot;, &quot;/c&quot;, &quot;$&#123;file_path&#125;/$&#123;file_base_name&#125;&quot;]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;RunInCommand&quot;,</span><br><span class="line">            &quot;cmd&quot;: [&quot;cmd&quot;, &quot;/c&quot;, &quot;g++&quot;, &quot;$&#123;file&#125;&quot;, &quot;-o&quot;, &quot;$&#123;file_path&#125;/$&#123;file_base_name&#125;&quot;, &quot;&amp;&amp;&quot;, &quot;start&quot;, &quot;cmd&quot;, &quot;/c&quot;, &quot;$&#123;file_path&#125;/$&#123;file_base_name&#125; &amp; pause&quot;]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这一步是关键一步，也是不同教程中不同的一步。<br>5. 如此一来就配置好了，写一份C++代码，按<code>shift+ctrl+b</code>，选择<code>RunIncmd</code>那一项就可以了。以后编译也只用按<code>ctrl+b</code>。当然，你想的话也可以自己设置热键。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E6%97%A5%E6%B8%90%E9%A2%93%E5%BA%9F%E7%9A%84%E5%B9%B3%E5%87%A1%E4%B9%8B%E8%B7%AF.html" rel="prev" title="日渐颓废的平凡之路">
+                  <i class="fa fa-chevron-left"></i> 日渐颓废的平凡之路
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E5%85%B3%E4%BA%8ECodeblocks%E4%B8%8B%E5%AE%89%E8%A3%85EGE%E5%9B%BE%E5%BD%A2%E5%BA%93%E8%BF%99%E4%BB%B6%E4%BA%8B.html" rel="next" title="关于Codeblocks下安装EGE图形库这件事">
+                  关于Codeblocks下安装EGE图形库这件事 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">216k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2d/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d/","pluginJsPath":"lib/","pluginModelPath":"assert/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

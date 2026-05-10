@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico">
+  <link rel="mask-icon" href="/images/V.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT6.S081之实用程序">
+<meta property="og:url" content="http://kxjzxc.github.io/MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F.html">
+<meta property="og:site_name" content="Kerke&#39;s Eden">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kxjzxc.github.io/MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F/sleep.png">
+<meta property="og:image" content="http://kxjzxc.github.io/MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F/pingpong.png">
+<meta property="og:image" content="http://kxjzxc.github.io/MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F/%E8%B4%A8%E6%95%B0%E7%AD%9B%E9%80%89%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="http://kxjzxc.github.io/MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F/primes.png">
+<meta property="og:image" content="http://kxjzxc.github.io/MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F/find.png">
+<meta property="og:image" content="http://kxjzxc.github.io/MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F/xargs.png">
+<meta property="article:published_time" content="2022-04-01T15:17:13.000Z">
+<meta property="article:modified_time" content="2022-04-02T16:22:51.018Z">
+<meta property="article:author" content="Kermit">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kxjzxc.github.io/MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F/sleep.png">
+
+
+<link rel="canonical" href="http://kxjzxc.github.io/MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kxjzxc.github.io/MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F.html","path":"MIT6-S081之实用程序.html","title":"MIT6.S081之实用程序"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MIT6.S081之实用程序 | Kerke's Eden</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kerke's Eden" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kerke's Eden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories" rel="section">分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section">关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives" rel="section">归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags" rel="section">标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C"><span class="nav-number">2.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sleep"><span class="nav-number">2.1.</span> <span class="nav-text">sleep</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="nav-number">2.1.1.</span> <span class="nav-text">源代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C"><span class="nav-number">2.1.2.</span> <span class="nav-text">编译运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pingpong"><span class="nav-number">2.2.</span> <span class="nav-text">pingpong</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A6%81%E6%B1%82"><span class="nav-number">2.2.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">2.2.2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">源代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">2.2.4.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#primes"><span class="nav-number">2.3.</span> <span class="nav-text">primes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A6%81%E6%B1%82-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86-1"><span class="nav-number">2.3.2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81-2"><span class="nav-number">2.3.3.</span> <span class="nav-text">源代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C-1"><span class="nav-number">2.3.4.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-number">2.4.</span> <span class="nav-text">find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A6%81%E6%B1%82-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86-2"><span class="nav-number">2.4.2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81-3"><span class="nav-number">2.4.3.</span> <span class="nav-text">源代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C-2"><span class="nav-number">2.4.4.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xargs"><span class="nav-number">2.5.</span> <span class="nav-text">xargs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A6%81%E6%B1%82-3"><span class="nav-number">2.5.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86-3"><span class="nav-number">2.5.2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81-4"><span class="nav-number">2.5.3.</span> <span class="nav-text">源代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C-3"><span class="nav-number">2.5.4.</span> <span class="nav-text">运行结果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kermit"
+      src="/images/V.jpg">
+  <p class="site-author-name" itemprop="name">Kermit</p>
+  <div class="site-description" itemprop="description">人间无笑，我亦长歌</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://leefir.github.io/" title="http:&#x2F;&#x2F;leefir.github.io&#x2F;" rel="noopener" target="_blank">Leefir</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yummyjay.github.io/" title="https:&#x2F;&#x2F;yummyjay.github.io&#x2F;" rel="noopener" target="_blank">YummyJay</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bblss123.github.io/" title="https:&#x2F;&#x2F;bblss123.github.io&#x2F;" rel="noopener" target="_blank">bblss123</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kyleyoung-ymj.github.io/" title="https:&#x2F;&#x2F;kyleyoung-ymj.github.io&#x2F;" rel="noopener" target="_blank">KyleYoung</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://unicornt.github.io/" title="https:&#x2F;&#x2F;unicornt.github.io&#x2F;" rel="noopener" target="_blank">unicornt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://shinfeb.github.io/" title="https:&#x2F;&#x2F;shinfeb.github.io&#x2F;" rel="noopener" target="_blank">ShinFeb</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/V.jpg">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kerke's Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MIT6.S081之实用程序
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-01 23:17:13" itemprop="dateCreated datePublished" datetime="2022-04-01T23:17:13+08:00">2022-04-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-04-03 00:22:51" itemprop="dateModified" datetime="2022-04-03T00:22:51+08:00">2022-04-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第一个实验是在XV6系统上实现五个实用程序。虽然不难，但是我写了好久……</p>
+<h1 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h1><h2 id="sleep"><a href="#sleep" class="headerlink" title="sleep"></a>sleep</h2><p>sleep本身不需要实现，只需要运行即可。</p>
+<h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;user.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span>* argv[])</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(argc != <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Sleep needs one argument!\n&quot;</span>); <span class="comment">//检查参数数量是否正确</span></span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ticks = atoi(argv[<span class="number">1</span>]); <span class="comment">//将字符串参数转为整数</span></span><br><span class="line">    sleep(ticks);              <span class="comment">//使用系统调用sleep</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;(nothing happens for a little while)\n&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>); <span class="comment">//确保进程退出</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="编译运行"><a href="#编译运行" class="headerlink" title="编译运行"></a>编译运行</h3><ol>
+<li>修改Makefile</li>
+</ol>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">UPROGS=\</span><br><span class="line">	$U/_cat\</span><br><span class="line">	$U/_echo\</span><br><span class="line">	$U/_forktest\</span><br><span class="line">	$U/_grep\</span><br><span class="line">	$U/_init\</span><br><span class="line">	$U/_kill\</span><br><span class="line">	$U/_ln\</span><br><span class="line">	$U/_ls\</span><br><span class="line">	$U/_mkdir\</span><br><span class="line">	$U/_rm\</span><br><span class="line">	$U/_sh\</span><br><span class="line">	$U/_stressfs\</span><br><span class="line">	$U/_usertests\</span><br><span class="line">	$U/_grind\</span><br><span class="line">	$U/_wc\</span><br><span class="line">	$U/_zombie\</span><br><span class="line">	$U/_sleep\ <span class="comment"># 添加sleep</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>运行</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> make qume</span><br></pre></td></tr></table></figure>
+<p><img src="/./MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F/sleep.png" alt="sleep运行结果"></p>
+<h2 id="pingpong"><a href="#pingpong" class="headerlink" title="pingpong"></a>pingpong</h2><h3 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h3><p>实现两个进程在管道两侧来回通信。<br>父进程将”ping”写入管道，子进程从管道将其读出并打印。子进程从父进程收到字符串后，将”pong“写入另一个管道，然后由父进程从该管道读取并打印。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>通过定义两个管道fp和sp，实现父子进程传输消息</p>
+<p>注意，进程通常只持有某个管道的读出端或者写入端，因此使用的时候需要将另一端关闭。</p>
+<h3 id="源代码-1"><a href="#源代码-1" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;user.h&quot;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span>* argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> fp[<span class="number">2</span>],sp[<span class="number">2</span>];</span><br><span class="line">    pipe(fp);<span class="comment">//父进程写入，子进程读取</span></span><br><span class="line">    pipe(sp);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;program start!\n&quot;</span>);</span><br><span class="line">    <span class="type">int</span> pid = fork();</span><br><span class="line">    <span class="keyword">if</span>(pid&lt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;error!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pid == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/*子进程 */</span></span><br><span class="line">        <span class="type">char</span> *buffer = <span class="string">&quot;    &quot;</span>;</span><br><span class="line">        close(fp[<span class="number">1</span>]); <span class="comment">// 关闭写端</span></span><br><span class="line">        read(fp[<span class="number">0</span>], buffer, <span class="number">4</span>);<span class="comment">//阻塞等待</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d: received %s\n&quot;</span>,getpid(),buffer);</span><br><span class="line">        close(fp[<span class="number">0</span>]); <span class="comment">// 读取完成，关闭读端</span></span><br><span class="line">        <span class="type">char</span> *intput = <span class="string">&quot;pong&quot;</span>;</span><br><span class="line">        close(sp[<span class="number">0</span>]); <span class="comment">// 关闭读端</span></span><br><span class="line">        write(sp[<span class="number">1</span>], intput, <span class="number">4</span>);</span><br><span class="line">        close(sp[<span class="number">1</span>]); <span class="comment">// 写入完成，关闭写端</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">/*父进程*/</span> </span><br><span class="line">        <span class="type">char</span> *buffer = <span class="string">&quot;ping&quot;</span>;</span><br><span class="line">        close(fp[<span class="number">0</span>]); <span class="comment">// 关闭读端</span></span><br><span class="line">        write(fp[<span class="number">1</span>], buffer, <span class="number">4</span>);</span><br><span class="line">        close(fp[<span class="number">1</span>]); <span class="comment">// 写入完成，关闭写端</span></span><br><span class="line">        close(sp[<span class="number">1</span>]); <span class="comment">// 关闭写端</span></span><br><span class="line">        read(sp[<span class="number">0</span>], buffer, <span class="number">4</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d: received %s\n&quot;</span>,getpid(),buffer);</span><br><span class="line">        close(sp[<span class="number">0</span>]); <span class="comment">// 读取完成，关闭读端</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="/./MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F/pingpong.png" alt="pingpong运行结果"></p>
+<h2 id="primes"><a href="#primes" class="headerlink" title="primes"></a>primes</h2><h3 id="要求-1"><a href="#要求-1" class="headerlink" title="要求"></a>要求</h3><p>使用管道实现“质数筛选”, 输出2~35之间的而所有质数。</p>
+<h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p>筛选思路：</p>
+<ol>
+<li>主进程将所有数据输入到管道的左侧</li>
+<li>子进程从管道读出并筛选出第一个数字x，排除掉x的倍数，其他数字再写入下一管道；</li>
+<li>重复步骤二，直到管道中没有数字<br><img src="/./MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F/%E8%B4%A8%E6%95%B0%E7%AD%9B%E9%80%89%E6%A8%A1%E5%9E%8B.png" alt="质数筛选模型"></li>
+</ol>
+<h3 id="源代码-2"><a href="#源代码-2" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;user.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stddef.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">mapping</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> fd[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">close</span>(n);<span class="comment">//关闭文件描述符n，令n映射到fd[n]</span></span><br><span class="line">    <span class="built_in">dup</span>(fd[n]);</span><br><span class="line">    <span class="built_in">close</span>(fd[<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">close</span>(fd[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">primes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> fd[<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">pipe</span>(fd);</span><br><span class="line">    <span class="type">int</span> prime;<span class="comment">//当前的质数</span></span><br><span class="line">    <span class="type">int</span> ref = <span class="built_in">read</span>(<span class="number">0</span>, &amp;prime, <span class="built_in">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">if</span>(ref == <span class="number">0</span>)<span class="keyword">return</span>;<span class="comment">//没有质数了</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;prime %d\n&quot;</span>, prime);</span><br><span class="line">    <span class="type">int</span> pid = fork();</span><br><span class="line">    <span class="keyword">if</span>(pid == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> num;</span><br><span class="line">        <span class="built_in">mapping</span>(<span class="number">1</span>, fd);<span class="comment">//将管道映射到1上</span></span><br><span class="line">        <span class="keyword">while</span>(<span class="built_in">read</span>(<span class="number">0</span>,&amp;num, <span class="built_in">sizeof</span>(<span class="type">int</span>)))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(num%prime == <span class="number">0</span>)<span class="keyword">continue</span>;</span><br><span class="line">            <span class="built_in">write</span>(<span class="number">1</span>, &amp;num, <span class="built_in">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">wait</span>(<span class="literal">NULL</span>);</span><br><span class="line">        <span class="built_in">mapping</span>(<span class="number">0</span>, fd);<span class="comment">//将管道映射到0上</span></span><br><span class="line">        <span class="built_in">primes</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> fd[<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">pipe</span>(fd);<span class="comment">//父进程写入，子进程读取</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;program start!\n&quot;</span>);</span><br><span class="line">    <span class="type">int</span> pid = fork();</span><br><span class="line">    <span class="keyword">if</span>(pid&lt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;error!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(pid == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/*子进程 */</span></span><br><span class="line">        <span class="built_in">mapping</span>(<span class="number">1</span>,fd);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>;i &lt;= <span class="number">35</span>; i++)<span class="comment">//将所有数字塞入管道</span></span><br><span class="line">            <span class="built_in">write</span>(<span class="number">1</span>, &amp;i, <span class="built_in">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">/*父进程*/</span> </span><br><span class="line">        <span class="built_in">wait</span>(<span class="literal">NULL</span>);<span class="comment">//等待子进程结束</span></span><br><span class="line">        <span class="built_in">mapping</span>(<span class="number">0</span>, fd);</span><br><span class="line">        <span class="built_in">primes</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="运行结果-1"><a href="#运行结果-1" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="/./MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F/primes.png" alt="primes的运行结果"></p>
+<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><h3 id="要求-2"><a href="#要求-2" class="headerlink" title="要求"></a>要求</h3><p>在目录树中查找名称与字符串匹配的所有文件，输出文件的相对路径。</p>
+<h3 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h3><p>借鉴ls指令的写法，读取路径下的文件名，如果是文件，就与寻找的文件名比较，如果是文件夹，就递归继续寻找该文件夹。</p>
+<h3 id="源代码-3"><a href="#源代码-3" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/stat.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;user/user.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/fs.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">fmtname</span><span class="params">(<span class="type">char</span> *path)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">char</span> *p;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Find first character after last slash.</span></span><br><span class="line">  <span class="keyword">for</span>(p=path+<span class="built_in">strlen</span>(path); p &gt;= path &amp;&amp; *p != <span class="string">&#x27;/&#x27;</span>; p--)</span><br><span class="line">    ;</span><br><span class="line">  p++;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">find</span><span class="params">(<span class="type">char</span> *path, <span class="type">char</span> *file_name)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">char</span> buf[<span class="number">512</span>], *p;</span><br><span class="line">  <span class="type">int</span> fd;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">dirent</span> de;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">stat</span> st;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>((fd = <span class="built_in">open</span>(path, <span class="number">0</span>)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="number">2</span>, <span class="string">&quot;find: cannot open %s\n&quot;</span>, path);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">fstat</span>(fd, &amp;st) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="number">2</span>, <span class="string">&quot;find: cannot stat %s\n&quot;</span>, path);</span><br><span class="line">    <span class="built_in">close</span>(fd);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(st.type != T_DIR)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="number">2</span>, <span class="string">&quot;find: cannot find in %s\n&quot;</span>, path);</span><br><span class="line">    <span class="built_in">close</span>(fd);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">strlen</span>(path) + <span class="number">1</span> + DIRSIZ + <span class="number">1</span> &gt; <span class="keyword">sizeof</span> buf)&#123;<span class="comment">//路径太长了</span></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">strcpy</span>(buf, path);</span><br><span class="line">  p = buf+<span class="built_in">strlen</span>(buf);</span><br><span class="line">  *p++ = <span class="string">&#x27;/&#x27;</span>;</span><br><span class="line">  <span class="keyword">while</span>(<span class="built_in">read</span>(fd, &amp;de, <span class="built_in">sizeof</span>(de)) == <span class="built_in">sizeof</span>(de))&#123;</span><br><span class="line">    <span class="keyword">if</span>(de.inum == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    <span class="built_in">memmove</span>(p, de.name, DIRSIZ);</span><br><span class="line">    p[DIRSIZ] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">stat</span>(buf, &amp;st) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;find: cannot stat %s\n&quot;</span>, buf);</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> *name = <span class="built_in">fmtname</span>(buf);</span><br><span class="line">    <span class="keyword">switch</span> (st.type)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> T_FILE:</span><br><span class="line">      <span class="keyword">if</span>(<span class="built_in">strcmp</span>(name, file_name) == <span class="number">0</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, buf);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> T_DIR:</span><br><span class="line">      <span class="keyword">if</span>(<span class="built_in">strcmp</span>(name, <span class="string">&quot;.&quot;</span>) == <span class="number">0</span> || <span class="built_in">strcmp</span>(name, <span class="string">&quot;..&quot;</span>) == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">continue</span>;<span class="comment">//不能是本层或者上层</span></span><br><span class="line">      <span class="built_in">find</span>(buf, file_name);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">close</span>(fd);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(argc &lt; <span class="number">3</span>)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;please input find [path] [file_name]\n&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">find</span>(argv[<span class="number">1</span>], argv[<span class="number">2</span>]);</span><br><span class="line">  <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="运行结果-2"><a href="#运行结果-2" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="/./MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F/find.png" alt="find的运行结果"></p>
+<h2 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h2><h3 id="要求-3"><a href="#要求-3" class="headerlink" title="要求"></a>要求</h3><p>从标准输入中读取行并 <strong>为每行运行一次</strong> 指定的命令，且将该行作为命令的参数提供。</p>
+<h3 id="原理-3"><a href="#原理-3" class="headerlink" title="原理"></a>原理</h3><p>这个小实验主要是对于实现效果的理解。</p>
+<ol>
+<li><code>|</code><br>命令行中的<code>|</code>会将左边的命令的<strong>输出</strong>通过管道传递到右侧，可以直接从标准输入中读取字符串。</li>
+<li><code>exec</code>函数<br>exec接收的二维参数数组argv，argv[0]必须是该命令本身，最后一个参数argv[size-1]必须为0，否则将执行失败。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *argv[]=&#123;<span class="string">&quot;echo&quot;</span>,<span class="string">&quot;hello&quot;</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="built_in">exec</span>(argv[<span class="number">0</span>],argv);</span><br></pre></td></tr></table></figure>
+<h3 id="源代码-4"><a href="#源代码-4" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/types.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;user/user.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kernel/param.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(argc &lt; <span class="number">2</span>)&#123;</span><br><span class="line">       <span class="built_in">printf</span>(<span class="string">&quot;error inputs&quot;</span>);</span><br><span class="line">       <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">   &#125;<span class="comment">//参数不够</span></span><br><span class="line">   <span class="type">char</span> *cmd = argv[<span class="number">1</span>];</span><br><span class="line">   <span class="type">char</span> *argvs[MAXARG];</span><br><span class="line">   <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;argc;i++)</span><br><span class="line">   &#123;</span><br><span class="line">       argvs[i<span class="number">-1</span>]=argv[i];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="type">char</span> buff[<span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">read</span>(<span class="number">0</span>,&amp;buff,<span class="built_in">sizeof</span>(buff)))<span class="comment">//读取|右边的命令输出或者等待输出</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> len = <span class="built_in">strlen</span>(buff);</span><br><span class="line">        argvs[argc<span class="number">-1</span>]=&amp;buff[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(buff[i]==<span class="string">&#x27;\n&#x27;</span>)<span class="comment">// 默认 -n1</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(fork()==<span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    buff[i]=<span class="number">0</span>;</span><br><span class="line">                    argvs[argc]=<span class="number">0</span>;<span class="comment">//命令的最后一个参数为0</span></span><br><span class="line">                    <span class="built_in">exec</span>(cmd,argvs);<span class="comment">//执行每一行命令</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">wait</span>(<span class="number">0</span>);<span class="comment">//等待子进程结束</span></span><br><span class="line">                argvs[argc<span class="number">-1</span>]=&amp;buff[i<span class="number">+1</span>];<span class="comment">//下一行命令的首地址</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="运行结果-3"><a href="#运行结果-3" class="headerlink" title="运行结果"></a>运行结果</h3><p>运行命令 <code>xargstest.sh</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> a</span><br><span class="line"><span class="built_in">echo</span> hello &gt; a/b</span><br><span class="line"><span class="built_in">mkdir</span> c</span><br><span class="line"><span class="built_in">echo</span> hello &gt; c/b</span><br><span class="line"><span class="built_in">echo</span> hello &gt; b</span><br><span class="line">find . b | xargs grep hello</span><br></pre></td></tr></table></figure>
+<p><img src="/./MIT6-S081%E4%B9%8B%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F/xargs.png" alt="xargs的运行结果"></p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>第一个实验就耗费了大量的时间，有几个实验还借鉴了别人的写法。考虑到我不是科班出身，之后的实验不如趁早观看别人的写法，能学到东西就好。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"># 操作系统</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/MIT6-S081%E4%B9%8B%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" rel="prev" title="MIT6-S081之环境配置">
+                  <i class="fa fa-chevron-left"></i> MIT6-S081之环境配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E6%9C%AA%E5%91%BD%E5%90%8D%E5%B0%8F%E8%AF%B4-No-2.html" rel="next" title="未命名小说 No.2">
+                  未命名小说 No.2 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">216k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2d/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d/","pluginJsPath":"lib/","pluginModelPath":"assert/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

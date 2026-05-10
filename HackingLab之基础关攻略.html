@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 8.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/V.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/V.ico">
+  <link rel="mask-icon" href="/images/V.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="HackingLab之基础关攻略">
+<meta property="og:url" content="http://kxjzxc.github.io/HackingLab%E4%B9%8B%E5%9F%BA%E7%A1%80%E5%85%B3%E6%94%BB%E7%95%A5.html">
+<meta property="og:site_name" content="Kerke&#39;s Eden">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://kxjzxc.github.io/HackingLab%E4%B9%8B%E5%9F%BA%E7%A1%80%E5%85%B3%E6%94%BB%E7%95%A5/%E7%AC%AC%E5%85%AB%E5%85%B3.png">
+<meta property="article:published_time" content="2020-04-07T09:58:05.000Z">
+<meta property="article:modified_time" content="2020-04-08T03:40:19.638Z">
+<meta property="article:author" content="Kermit">
+<meta property="article:tag" content="Hack">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kxjzxc.github.io/HackingLab%E4%B9%8B%E5%9F%BA%E7%A1%80%E5%85%B3%E6%94%BB%E7%95%A5/%E7%AC%AC%E5%85%AB%E5%85%B3.png">
+
+
+<link rel="canonical" href="http://kxjzxc.github.io/HackingLab%E4%B9%8B%E5%9F%BA%E7%A1%80%E5%85%B3%E6%94%BB%E7%95%A5.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://kxjzxc.github.io/HackingLab%E4%B9%8B%E5%9F%BA%E7%A1%80%E5%85%B3%E6%94%BB%E7%95%A5.html","path":"HackingLab之基础关攻略.html","title":"HackingLab之基础关攻略"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>HackingLab之基础关攻略 | Kerke's Eden</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Kerke's Eden" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Kerke's Eden</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories" rel="section">分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section">关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives" rel="section">归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags" rel="section">标签</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AF%E5%85%B3"><span class="nav-number">2.</span> <span class="nav-text">闯关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%85%B3"><span class="nav-number">2.1.</span> <span class="nav-text">第一关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%85%B3"><span class="nav-number">2.2.</span> <span class="nav-text">第二关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E5%85%B3"><span class="nav-number">2.3.</span> <span class="nav-text">第三关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E5%85%B3"><span class="nav-number">2.4.</span> <span class="nav-text">第四关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E5%85%B3"><span class="nav-number">2.5.</span> <span class="nav-text">第五关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E5%85%B3"><span class="nav-number">2.6.</span> <span class="nav-text">第六关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E5%85%B3"><span class="nav-number">2.7.</span> <span class="nav-text">第七关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E5%85%B3"><span class="nav-number">2.8.</span> <span class="nav-text">第八关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B9%9D%E5%85%B3"><span class="nav-number">2.9.</span> <span class="nav-text">第九关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E5%85%B3"><span class="nav-number">2.10.</span> <span class="nav-text">第十关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E5%85%B3"><span class="nav-number">2.11.</span> <span class="nav-text">第十一关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%85%B3"><span class="nav-number">2.12.</span> <span class="nav-text">第十二关</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kermit"
+      src="/images/V.jpg">
+  <p class="site-author-name" itemprop="name">Kermit</p>
+  <div class="site-description" itemprop="description">人间无笑，我亦长歌</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://leefir.github.io/" title="http:&#x2F;&#x2F;leefir.github.io&#x2F;" rel="noopener" target="_blank">Leefir</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://yummyjay.github.io/" title="https:&#x2F;&#x2F;yummyjay.github.io&#x2F;" rel="noopener" target="_blank">YummyJay</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://bblss123.github.io/" title="https:&#x2F;&#x2F;bblss123.github.io&#x2F;" rel="noopener" target="_blank">bblss123</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kyleyoung-ymj.github.io/" title="https:&#x2F;&#x2F;kyleyoung-ymj.github.io&#x2F;" rel="noopener" target="_blank">KyleYoung</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://unicornt.github.io/" title="https:&#x2F;&#x2F;unicornt.github.io&#x2F;" rel="noopener" target="_blank">unicornt</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://shinfeb.github.io/" title="https:&#x2F;&#x2F;shinfeb.github.io&#x2F;" rel="noopener" target="_blank">ShinFeb</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://kxjzxc.github.io/HackingLab%E4%B9%8B%E5%9F%BA%E7%A1%80%E5%85%B3%E6%94%BB%E7%95%A5.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/V.jpg">
+      <meta itemprop="name" content="Kermit">
+      <meta itemprop="description" content="人间无笑，我亦长歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kerke's Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HackingLab之基础关攻略
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-04-07 17:58:05" itemprop="dateCreated datePublished" datetime="2020-04-07T17:58:05+08:00">2020-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-04-08 11:40:19" itemprop="dateModified" datetime="2020-04-08T11:40:19+08:00">2020-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/Hack/" itemprop="url" rel="index"><span itemprop="name">Hack</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description"> </div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>作为一无所知的小白，我仅仅是将此作为摸鱼时的一种解谜游戏看待，因此不会事先去恶补过多的知识，遇到盲点也会果断放弃，上网查攻略，毕竟乐趣作为重要。</p>
+<p>每一关的解法并不唯一，可以用抓包工具，也可以只用python，我的想法是能写多少写多少方法。题目什么的我也懒得复制粘贴了，毕竟没有意义。</p>
+<p><a herf="http://hackinglab.cn/">攻防平台</a></p>
+<h1 id="闯关"><a href="#闯关" class="headerlink" title="闯关"></a>闯关</h1><h2 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h2><p>讲道理，看到题目就想到查看源代码。直接F12，答案写在注释里。</p>
+<blockquote>
+<p>jflsjklejflkdsjfklds</p>
+</blockquote>
+<h2 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a>第二关</h2><p>密文再加密一次又变回明文，既然全是小写字母，就很容易想到与13位后的对应字母替换。查询可知这种加密算法叫做Rot13。</p>
+<blockquote>
+<p>23ksdjfkfds</p>
+</blockquote>
+<h2 id="第三关"><a href="#第三关" class="headerlink" title="第三关"></a>第三关</h2><p>大致看一下密文，发现最后一位是特殊字符“&#x3D;”，搜索一下与等号有关的加密算法，查到base64算法。在线解密，最终可以得到key。</p>
+<blockquote>
+<p>jkljdkl232jkljkdl2389</p>
+</blockquote>
+<h2 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a>第四关</h2><p>既然题目都说了MD5，何不一试？</p>
+<blockquote>
+<p>bighp</p>
+</blockquote>
+<h2 id="第五关"><a href="#第五关" class="headerlink" title="第五关"></a>第五关</h2><p>小白没什么思路，搜索关键字无果，于是看攻略。修改请求头中的Accept-Language参数。<br>这意思就是根据语言判断是否是外国人呗……<br><strong>方法一：</strong><br>直接修改浏览器的语言，把中文删去。<br><strong>方法二：</strong><br>用python的request库伪造请求头的Accept-Language参数，然后访问网址，并打印响应内容。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://lab1.xseclab.com/base1_0ef337f3afbe42d5619d7a36c19c20ab/index.php&quot;</span></span><br><span class="line">headers = &#123;<span class="string">&#x27;Accept-Language&#x27;</span>: <span class="string">&#x27;q=0.5,en-US;q=0.3,en;q=0.2&#x27;</span>&#125;<span class="comment">#伪造请求头参数</span></span><br><span class="line">r = requests.get(url,headers=headers)<span class="comment"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span></span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = <span class="string">&#x27;utf-8&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(r.text)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><em>(TU687jksf6&amp;</em></p>
+</blockquote>
+<h2 id="第六关"><a href="#第六关" class="headerlink" title="第六关"></a>第六关</h2><p>搜索引擎搜索关键字，发现似乎与“User-Agent”这个属性有关。F12到Network观察请求头，找到该属性，后面参数可以明显看出和浏览器相关，或许修改此处即可。<br><strong>方法一（以Chrome为准）：</strong><br>F12打开开发者工具，点击右上方三个点，点击<code>More Tools</code>-&gt;<code>Network conditions</code>，直接修改User-Agent的值。<br><strong>方法二：</strong><br>用python的request库伪造请求头的User-Agent参数，然后访问网址，并打印响应内容。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://lab1.xseclab.com/base6_6082c908819e105c378eb93b6631c4d3/index.php&quot;</span></span><br><span class="line">headers = &#123;<span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&#x27;HAHA&#x27;</span>&#125;</span><br><span class="line">r = requests.get(url,headers=headers)</span><br><span class="line"><span class="comment"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span></span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = <span class="string">&#x27;utf-8&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(r.text)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>meiyouHAHAliulanqi</p>
+</blockquote>
+<h2 id="第七关"><a href="#第七关" class="headerlink" title="第七关"></a>第七关</h2><p>没什么想法，看攻略说是藏在响应头里。<br><strong>方法一：</strong><br>F12到开发者工具查看Network里的响应头，就看到答案了。<br><strong>方法二：</strong><br>用python的request库申请资源，打印响应头。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://lab1.xseclab.com/base7_eb68bd2f0d762faf70c89799b3c1cc52/index.php&quot;</span></span><br><span class="line">r = requests.get(url)</span><br><span class="line"><span class="comment"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span></span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = <span class="string">&#x27;utf-8&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(r.headers)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>kjh%#$#%FDjjj</p>
+</blockquote>
+<h2 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h2><p>将鼠标放在超链接“<em>到这里找key</em>_”上时，发现左下角显示链接与点击链接后的网址不同，可知发生了重定向。<br>搜索浏览器如何阻止重定向，方法无效。<br>搜索python的request库访问如何阻止重定向，找到解决方法，只需再get函数中添加属性<code>allow_redirects=False</code>即可。注意申请的链接是超链接显示的链接。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://lab1.xseclab.com/base8_0abd63aa54bef0464289d6a42465f354/search_key.php&quot;</span></span><br><span class="line">r = requests.get(url,allow_redirects=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span></span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = <span class="string">&#x27;utf-8&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(r.text)</span><br></pre></td></tr></table></figure>
+<p><img src="/./HackingLab%E4%B9%8B%E5%9F%BA%E7%A1%80%E5%85%B3%E6%94%BB%E7%95%A5/%E7%AC%AC%E5%85%AB%E5%85%B3.png" alt="响应内容"><br>可以得到一个网址<a herf="http://lab1.xseclab.com/base8_0abd63aa54bef0464289d6a42465f354/key_is_here_now_.php">.&#x2F;key_is_here_now_.php</a></p>
+<blockquote>
+<p>ohHTTP302dd</p>
+</blockquote>
+<h2 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h2><p>搜索关键字，发现登录信息与cookie有关，并且发现测试网址使用了一个名为“Login”的cookie。<br>F12到Network查看请求头，发现参数<code>Cookie:Login=0</code>,于是尝试用python的request库伪造请求头的Cookie参数，使Login&#x3D;1，然后访问网址，并打印响应内容，得到答案。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://lab1.xseclab.com/base9_ab629d778e3a29540dfd60f2e548a5eb/index.php&quot;</span></span><br><span class="line">headers = &#123;<span class="string">&#x27;Cookie&#x27;</span>:<span class="string">&#x27;Login=1&#x27;</span>&#125;</span><br><span class="line">r = requests.get(url,headers=headers)</span><br><span class="line"><span class="comment">#r = requests.post(url,data=&#123;&#x27;v&#x27;:&#x27;111111&#x27;&#125;)</span></span><br><span class="line"><span class="comment"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span></span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = <span class="string">&#x27;utf-8&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(r.text)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>yescookieedit7823789KJ</p>
+</blockquote>
+<h2 id="第十关"><a href="#第十关" class="headerlink" title="第十关"></a>第十关</h2><p>发现只能输入3位数字，而999依旧显示太小。<br>F12查看源代码，发现标签属性中限制了输入长度。<br><strong>方法一</strong><br>直接F12在开发者工具里修改源代码，使之能够输入一个极大的数，直接得出答案。<br><strong>方法二</strong><br>用python提交不受标签限制</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://lab1.xseclab.com/base10_0b4e4866096913ac9c3a2272dde27215/index.php&quot;</span></span><br><span class="line">r = requests.post(url,data=&#123;<span class="string">&#x27;v&#x27;</span>:<span class="string">&#x27;111111&#x27;</span>&#125;)</span><br><span class="line"><span class="comment"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span></span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = <span class="string">&#x27;utf-8&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(r.text)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>768HKyu678567&amp;*&amp;K</p>
+</blockquote>
+<h2 id="第十一关"><a href="#第十一关" class="headerlink" title="第十一关"></a>第十一关</h2><p>题目崩了，答案就直接放在源代码注释里了。</p>
+<blockquote>
+<p>^&amp;*(UIHKJjkadshf</p>
+</blockquote>
+<h2 id="第十二关"><a href="#第十二关" class="headerlink" title="第十二关"></a>第十二关</h2><p>没有思路，上网查攻略，发现与robots协议有关，虽然不知道是怎么想到的……</p>
+<blockquote>
+<p>robots协议也叫robots.txt（统一小写）是一种存放于网站根目录下的ASCII编码的文本文件，它通常告诉网络搜索引擎的漫游器（又称网络蜘蛛），此网站中的哪些内容是不应被搜索引擎的漫游器获取的，哪些是可以被漫游器获取的。</p>
+</blockquote>
+<p>既然如此，就直接访问<a href="http://lab1.xseclab.com/base12_44f0d8a96eed21afdc4823a0bf1a316b/robots.txt">.&#x2F;robots.txt</a>,看到<code>Disallow: /9fb97531fe95594603aff7e794ab2f5f/</code>。<br>于是访问<a href="http://lab1.xseclab.com/base12_44f0d8a96eed21afdc4823a0bf1a316b/9fb97531fe95594603aff7e794ab2f5f/">该网址</a>,得到提示说此页面不是登陆页面，继续搜索。<br>一般来说登录页面就是在网址后面加<code>/login.php</code>，尝试，成功看到答案。</p>
+<blockquote>
+<p>UIJ%%IOOqweqwsdf</p>
+</blockquote>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>至此，基础十二关便结束了。<br>虽然总是在上网查攻略，但依旧乐趣不减，毕竟都是我没接触过的东西。<br>感觉学到了不少东西，作为娱乐方式，还是很赚的。<br>以后可能补上抓包工具的解法。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hack/" rel="tag"># Hack</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E6%9C%80%E4%BC%98%E5%81%9C%E6%AD%A2%E7%90%86%E8%AE%BA%E2%80%94%E2%80%94%E5%A6%82%E4%BD%95%E9%80%82%E2%80%9C%E5%8F%AF%E2%80%9D%E8%80%8C%E6%AD%A2.html" rel="prev" title="最优停止理论——如何适“可”而止">
+                  <i class="fa fa-chevron-left"></i> 最优停止理论——如何适“可”而止
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E5%85%B3%E4%BA%8Eu%E7%9B%98%E8%BF%90%E8%A1%8Cveket%E7%B3%BB%E7%BB%9F%E8%BF%99%E4%BB%B6%E4%BA%8B.html" rel="next" title="关于u盘运行veket系统这件事">
+                  关于u盘运行veket系统这件事 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kermit</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">216k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:17</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+<script src="/live2d/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d/","pluginJsPath":"lib/","pluginModelPath":"assert/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
