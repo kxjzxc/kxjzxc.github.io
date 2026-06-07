@@ -137,18 +137,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives">
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -285,7 +285,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>开始脚本关的攻略！！<br>本次依旧无题目描述。<br><a herf="http://hackinglab.cn/">网络信息安全攻防学习平台</a></p>
+        <link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>开始脚本关的攻略！！<br>本次依旧无题目描述。<br><a herf="http://hackinglab.cn/">网络信息安全攻防学习平台</a></p>
 <h1 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h1><p>这题不是跟基础关的第八题一样吗？使用的python代码也只用改一下url，key就直接出来了。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">url = &quot;http://lab1.xseclab.com/xss1_30ac8668cd453e7e387c76b132b140bb/search_key.php&quot;</span><br><span class="line">r = requests.get(url,allow_redirects=False)</span><br><span class="line"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = &#x27;utf-8&#x27;</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
 
@@ -364,13 +364,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">216k</span>
+    <span title="站点总字数">218k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:17</span>
+    <span title="站点阅读时长">3:19</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动

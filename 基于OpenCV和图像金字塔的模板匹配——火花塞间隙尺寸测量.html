@@ -141,18 +141,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives">
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -287,7 +287,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>本项目为基于OpenCV的火花塞间隙尺寸测量，主要是运用模板匹配技术定位火花塞间隙尺寸，然后寻找火花塞间隙并测量其尺寸。</p>
+        <link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>本项目为基于OpenCV的火花塞间隙尺寸测量，主要是运用模板匹配技术定位火花塞间隙尺寸，然后寻找火花塞间隙并测量其尺寸。</p>
 <h1 id="算法说明"><a href="#算法说明" class="headerlink" title="算法说明"></a>算法说明</h1><p><img src="/%E5%9F%BA%E4%BA%8EOpenCV%E5%92%8C%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%94%E7%9A%84%E6%A8%A1%E6%9D%BF%E5%8C%B9%E9%85%8D%E2%80%94%E2%80%94%E7%81%AB%E8%8A%B1%E5%A1%9E%E9%97%B4%E9%9A%99%E5%B0%BA%E5%AF%B8%E6%B5%8B%E9%87%8F/%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="流程图"><br>程序主要分成四个部分：</p>
 <h2 id="预处理："><a href="#预处理：" class="headerlink" title="预处理："></a>预处理：</h2><p>在此部分中，将完成模板的创建和待处理图片的路径读取。程序将从文件夹中读取model.png图片作为模板。如果文件夹中没有该图片，则将从第一张待处理图片中截取所需区域作为模板。</p>
 <h2 id="匹配："><a href="#匹配：" class="headerlink" title="匹配："></a>匹配：</h2><p>此函数主要调用OpenCV库中的matchTemplate函数以及相关函数寻找各种角度的图片中与模板的最佳匹配点，并且根据该点找寻区域的中心位置。模板匹配算法根据需要决定，本项目使用平均方差。</p>
@@ -364,13 +364,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">216k</span>
+    <span title="站点总字数">218k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:17</span>
+    <span title="站点阅读时长">3:19</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动

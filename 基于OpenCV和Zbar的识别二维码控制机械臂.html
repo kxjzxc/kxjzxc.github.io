@@ -137,18 +137,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives">
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -289,7 +289,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在越疆实习的时候并没有问部门里的人自己该干什么，所以似乎也没有什么任务交给我做。由于在培训的时候接触到了ROS，也就顺水推舟地朝着这个方向学了下去。第一周学习用ROS控制机械臂，消息、服务、启动文件之类的也都了解了大概。接下来就试着朝Opencv这一方面研究，在完成打开摄像头，人脸识别等简单项目后，我脑中浮现出了这个项目，二维码控制机器人。<br>这个构思的诞生，说来也是意外之思。当时我做完人脸识别项目后，看到《ROS机器人开发实践》这本书上后面的二维码识别,联想到其他班的同学的一个轮式机器人编队的项目，听说他那个项目中是通过二维码来确定小车的位置。于是我就想，我是不是也可以通过二维码传输指令给机械臂，以此控制机械臂运动呢？深入思考之后，发现可行，网上也有识别二维码的代码，只要将两者合在一块就能实现了。<br>虽说书上是有二维码识别的讲述，但是我并没有采用上面的方法。原因很简单，因为我并没有向部门里的人要摄像头，所以我现有的设备除了机械臂和气泵装置外，只有我笔记本自带的摄像头了。而书上的方法第一步就将我卡住了，因为它需要标定摄像头。我寻思着我这破摄像头也没法标定啊，只能放弃这个方法。所幸，根据之前做人脸识别的经验，我想到只要对摄像头获取的每一帧进行图像处理，即视觉识别即可。<br>终于，经过几天的查资料，自己折腾，我顺利做出了一个简单的版本。</p>
+        <link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在越疆实习的时候并没有问部门里的人自己该干什么，所以似乎也没有什么任务交给我做。由于在培训的时候接触到了ROS，也就顺水推舟地朝着这个方向学了下去。第一周学习用ROS控制机械臂，消息、服务、启动文件之类的也都了解了大概。接下来就试着朝Opencv这一方面研究，在完成打开摄像头，人脸识别等简单项目后，我脑中浮现出了这个项目，二维码控制机器人。<br>这个构思的诞生，说来也是意外之思。当时我做完人脸识别项目后，看到《ROS机器人开发实践》这本书上后面的二维码识别,联想到其他班的同学的一个轮式机器人编队的项目，听说他那个项目中是通过二维码来确定小车的位置。于是我就想，我是不是也可以通过二维码传输指令给机械臂，以此控制机械臂运动呢？深入思考之后，发现可行，网上也有识别二维码的代码，只要将两者合在一块就能实现了。<br>虽说书上是有二维码识别的讲述，但是我并没有采用上面的方法。原因很简单，因为我并没有向部门里的人要摄像头，所以我现有的设备除了机械臂和气泵装置外，只有我笔记本自带的摄像头了。而书上的方法第一步就将我卡住了，因为它需要标定摄像头。我寻思着我这破摄像头也没法标定啊，只能放弃这个方法。所幸，根据之前做人脸识别的经验，我想到只要对摄像头获取的每一帧进行图像处理，即视觉识别即可。<br>终于，经过几天的查资料，自己折腾，我顺利做出了一个简单的版本。</p>
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>运用OpenCV库调取摄像头的画面，然后使用Zbar库中的函数扫描画面，获取画面中存在的二维码的信息，并以ros消息的形式发布到话题上，由客户端节点订阅到话题上的消息后，调用加载到服务端的动态链接库来控制机械臂执行相应的命令</p>
 <h1 id="搭建开发环境"><a href="#搭建开发环境" class="headerlink" title="搭建开发环境"></a>搭建开发环境</h1><h2 id="Linux系统"><a href="#Linux系统" class="headerlink" title="Linux系统"></a>Linux系统</h2><p>我使用的是Ubuntu 18.04。安装Linux系统的教程网上很多，自行寻找。</p>
 <h2 id="机器人操作系统ROS"><a href="#机器人操作系统ROS" class="headerlink" title="机器人操作系统ROS"></a>机器人操作系统ROS</h2><p>从官网上安装对应linux系统的ROS，步骤很详细，一步一步照做即可</p>
@@ -417,13 +417,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">216k</span>
+    <span title="站点总字数">218k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:17</span>
+    <span title="站点阅读时长">3:19</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动

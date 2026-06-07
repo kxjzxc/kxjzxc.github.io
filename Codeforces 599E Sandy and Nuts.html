@@ -134,18 +134,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives">
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -286,7 +286,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="task"><a href="#task" class="headerlink" title="task"></a>task</h3><p>给出一棵树的点的数量n，和部分边的数量，以及一个q，q表示给出q个三元组(a,b,c)，满足lca(a,b)&#x3D;c，求满足这样条件并以1为根的树共有几种。<br>$1&lt;&#x3D;n&lt;&#x3D;15$<br>$0&lt;&#x3D;m&lt;n$<br>$1&lt;&#x3D;q&lt;&#x3D;100$</p>
+        <link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="task"><a href="#task" class="headerlink" title="task"></a>task</h3><p>给出一棵树的点的数量n，和部分边的数量，以及一个q，q表示给出q个三元组(a,b,c)，满足lca(a,b)&#x3D;c，求满足这样条件并以1为根的树共有几种。<br>$1&lt;&#x3D;n&lt;&#x3D;15$<br>$0&lt;&#x3D;m&lt;n$<br>$1&lt;&#x3D;q&lt;&#x3D;100$</p>
 <h3 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h3><p>这题既然问的是方案数，那么不是搜索就是dp了。搜索显然不可能，那么就是dp了。<br>由于n最多也就是15个点，所以我们可以用状压dp。<br>$dp[x][s]$表示第x个节点为根的子树中点的状况为s的最多方案数。<br>我们可以用递归的方式来写。<br>每次从原状态s中找到一个子集i，然后判断这个子集能否从s中分离，判断条件如下：</p>
 <ol>
 <li>在子集i中是否有两个点的lca是x或者有两个点已经与x有一条边，若是则不行。</li>
@@ -358,13 +358,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">216k</span>
+    <span title="站点总字数">218k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:17</span>
+    <span title="站点阅读时长">3:19</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
