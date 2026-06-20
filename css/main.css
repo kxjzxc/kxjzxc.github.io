@@ -2718,7 +2718,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #cd0e05;
+  background: #39a45e;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2751,9 +2751,10 @@ hr {
   display: block;
   margin: 1.5rem auto;
   max-width: 90%;
+  height: auto;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
 }
 .post-body img:hover {
   transform: scale(1.02);
@@ -2777,13 +2778,15 @@ hr {
    图库图片
    ========================= */
 .photo-row img {
-  height: 400px;
+  display: block;
+  height: 380px;
   width: auto;
   max-width: none;
   margin: 0;
   border-radius: 6px;
   box-shadow: none;
   object-fit: cover;
+  transition: transform 0.25s ease;
 }
 .photo-row img:hover {
   transform: scale(1.01);
@@ -2793,14 +2796,14 @@ hr {
    ========================= */
 .photo-group figcaption {
   text-align: center;
-  margin-top: 16px;
+  margin-top: 12px;
   color: #888;
   font-size: 0.9em;
   font-style: italic;
   line-height: 1.6;
 }
 /* =========================
-   图片悬浮提示
+   Tooltip
    ========================= */
 .img-tooltip {
   position: relative;
@@ -2829,4 +2832,24 @@ hr {
 .img-tooltip:hover .img-tooltip-content {
   opacity: 1;
   visibility: visible;
+}
+/* =========================
+   手机端适配
+   ========================= */
+@media (max-width: 767px) {
+  .post-body img {
+    max-width: 100%;
+  }
+  .photo-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .photo-row img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+  .img-tooltip-content {
+    width: 220px;
+  }
 }
