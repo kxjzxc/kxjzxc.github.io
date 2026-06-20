@@ -2711,7 +2711,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #f08ea6;
+  background: #63c67a;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2822,4 +2822,7 @@ hr {
 .img-tooltip:hover .img-tooltip-content {
   opacity: 1;
   visibility: visible;
+}
+body {
+  border: 20px solid #f00 !important;
 }
