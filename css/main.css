@@ -2711,7 +2711,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #fbffd9;
+  background: #f08ea6;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2736,4 +2736,90 @@ hr {
 }
 .sub-menu .menu-item {
   display: inline-block;
+}
+/* =========================
+   普通图片
+   ========================= */
+.post-body img {
+  display: block;
+  margin: 1.5rem auto;
+  max-width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease;
+}
+.post-body img:hover {
+  transform: scale(1.02);
+}
+/* =========================
+   图库容器
+   ========================= */
+.photo-group {
+  margin: 2rem 0;
+}
+/* =========================
+   图库行
+   ========================= */
+.photo-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+/* =========================
+   图库图片
+   ========================= */
+.photo-row img {
+  height: 400px;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  border-radius: 6px;
+  box-shadow: none;
+  object-fit: cover;
+}
+.photo-row img:hover {
+  transform: scale(1.01);
+}
+/* =========================
+   图注
+   ========================= */
+.photo-group figcaption {
+  text-align: center;
+  margin-top: 16px;
+  color: #888;
+  font-size: 0.9em;
+  font-style: italic;
+  line-height: 1.6;
+}
+/* =========================
+   图片悬浮提示
+   ========================= */
+.img-tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  color: #888;
+}
+/* =========================
+   Tooltip 图片
+   ========================= */
+.img-tooltip-content {
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  transform: translate(-50%, -100%);
+  width: 260px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  z-index: 9999;
+  max-width: none !important;
+  margin: 0 !important;
+}
+.img-tooltip:hover .img-tooltip-content {
+  opacity: 1;
+  visibility: visible;
 }
