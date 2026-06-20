@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"kxjzxc.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="article">
 <meta property="og:title" content="【RPGMakerMV】滑冰谜题">
 <meta property="og:url" content="http://kxjzxc.github.io/%E3%80%90RPGMakerMV%E3%80%91%E6%BB%91%E5%86%B0%E8%B0%9C%E9%A2%98.html">
@@ -284,7 +284,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>project1论坛上已经有过<a href="https://mp.weixin.qq.com/s?__biz=MzIzMDA3ODg0NA==&mid=501963472&idx=1&sn=d56bf38ff1f95e8b78d8366873fbd128&chksm=70a71ac347d093d58e0479b0e6b3d7e3c4bffc968320597acdfa6b126ce445e7e103af421b7e#rd">滑冰谜题</a>的教程了，但是这个教程里的滑冰谜题和我想要的不太一样。我想要做的是遇到障碍物才停止的效果，而并非离开冰面停止。<br>网上搜了搜，好像并没有教程，倒是看到有人说可以用YEP_SlipperyTiles插件完成，然而我没搞清楚这个插件的用法。因此最后就自己根据原先的那个教程改进了一下，得到了自己想要的效果。</p>
-<h1 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h1><h2 id="地图设置"><a href="#地图设置" class="headerlink" title="地图设置"></a>地图设置</h2><p><img src="/%E3%80%90RPGMakerMV%E3%80%91%E6%BB%91%E5%86%B0%E8%B0%9C%E9%A2%98/%E5%9C%B0%E5%9B%BE%E8%AE%BE%E7%BD%AE.png" alt="地图设置"></p>
+<h1 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h1><h2 id="地图设置"><a href="#地图设置" class="headerlink" title="地图设置"></a>地图设置</h2><p><img data-src="/%E3%80%90RPGMakerMV%E3%80%91%E6%BB%91%E5%86%B0%E8%B0%9C%E9%A2%98/%E5%9C%B0%E5%9B%BE%E8%AE%BE%E7%BD%AE.png" alt="地图设置"></p>
 <p>区域ID：2个</p>
 <p>1：踩到就进入滑冰状态，向当前朝向前进一步。覆盖冰面。</p>
 <p>2: 踩到就离开滑冰状态，恢复正常。放置于冰面出口</p>
@@ -297,7 +297,7 @@
 <p>001 滑冰</p>
 <p><strong>公共事件：1个</strong></p>
 <p>001 滑冰</p>
-<p><img src="/%E3%80%90RPGMakerMV%E3%80%91%E6%BB%91%E5%86%B0%E8%B0%9C%E9%A2%98/%E5%85%AC%E5%85%B1%E4%BA%8B%E4%BB%B61.png" alt="公共事件"><br><img src="/%E3%80%90RPGMakerMV%E3%80%91%E6%BB%91%E5%86%B0%E8%B0%9C%E9%A2%98/%E5%85%AC%E5%85%B1%E4%BA%8B%E4%BB%B62.png" alt="公共事件"></p>
+<p><img data-src="/%E3%80%90RPGMakerMV%E3%80%91%E6%BB%91%E5%86%B0%E8%B0%9C%E9%A2%98/%E5%85%AC%E5%85%B1%E4%BA%8B%E4%BB%B61.png" alt="公共事件"><br><img data-src="/%E3%80%90RPGMakerMV%E3%80%91%E6%BB%91%E5%86%B0%E8%B0%9C%E9%A2%98/%E5%85%AC%E5%85%B1%E4%BA%8B%E4%BB%B62.png" alt="公共事件"></p>
 <p><strong>地图事件</strong></p>
 <p>同样我们也要在地图里放一个并行事件调用滑冰公共事件</p>
 
@@ -309,8 +309,8 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/RPGMaker/" rel="tag"># RPGMaker</a>
               <a href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag"># 游戏</a>
+              <a href="/tags/RPGMaker/" rel="tag"># RPGMaker</a>
               <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"># 教程</a>
           </div>
 
@@ -376,6 +376,7 @@
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
