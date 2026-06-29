@@ -135,7 +135,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives">
-          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -268,14 +268,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.5k</span>
+      <span>521</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
@@ -287,18 +287,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="task"><a href="#task" class="headerlink" title="task"></a>task</h3><p>给出一棵树的点的数量n，和部分边的数量，以及一个q，q表示给出q个三元组(a,b,c)，满足lca(a,b)&#x3D;c，求满足这样条件并以1为根的树共有几种。<br>$1&lt;&#x3D;n&lt;&#x3D;15$<br>$0&lt;&#x3D;m&lt;n$<br>$1&lt;&#x3D;q&lt;&#x3D;100$</p>
+        <h3 id="task"><a href="#task" class="headerlink" title="task"></a>task</h3><p>给出一棵树的点的数量n，和部分边的数量，以及一个q，q表示给出q个三元组(a,b,c)，满足lca(a,b)=c，求满足这样条件并以1为根的树共有几种。<br>$1&lt;=n&lt;=15$<br>$0&lt;=m&lt;n$<br>$1&lt;=q&lt;=100$</p>
 <h3 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h3><p>这题既然问的是方案数，那么不是搜索就是dp了。搜索显然不可能，那么就是dp了。<br>由于n最多也就是15个点，所以我们可以用状压dp。<br>$dp[x][s]$表示第x个节点为根的子树中点的状况为s的最多方案数。<br>我们可以用递归的方式来写。<br>每次从原状态s中找到一个子集i，然后判断这个子集能否从s中分离，判断条件如下：</p>
 <ol>
 <li>在子集i中是否有两个点的lca是x或者有两个点已经与x有一条边，若是则不行。</li>
-<li>   是否有两个点分别属于i与$s^i$但是它们的lca并不是x，或是他们之间有一条边，若是则不行。</li>
+<li>是否有两个点分别属于i与$s^i$但是它们的lca并不是x，或是他们之间有一条边，若是则不行。</li>
 </ol>
 <p>如果成立我们从s中枚举一个子树的根j。当然我们需要判断此点是否可以作为子树的根。判断条件如下：</p>
 <ol>
 <li>在子集i中是否有一个点与j的lca不是j，若是则不行。</li>
 <li>在子集i中是否有另外一个点与x已有边，若是则不行。</li>
 </ol>
-<p>如果成立，那么说明此点可以作为子树的根，那么我们就可以转移了。<br>$$Dp[x][s]+&#x3D;dfs(j,i-1&lt;&lt;j)*dfs(x,s^i)$$<br>为什么要相乘呢？因为这两部分可以作为同一棵树的两个部分，是相关，如果一个部分无解，那么就算另一个部分方案数再大也无济于事。<br>最后要注意两个情况：</p>
+<p>如果成立，那么说明此点可以作为子树的根，那么我们就可以转移了。</p>
+<script type="math/tex; mode=display">Dp[x][s]+=dfs(j,i-1<<j)*dfs(x,s^i)</script><p>为什么要相乘呢？因为这两部分可以作为同一棵树的两个部分，是相关，如果一个部分无解，那么就算另一个部分方案数再大也无济于事。<br>最后要注意两个情况：</p>
 <ol>
 <li>转移是要保证$i&lt;s^i$，这样可以完美的杜绝重复状况。</li>
 <li>记得开long long。</li>
@@ -320,13 +321,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/Codeforces%20576E%20Mausoleum.html" rel="prev" title="Codeforces 567E Mausoleum">
-                  <i class="fa fa-chevron-left"></i> Codeforces 567E Mausoleum
+                <a href="/hello-world.html" rel="prev" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/SWERC%202013%20A%20Mixing%20Colours.html" rel="next" title="SWERC 2013 A Mixing Colours">
-                  SWERC 2013 A Mixing Colours <i class="fa fa-chevron-right"></i>
+                <a href="/Codeforces%20576E%20Mausoleum.html" rel="next" title="Codeforces 567E Mausoleum">
+                  Codeforces 567E Mausoleum <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -359,7 +360,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">222k</span>
+    <span title="站点总字数">223k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">

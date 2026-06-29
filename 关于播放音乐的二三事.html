@@ -144,7 +144,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives">
-          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -295,139 +295,135 @@
 <li>Hexo博客添加音乐</li>
 </ul>
 <hr>
-<h4 id="ubuntu里firefox无法播放音乐"><a href="#ubuntu里firefox无法播放音乐" class="headerlink" title="ubuntu里firefox无法播放音乐"></a>ubuntu里firefox无法播放音乐</h4><p>我在ubuntu环境下时一般使用RhythmBox播放本地音乐，而且也很少在此环境下看视频，所以我很少用浏览器播放音频和视频。但是有时候是必须用到浏览器播放，就像是下文所讲的下载付费音乐。然而当我第一次在ubuntu的firefox上打开网易云音乐网页版播放音乐时却发现无法播放。网上一查，大抵上是解码器不支持的缘故。幸运的是这个问题也好解决，安装个解码器即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ubuntu-restricted-extras</span><br></pre></td></tr></table></figure>
+<h4 id="ubuntu里firefox无法播放音乐"><a href="#ubuntu里firefox无法播放音乐" class="headerlink" title="ubuntu里firefox无法播放音乐"></a>ubuntu里firefox无法播放音乐</h4><p>我在ubuntu环境下时一般使用RhythmBox播放本地音乐，而且也很少在此环境下看视频，所以我很少用浏览器播放音频和视频。但是有时候是必须用到浏览器播放，就像是下文所讲的下载付费音乐。然而当我第一次在ubuntu的firefox上打开网易云音乐网页版播放音乐时却发现无法播放。网上一查，大抵上是解码器不支持的缘故。幸运的是这个问题也好解决，安装个解码器即可。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ubuntu-restricted-extras</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h4 id="网易云音乐付费音乐免费下载"><a href="#网易云音乐付费音乐免费下载" class="headerlink" title="网易云音乐付费音乐免费下载"></a>网易云音乐付费音乐免费下载</h4><p>这个方法只对可以在网页端听的音乐有用。</p>
 <ol>
-<li>进入歌曲页面，按下F2查看元素。<br><img data-src="/Download1.png"></li>
-<li>点击<code>网络</code>(network)，并且选择<code>媒体</code>(media)，然后按ctrl+R重新载入。<br><img data-src="/Download2.png"></li>
-<li>在ubuntu中，选择大小最大的那一项，即上述图片中的第二项。右键，点击<code>新建标签页打开</code>，然后切换到新生成的页面中。<br><img data-src="/Download3.png"><br>在windows中，需要先播放音乐，然后再选择大小最大的那一项，双击并切换得到新生成的页面中（也可能是浏览器的原因，我两个系统的浏览器不同）。</li>
+<li>进入歌曲页面，按下F2查看元素。<br><img data-src="Download1.png" alt=""></li>
+<li>点击<code>网络</code>(network)，并且选择<code>媒体</code>(media)，然后按ctrl+R重新载入。<br><img data-src="Download2.png" alt=""></li>
+<li>在ubuntu中，选择大小最大的那一项，即上述图片中的第二项。右键，点击<code>新建标签页打开</code>，然后切换到新生成的页面中。<br><img data-src="Download3.png" alt=""><br>在windows中，需要先播放音乐，然后再选择大小最大的那一项，双击并切换得到新生成的页面中（也可能是浏览器的原因，我两个系统的浏览器不同）。</li>
 <li>右键中间的进度条，点击<code>另存音频为</code>，即可保存歌曲。windows</li>
 </ol>
 <hr>
 <h4 id="Hexo博客中添加音乐"><a href="#Hexo博客中添加音乐" class="headerlink" title="Hexo博客中添加音乐"></a>Hexo博客中添加音乐</h4><h5 id="使用音乐平台提供的外链"><a href="#使用音乐平台提供的外链" class="headerlink" title="使用音乐平台提供的外链"></a>使用音乐平台提供的外链</h5><p>以网易云音乐为例：</p>
 <ol>
-<li>进入所需歌曲的页面，点击<code>生成外链播放器</code>。<br><img data-src="/Blog1.png"></li>
-<li>一般添加的是iframe标签，调节完尺寸和播放模式后，复制最低端的HTML代码，添加到自己的博客文章中。</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">frameborder</span>=<span class="string">&quot;no&quot;</span> <span class="attr">border</span>=<span class="string">&quot;0&quot;</span> <span class="attr">marginwidth</span>=<span class="string">&quot;0&quot;</span> <span class="attr">marginheight</span>=<span class="string">&quot;0&quot;</span> <span class="attr">width</span>=<span class="string">330</span> <span class="attr">height</span>=<span class="string">86</span> <span class="attr">src</span>=<span class="string">&quot;//music.163.com/outchain/player?type=2&amp;id=19892244&amp;auto=0&amp;height=66&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>效果如下：</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=19892244&auto=0&height=66"></iframe>
+<li>进入所需歌曲的页面，点击<code>生成外链播放器</code>。<br><img data-src="Blog1.png" alt=""></li>
+<li>一般添加的是iframe标签，调节完尺寸和播放模式后，复制最低端的HTML代码，添加到自己的博客文章中。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">frameborder</span>=<span class="string">&quot;no&quot;</span> <span class="attr">border</span>=<span class="string">&quot;0&quot;</span> <span class="attr">marginwidth</span>=<span class="string">&quot;0&quot;</span> <span class="attr">marginheight</span>=<span class="string">&quot;0&quot;</span> <span class="attr">width</span>=<span class="string">330</span> <span class="attr">height</span>=<span class="string">86</span> <span class="attr">src</span>=<span class="string">&quot;//music.163.com/outchain/player?type=2&amp;id=19892244&amp;auto=0&amp;height=66&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+效果如下：<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=19892244&auto=0&height=66"></iframe>
 
-<h5 id="使用aplayer播放"><a href="#使用aplayer播放" class="headerlink" title="使用aplayer播放"></a>使用aplayer播放</h5><p>上述引用音乐平台外链的方法可以说是非常的方便了，只要获取代码添加一下即可。<br>然而对于一些老爵士、老摇滚和其他有版权保护的音乐是没办法添加外链的。<br><img data-src="/Blog2.png"><br>网上虽然有如何获取这些歌曲外链的方法，但是我试过两次后，发现只能出现播放器，却无法播放。所以为了一劳永逸，我选择使用aplayer。<br>aplayer是一款音乐播放插件，即html5的嵌入式播放器，只要有歌曲的id即可。</p>
-<ol>
-<li>安装aplayer插件</li>
+</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-tag-aplayer</span><br></pre></td></tr></table></figure>
-<ol start="2">
+<h5 id="使用aplayer播放"><a href="#使用aplayer播放" class="headerlink" title="使用aplayer播放"></a>使用aplayer播放</h5><p>上述引用音乐平台外链的方法可以说是非常的方便了，只要获取代码添加一下即可。<br>然而对于一些老爵士、老摇滚和其他有版权保护的音乐是没办法添加外链的。<br><img data-src="Blog2.png" alt=""><br>网上虽然有如何获取这些歌曲外链的方法，但是我试过两次后，发现只能出现播放器，却无法播放。所以为了一劳永逸，我选择使用aplayer。<br>aplayer是一款音乐播放插件，即html5的嵌入式播放器，只要有歌曲的id即可。</p>
+<ol>
+<li>安装aplayer插件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-tag-aplayer</span><br></pre></td></tr></table></figure></li>
 <li>使用MetingJS<blockquote>
 <p>MetingJS 是基于Meting API 的 APlayer 衍生播放器，引入 MetingJS 后，播放器将支持对于 QQ音乐、网易云音乐、虾米、酷狗、百度等平台的音乐播放。</p>
 </blockquote>
 </li>
 </ol>
-<p>上述是从别人博客里引用的关于MetingJS的介绍以及功能。<br>使用MetingJS需要在根目录下的<code>_config.yml</code>文件中添加以下语句：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aplayer:</span><br><span class="line">  meting: true</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>添加代码<br>准备工作完成了，接下来你只需要在你想加音乐的博客文章中添加以下代码即可：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% meting &quot;3880720&quot; &quot;netease&quot; &quot;song&quot; &quot;theme:#555&quot; &quot;mutex:true&quot; &quot;listmaxheight:340px&quot; &quot;preload:auto&quot; %&#125;</span><br></pre></td></tr></table></figure>
-<p>效果如下：</p>
-
-    <div id="aplayer-jhXqduQo" class="aplayer aplayer-tag-marker meting-tag-marker"
+<p>上述是从别人博客里引用的关于MetingJS的介绍以及功能。<br>使用MetingJS需要在根目录下的<code>_config.yml</code>文件中添加以下语句：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aplayer:</span><br><span class="line">  meting: true</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>添加代码<br>准备工作完成了，接下来你只需要在你想加音乐的博客文章中添加以下代码即可：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% meting &quot;3880720&quot; &quot;netease&quot; &quot;song&quot; &quot;theme:#555&quot; &quot;mutex:true&quot; &quot;listmaxheight:340px&quot; &quot;preload:auto&quot; %&#125;</span><br></pre></td></tr></table></figure>
+效果如下：
+    <div id="aplayer-CabJIizP" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="3880720" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#555"
     ></div>
-<p>其中3880720是歌曲的id，可以在该歌曲页面的网址中找到。</p>
+其中3880720是歌曲的id，可以在该歌曲页面的网址中找到。</li>
+</ol>
 <p>这份代码中的各个参数配置如下：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>选项</th>
-<th align="center">默认值</th>
-<th align="left">描述</th>
+<th style="text-align:center">默认值</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>id</td>
-<td align="center">必须值</td>
-<td align="left">歌曲&#x2F;专辑&#x2F;歌单对应的id</td>
+<td style="text-align:center">必须值</td>
+<td style="text-align:left">歌曲/专辑/歌单对应的id</td>
 </tr>
 <tr>
 <td>server</td>
-<td align="center">必须值</td>
-<td align="left">音乐平台：netease(网易云音乐)、tecent(qq音乐)、xiami(虾米音乐)、kugou(酷狗音乐)、baidu(百度音乐)</td>
+<td style="text-align:center">必须值</td>
+<td style="text-align:left">音乐平台：netease(网易云音乐)、tecent(qq音乐)、xiami(虾米音乐)、kugou(酷狗音乐)、baidu(百度音乐)</td>
 </tr>
 <tr>
 <td>type</td>
-<td align="center">必须值</td>
-<td align="left">请求类型：song(单曲)、album(专辑)、playlist(歌单)、search(搜索)、artist(歌手)</td>
+<td style="text-align:center">必须值</td>
+<td style="text-align:left">请求类型：song(单曲)、album(专辑)、playlist(歌单)、search(搜索)、artist(歌手)</td>
 </tr>
 <tr>
 <td>theme</td>
-<td align="center">#ad7a86</td>
-<td align="left">播放器风格色彩设置</td>
+<td style="text-align:center">#ad7a86</td>
+<td style="text-align:left">播放器风格色彩设置</td>
 </tr>
 <tr>
 <td>fixed</td>
-<td align="center">false</td>
-<td align="left">开启固定模式</td>
+<td style="text-align:center">false</td>
+<td style="text-align:left">开启固定模式</td>
 </tr>
 <tr>
 <td>mini</td>
-<td align="center">false</td>
-<td align="left">开启迷你模式</td>
+<td style="text-align:center">false</td>
+<td style="text-align:left">开启迷你模式</td>
 </tr>
 <tr>
 <td>loop</td>
-<td align="center">all</td>
-<td align="left">列表循环模式：all, one,none</td>
+<td style="text-align:center">all</td>
+<td style="text-align:left">列表循环模式：all, one,none</td>
 </tr>
 <tr>
 <td>order</td>
-<td align="center">list</td>
-<td align="left">列表播放模式： list(顺序播放), random(随机播放)</td>
+<td style="text-align:center">list</td>
+<td style="text-align:left">列表播放模式： list(顺序播放), random(随机播放)</td>
 </tr>
 <tr>
 <td>volume</td>
-<td align="center">0.7</td>
-<td align="left">播放器音量</td>
+<td style="text-align:center">0.7</td>
+<td style="text-align:left">播放器音量</td>
 </tr>
 <tr>
 <td>lrctype</td>
-<td align="center">0</td>
-<td align="left">歌词格式类型</td>
+<td style="text-align:center">0</td>
+<td style="text-align:left">歌词格式类型</td>
 </tr>
 <tr>
 <td>listfolded</td>
-<td align="center">false</td>
-<td align="left">指定音乐播放列表是否折叠</td>
+<td style="text-align:center">false</td>
+<td style="text-align:left">指定音乐播放列表是否折叠</td>
 </tr>
 <tr>
 <td>storagename</td>
-<td align="center">metingjs</td>
-<td align="left">LocalStorage 中存储播放器设定的键名</td>
+<td style="text-align:center">metingjs</td>
+<td style="text-align:left">LocalStorage 中存储播放器设定的键名</td>
 </tr>
 <tr>
 <td>autoplay</td>
-<td align="center">true</td>
-<td align="left">自动播放，移动端浏览器暂时不支持此功能</td>
+<td style="text-align:center">true</td>
+<td style="text-align:left">自动播放，移动端浏览器暂时不支持此功能</td>
 </tr>
 <tr>
 <td>mutex</td>
-<td align="center">true</td>
-<td align="left">该选项开启时，如果同页面有其他 aplayer 播放，该播放器会暂停</td>
+<td style="text-align:center">true</td>
+<td style="text-align:left">该选项开启时，如果同页面有其他 aplayer 播放，该播放器会暂停</td>
 </tr>
 <tr>
 <td>listmaxheight</td>
-<td align="center">340px</td>
-<td align="left">播放列表的最大长度</td>
+<td style="text-align:center">340px</td>
+<td style="text-align:left">播放列表的最大长度</td>
 </tr>
 <tr>
 <td>preload</td>
-<td align="center">auto</td>
-<td align="left">音乐文件预载入模式，可选项： none, metadata, auto</td>
+<td style="text-align:center">auto</td>
+<td style="text-align:left">音乐文件预载入模式，可选项： none, metadata, auto</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 
     </div>
 
@@ -483,7 +479,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">222k</span>
+    <span title="站点总字数">223k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">

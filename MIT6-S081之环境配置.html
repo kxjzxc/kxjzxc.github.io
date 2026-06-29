@@ -135,7 +135,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives">
-          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -286,13 +286,7 @@
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本人虽然不是计科的学生，但是想做一做操作系统的实验，权当作学习操作系统的知识。</p>
 <p>我校的操作系统实验是基于MIT6.S081实验，在XV6上进行教学：</p>
 <blockquote>
-<p>XV6是由麻省理工学院(MIT)开发的一个教学目的的操作系统，它是在x86处理器上用ANSI标准C重新实现的Unix第六版(即v6)，课程编号为6.828。2019年被移植到RISC-V之上，并设置了6.S081。<br>XV6的主要特征：</p>
-<ol>
-<li>开源，精简，代码仅两万行左右；</li>
-<li>功能完善，可全面理解操作系统的原理及实现；</li>
-<li>基于RISC-V、X86等架构，有利于深入理解体系结构；</li>
-<li>类Unix系统，可延伸学习其他常见操作系统，例如Linux、MacOS等。</li>
-</ol>
+<p>XV6是由麻省理工学院(MIT)开发的一个教学目的的操作系统，它是在x86处理器上用ANSI标准C重新实现的Unix第六版(即v6)，课程编号为6.828。2019年被移植到RISC-V之上，并设置了6.S081。<br>XV6的主要特征：<br>1) 开源，精简，代码仅两万行左右；<br>2) 功能完善，可全面理解操作系统的原理及实现；<br>3) 基于RISC-V、X86等架构，有利于深入理解体系结构；<br>4) 类Unix系统，可延伸学习其他常见操作系统，例如Linux、MacOS等。</p>
 <p>本课程将从开源操作系统 xv6-labs-2020 的实验课程中选取4个实验，根据我们学校的操作系统课程要求进行修改， 请大家从以下网站下载代码，在这套代码上完成实验。</p>
 </blockquote>
 <h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><p>Ubuntu20.04</p>
@@ -300,19 +294,16 @@
 <h3 id="RISC-V工具链"><a href="#RISC-V工具链" class="headerlink" title="RISC-V工具链"></a>RISC-V工具链</h3><ol>
 <li>下载安装包并解压 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> --recursive https://github.com/riscv/riscv-gnu-toolchain</span><br><span class="line">$ tar zxvf riscv-gnu-toolchain.tar.gz</span><br></pre></td></tr></table></figure></li>
 <li>安装 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> riscv-gnu-toolchain</span><br><span class="line">$ <span class="built_in">sudo</span> ./configure --prefix=/usr/local</span><br><span class="line">$ <span class="built_in">sudo</span> make</span><br><span class="line">$ <span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure></li>
-<li>检测是否安装成功 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ riscv64-unknown-elf-gcc --version</span><br><span class="line">riscv64-unknown-elf-gcc (GCC) 10.2.0</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="QEMU模拟器"><a href="#QEMU模拟器" class="headerlink" title="QEMU模拟器"></a>QEMU模拟器</h3><ol>
+<li>检测是否安装成功 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ riscv64-unknown-elf-gcc --version</span><br><span class="line">riscv64-unknown-elf-gcc (GCC) 10.2.0</span><br></pre></td></tr></table></figure>
+<h3 id="QEMU模拟器"><a href="#QEMU模拟器" class="headerlink" title="QEMU模拟器"></a>QEMU模拟器</h3></li>
 <li>下载QEMU并解压 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://download.qemu.org/qemu-5.1.0.tar.xz</span><br><span class="line">$ tar xf qemu-5.1.0.tar.xz</span><br></pre></td></tr></table></figure></li>
 <li>安装 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> qemu-5.1.0</span><br><span class="line">$ <span class="built_in">sudo</span> ./configure --disable-kvm --disable-werror --prefix=/usr/local --target-list=<span class="string">&quot;riscv64-softmmu&quot;</span></span><br><span class="line">$ <span class="built_in">sudo</span> make</span><br><span class="line">$ <span class="built_in">sudo</span> make install</span><br><span class="line">$ <span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure></li>
-<li>检测是否安装成功 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ qemu-system-riscv64 --version</span><br><span class="line">QEMU emulator version 5.1.0</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="XV6源码"><a href="#XV6源码" class="headerlink" title="XV6源码"></a>XV6源码</h3><ol>
+<li>检测是否安装成功 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ qemu-system-riscv64 --version</span><br><span class="line">QEMU emulator version 5.1.0</span><br></pre></td></tr></table></figure>
+<h3 id="XV6源码"><a href="#XV6源码" class="headerlink" title="XV6源码"></a>XV6源码</h3></li>
 <li>下载XV6源码<br>我是从学校实验中心的gitee上下载的,各凭渠道</li>
-<li>运行</li>
+<li>运行<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> xv6-labs-2020</span><br><span class="line">$ <span class="built_in">sudo</span> make qemu</span><br></pre></td></tr></table></figure>
+当可以看到“init: starting sh”的字样表示xv6已经正常启动。</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> xv6-labs-2020</span><br><span class="line">$ <span class="built_in">sudo</span> make qemu</span><br></pre></td></tr></table></figure>
-<p>当可以看到“init: starting sh”的字样表示xv6已经正常启动。</p>
 <p>qemu退出方法：先按<code>Ctrl+a</code>组合键，接着全部松开，再按下<code>x</code>键</p>
 <p>至此，XV6已经能够正常运行了。</p>
 <h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>由于写这篇博文的时候，环境已经搭建好了，而且也没有什么记录，所以就直接照搬实验指导书了。本文仅当作记录。</p>
@@ -371,7 +362,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">222k</span>
+    <span title="站点总字数">223k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">

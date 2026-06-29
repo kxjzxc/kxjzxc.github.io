@@ -138,7 +138,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives">
-          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -287,17 +287,13 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>开始脚本关的攻略！！<br>本次依旧无题目描述。<br><a herf="http://hackinglab.cn/">网络信息安全攻防学习平台</a></p>
-<h1 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h1><p>这题不是跟基础关的第八题一样吗？使用的python代码也只用改一下url，key就直接出来了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">url = &quot;http://lab1.xseclab.com/xss1_30ac8668cd453e7e387c76b132b140bb/search_key.php&quot;</span><br><span class="line">r = requests.get(url,allow_redirects=False)</span><br><span class="line"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = &#x27;utf-8&#x27;</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-
+<h1 id="第一关"><a href="#第一关" class="headerlink" title="第一关"></a>第一关</h1><p>这题不是跟基础关的第八题一样吗？使用的python代码也只用改一下url，key就直接出来了。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">url = &quot;http://lab1.xseclab.com/xss1_30ac8668cd453e7e387c76b132b140bb/search_key.php&quot;</span><br><span class="line">r = requests.get(url,allow_redirects=False)</span><br><span class="line"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = &#x27;utf-8&#x27;</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>yougotit_script_now</p>
 </blockquote>
 <h1 id="第二关"><a href="#第二关" class="headerlink" title="第二关"></a>第二关</h1><p>第二关需要在两秒内计算式子并提交，但很显然两秒的时间就算能算出来也不够输入。<br>所以我们需要写一个脚本能够计算这个式子并且提交答案。</p>
 <p>我们通过re模块，使用正则表达式提取算数表达式。由于他的式子只有a*b+c*(d+e)的形式，所以我们的正则表达式只需匹配这种表达式，即(\d+[+*])+((\d+)+(\d+))。</p>
-<p>另外需要注意的一点是，由于每次访问的时候式子都会改变，所以我们需要保持会话，让我们获取式子和提交答案访问的是同一个会话。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">url = &quot;http://lab1.xseclab.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php&quot;</span><br><span class="line"></span><br><span class="line">#维持会话,可以让我们在跨请求时保存某些参数</span><br><span class="line">session = requests.session()</span><br><span class="line"></span><br><span class="line"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span><br><span class="line">r = session.get(url);</span><br><span class="line"></span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line">r&#x27;&#x27;一般用在正则表达式中，称为原始字符串，作用是将Python语法中的反斜杠转义给取消，将其设置成为一个普通的字符串。</span><br><span class="line">可以解决Python中的转义字符和正则表达式中的转义字符之间的冲突问题。</span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line">expression = re.search(r&#x27;(\d+[+*])+\((\d+)\+(\d+)\)&#x27;,r.text).group()</span><br><span class="line"></span><br><span class="line"># eval() 函数用来执行一个字符串表达式，并返回表达式的值。</span><br><span class="line">result = eval(expression)</span><br><span class="line"></span><br><span class="line">print(expression)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line">r = session.post(url,data=&#123;&#x27;v&#x27;:result&#125;);</span><br><span class="line"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = &#x27;utf-8&#x27;</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-
+<p>另外需要注意的一点是，由于每次访问的时候式子都会改变，所以我们需要保持会话，让我们获取式子和提交答案访问的是同一个会话。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">url = &quot;http://lab1.xseclab.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php&quot;</span><br><span class="line"></span><br><span class="line">#维持会话,可以让我们在跨请求时保存某些参数</span><br><span class="line">session = requests.session()</span><br><span class="line"></span><br><span class="line"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span><br><span class="line">r = session.get(url);</span><br><span class="line"></span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line">r&#x27;&#x27;一般用在正则表达式中，称为原始字符串，作用是将Python语法中的反斜杠转义给取消，将其设置成为一个普通的字符串。</span><br><span class="line">可以解决Python中的转义字符和正则表达式中的转义字符之间的冲突问题。</span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line">expression = re.search(r&#x27;(\d+[+*])+\((\d+)\+(\d+)\)&#x27;,r.text).group()</span><br><span class="line"></span><br><span class="line"># eval() 函数用来执行一个字符串表达式，并返回表达式的值。</span><br><span class="line">result = eval(expression)</span><br><span class="line"></span><br><span class="line">print(expression)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line">r = session.post(url,data=&#123;&#x27;v&#x27;:result&#125;);</span><br><span class="line"># 请求获取URL位置的资源，包含从服务器返回的所有内容</span><br><span class="line">r.encoding = r.apparent_encoding</span><br><span class="line">r.encoding = &#x27;utf-8&#x27;</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>123iohHKHJ%^&amp;*(jkh</p>
 </blockquote>
@@ -305,8 +301,8 @@
 <blockquote>
 <p>null</p>
 </blockquote>
-<h1 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a>第四关</h1><p>查看源码，发现head中有一大堆js代码<br><img data-src="/HackingLab%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%85%B3%E6%94%BB%E7%95%A5/%E7%AC%AC%E5%9B%9B%E5%85%B3.png" alt="F12"><br>显然第一个函数<code>function alert(a)</code>导致a函数无法执行。将网页保存到本地，然后删去此函数再次打开即可。</p>
-<p>不过要注意’chars’不算在14个字符当中<br><img data-src="/HackingLab%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%85%B3%E6%94%BB%E7%95%A5/%E7%AC%AC%E5%9B%9B%E5%85%B3%E8%BE%93%E5%87%BA.png" alt="弹出窗口的代码"></p>
+<h1 id="第四关"><a href="#第四关" class="headerlink" title="第四关"></a>第四关</h1><p>查看源码，发现head中有一大堆js代码<br><img data-src="HackingLab之脚本关攻略/第四关.png" alt="F12"><br>显然第一个函数<code>function alert(a)</code>导致a函数无法执行。将网页保存到本地，然后删去此函数再次打开即可。</p>
+<p>不过要注意’chars’不算在14个字符当中<br><img data-src="HackingLab之脚本关攻略/第四关输出.png" alt="弹出窗口的代码"></p>
 <blockquote>
 <p>slakfjteslkjsd</p>
 </blockquote>
@@ -365,7 +361,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">222k</span>
+    <span title="站点总字数">223k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
